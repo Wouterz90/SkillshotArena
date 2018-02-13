@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+  "item_spell_hookshot"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"              "3005"
+    "BaseClass"           "item_lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "rattletrap_hookshot"
+    "ScriptFile"              "items/item_hookshot.lua"
+    "Model"             "models/hookshot.vmdl"
+    "HasCharges"        "1"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "charges"   "1"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "max_charges"   "2"
+      }
+    }
+  }
+}

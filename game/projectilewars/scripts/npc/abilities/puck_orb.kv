@@ -1,0 +1,54 @@
+"DOTAAbilities"
+{  
+  "puck_orb"
+  {
+    "BaseClass"                 "ability_lua"
+    "AbilityTextureName"      "puck_illusory_orb"
+    "MaxLevel"                "1"
+    "AbilityCastAnimation"      "ACT_DOTA_OVERRIDE_ABILITY_1"
+    "ScriptFile"            "abilities/puck_orb.lua"
+    "AbilityManaCost" "0"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityDamage" "50"
+    "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "projectile_speed"    "800"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "radius"        "100"
+      }
+      "03"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "damage"       "50"
+      }
+      "04"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "range"     "1500"
+      }
+      "05"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "cooldown"    "10"
+      }
+      "06"
+      {
+        "var_type"      "FIELD_FLOAT"
+        "cast_point"       "0.01"
+      }
+      "07"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "vision_radius"        "200"
+      }
+    }
+  }
+}

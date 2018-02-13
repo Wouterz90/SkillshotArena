@@ -1,0 +1,23 @@
+"DOTAAbilities"
+{
+  "item_rune_multishot"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"              "4000"
+    "BaseClass"           "item_lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "medusa_split_shot"
+    "ScriptFile"              "items/item_multishot.lua"
+    "Model"             "models/props_gameplay/rune_arcane.vmdl"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"   "10"
+      }
+    }
+  }
+}

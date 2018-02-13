@@ -1,0 +1,26 @@
+#base "items/arrow.kv"
+#base "items/boomerang.kv"
+#base "items/rocket_flare.kv"
+#base "items/hookshot.kv"
+#base "items/hook.kv"
+#base "items/puck_orb.kv"
+#base "items/axe_lumberjack.kv"
+#base "items/timelock.kv"
+#base "items/earthbind.kv"
+#base "items/laser.kv"
+
+#base "items/rune_multishot.kv"
+#base "items/rune_speedshot.kv"
+#base "items/rune_castpoint.kv"
+#base "items/rune_haste.kv"
+#base "items/rune_turnrate.kv"
+
+
+"DOTAAbilities"
+{
+  "item_base_item"
+  {
+    "BaseClass"                 "item_lua"
+    "ScriptFile"            "items/base_item.lua"
+  }
+}

@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+  "item_rune_castpoint"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"              "4002"
+    "BaseClass"           "item_lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "obsidian_destroyer_essence_aura"
+    "ScriptFile"              "items/item_castpoint.lua"
+    "Model"             "models/props_items/magicstick.vmdl"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"   "10"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "speedboost"   "-75"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "noImplicitThis" : true,
+        "alwaysStrict" : true,
+        "outDir": "./",
+        "rootDir": "./",
+        "target":"lua"
+    },
+    "exclude": ["test/**/*"],
+
+}

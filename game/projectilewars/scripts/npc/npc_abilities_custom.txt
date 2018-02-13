@@ -1,0 +1,93 @@
+#base "abilities/arrow.kv"
+#base "abilities/hook.kv"
+#base "abilities/hookshot.kv"
+#base "abilities/stone_kick.kv"
+#base "abilities/boomerang.kv"
+#base "abilities/rocket_flare.kv"
+#base "abilities/stab.kv"
+#base "abilities/puck_orb.kv"
+#base "abilities/axe_lumberjack.kv"
+#base "abilities/timelock.kv"
+#base "abilities/earthbind.kv"
+#base "abilities/laser.kv"
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+  "dummy_unit"
+  {
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "rubick_empty1"
+    "MaxLevel"                      "1"
+    
+    "Modifiers"
+    {
+      "dummy_unit"
+      {
+          "Passive"                        "1"
+          "IsHidden"                        "1"    
+          "States"
+          {
+              "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+              "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+              "MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+              "MODIFIER_STATE_NO_HEALTH_BAR"  "MODIFIER_STATE_VALUE_ENABLED"
+          }
+      }
+    }
+  }
+  "generic_hidden1"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "MaxLevel"            "0"
+    "BaseClass"                 "ability_lua"
+    "ScriptFile"            "abilities/base_ability.lua"
+  } 
+  "generic_hidden2"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "MaxLevel"            "0"
+    "BaseClass"                 "ability_lua"
+    "ScriptFile"            "abilities/base_ability.lua"
+  } 
+   "generic_hidden3"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "MaxLevel"            "0"
+    "BaseClass"                 "ability_lua"
+    "ScriptFile"            "abilities/base_ability.lua"
+  } 
+   "generic_hidden4"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "MaxLevel"            "0"
+    "BaseClass"                 "ability_lua"
+    "ScriptFile"            "abilities/base_ability.lua"
+  } 
+   "generic_hidden5"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "MaxLevel"            "0"
+    "BaseClass"                 "ability_lua"
+    "ScriptFile"            "abilities/base_ability.lua"
+  } 
+	"base_ability"
+  {
+    "BaseClass"                 "ability_lua"
+    "ScriptFile"            "abilities/base_ability.lua"
+  }
+
+	
+  
+}

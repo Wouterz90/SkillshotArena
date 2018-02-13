@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+  "item_rune_speedshot"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"              "4001"
+    "BaseClass"           "item_lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "kobold_taskmaster_speed_aura"
+    "ScriptFile"              "items/item_speedshot.lua"
+    "Model"             "models/props_items/bloodstone.vmdl"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"   "10"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "speedboost"   "50"
+      }
+    }
+  }
+}

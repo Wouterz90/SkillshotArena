@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+  "item_rune_turnrate"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"              "4004"
+    "BaseClass"           "item_lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "wisp_spirits"
+    "ScriptFile"              "items/item_turnrate.lua"
+    "Model"             "models/heroes/wisp/wisp_additive.vmdl"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"   "10"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "speedboost"   "-75"
+      }
+    }
+  }
+}

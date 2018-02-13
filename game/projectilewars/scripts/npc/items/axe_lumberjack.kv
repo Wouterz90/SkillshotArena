@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+  "item_spell_axe_lumberjack"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"              "3007"
+    "BaseClass"           "item_lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "axe_culling_blade"
+    "ScriptFile"              "items/item_axe_lumberjack.lua"
+    "Model"             "models/heroes/axe/axe_weapon.vmdl"
+    "HasCharges"        "1"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "charges"   "5"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "max_charges"   "5"
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+  "item_spell_boomerang"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"              "3002"
+    "BaseClass"           "item_lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "bounty_hunter_shuriken_toss"
+    "ScriptFile"              "items/item_boomerang.lua"
+    "Model"             "models/boomerang.vmdl"
+
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "charges"   "3"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "max_charges"   "5"
+      }
+    }
+  }
+}

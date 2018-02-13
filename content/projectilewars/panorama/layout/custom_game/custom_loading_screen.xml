@@ -1,0 +1,17 @@
+
+<root>
+    <styles>
+        <!--<include src="file://{resources}/styles/dotastyles.css" />-->
+        <include src="file://{resources}/styles/custom_game/custom_loading_screen.css" />
+    </styles>
+    
+	
+    <Panel hittest="false" class="TeamSelect">
+	
+        <Panel hittest="false" class="Settings_Container" id="Settings_Container">	
+			<Panel hittest="false" class="Settings_Image" id="Settings_Image"> 
+            </Panel>  
+		</Panel>
+
+    </Panel>
+</root>

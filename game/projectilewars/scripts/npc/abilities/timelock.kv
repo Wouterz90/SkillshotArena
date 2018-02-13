@@ -1,0 +1,32 @@
+"DOTAAbilities"
+{  
+  "timelock"
+  {
+    "BaseClass"                 "ability_lua"
+    "AbilityTextureName"      "faceless_void_time_lock"
+    "MaxLevel"                "1"
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_4"
+    "ScriptFile"            "abilities/timelock.lua"
+    "AbilityManaCost" "0"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_FLOAT"
+        "duration"     "1.25"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "cooldown"    "25"
+      }
+      "03"
+      {
+        "var_type"      "FIELD_FLOAT"
+        "cast_point"       "0.2"
+      }
+    }
+  }
+}

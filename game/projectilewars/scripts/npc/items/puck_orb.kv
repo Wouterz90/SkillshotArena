@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+  "item_spell_puck_orb"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"              "3006"
+    "BaseClass"           "item_lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "puck_illusory_orb"
+    "ScriptFile"              "items/item_puck_orb.lua"
+    "Model"             "models/heroes/oracle/crystal_ball.vmdl"
+    "HasCharges"        "1"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "charges"   "2"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "max_charges"   "3"
+      }
+    }
+  }
+}

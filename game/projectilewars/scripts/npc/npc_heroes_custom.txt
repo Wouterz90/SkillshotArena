@@ -1,0 +1,523 @@
+// Dota Heroes File
+// NOTE: This is not for creating new heroes, this is for taking a currently existing hero as a template and overriding
+// the specified key-value combinations.  Use override_hero <hero_to_override> for this.
+"DOTAHeroes"
+{   
+
+	"npc_dota_hero_pudge"
+	{
+		"override_hero"				"npc_dota_hero_pudge"			// Hero to override
+        "Ability1"                  "stab"      // Ability 1
+    	"Ability2"          "hook"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+        "Ability10"          ""
+        "Ability11"          ""
+        "Ability12"          ""
+        "Ability13"          ""
+        "Ability14"          ""
+        "Ability15"          ""
+        "Ability16"          ""
+        "Ability17"          ""
+        "Ability18"          ""
+        "Ability19"          ""
+        "Ability20"          ""
+        "ArmorPhysical"     "0"
+        "MagicalResistance"     "25"
+
+        
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+        "RingRadius"        "0"
+
+        
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"     "350"
+        "MovementTurnRate"      "1"
+
+        "StatusHealthRegen"     "0"
+        "StatusHealth"     "250" 
+        "StatusMana"        "0"
+        "StatusManaRegen"   "10"
+
+        "VisionDaytimeRange"        "1100"
+        "VisionNighttimeRange"      "1100"
+
+        //Inventory
+        "HasInventory"      "1"       
+    }
+    "npc_dota_hero_puck"
+    {
+        "override_hero"             "npc_dota_hero_puck"           // Hero to override
+        "Ability1"                  "stab"      // Ability 1
+        "Ability2"          "puck_orb"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+        "Ability10"          ""
+        "Ability11"          ""
+        "Ability12"          ""
+        "Ability13"          ""
+        "Ability14"          ""
+        "Ability15"          ""
+        "Ability16"          ""
+        "Ability17"          ""
+        "Ability18"          ""
+        "Ability19"          ""
+        "Ability20"          ""  
+        "ArmorPhysical"     "0"
+        "MagicalResistance"     "25"
+
+        
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+        "RingRadius"        "0"
+
+        
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"     "350"
+        "MovementTurnRate"      "1"
+
+        "StatusHealthRegen"     "0"
+        "StatusHealth"     "250" 
+        "StatusMana"        "0"
+        "StatusManaRegen"   "10"
+
+        "VisionDaytimeRange"        "1100"
+        "VisionNighttimeRange"      "1100"
+
+        //Inventory
+        "HasInventory"      "1"
+    }
+    "npc_dota_hero_rattletrap"
+    {
+        "override_hero"             "npc_dota_hero_rattletrap"           // Hero to override
+        "Ability1"                  "stab"      // Ability 1
+        "Ability2"          "hookshot"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+        "Ability10"          ""
+        "Ability11"          ""
+        "Ability12"          ""
+        "Ability13"          ""
+        "Ability14"          ""
+        "Ability15"          ""
+        "Ability16"          ""
+        "Ability17"          ""
+        "Ability18"          ""
+        "Ability19"          ""
+        "Ability20"          ""
+        "ArmorPhysical"     "0"
+        "MagicalResistance"     "25"
+
+        
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+        "RingRadius"        "0"
+
+        
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"     "350"
+        "MovementTurnRate"      "1"
+
+
+        "StatusHealthRegen"     "0"
+        "StatusHealth"     "250" 
+        "StatusMana"        "0"
+        "StatusManaRegen"   "10"
+
+        "VisionDaytimeRange"        "1100"
+        "VisionNighttimeRange"      "1100"
+
+        //Inventory
+        "HasInventory"      "1"
+    }
+    "npc_dota_hero_axe"
+    {
+        "override_hero"             "npc_dota_hero_axe"           // Hero to override
+        "Ability1"                  "stab"      // Ability 1
+        "Ability2"          "axe_lumberjack"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+        "Ability10"          ""
+        "Ability11"          ""
+        "Ability12"          ""
+        "Ability13"          ""
+        "Ability14"          ""
+        "Ability15"          ""
+        "Ability16"          ""
+        "Ability17"          ""
+        "Ability18"          ""
+        "Ability19"          ""
+        "Ability20"          ""
+        "ArmorPhysical"     "0"
+        "MagicalResistance"     "25"
+
+        
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+        "RingRadius"        "0"
+
+        
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"     "350"
+        "MovementTurnRate"      "1"
+
+        "StatusHealthRegen"     "0"
+        "StatusHealth"     "250" 
+        "StatusMana"        "0"
+        "StatusManaRegen"   "10"
+
+        "VisionDaytimeRange"        "1100"
+        "VisionNighttimeRange"      "1100"
+
+        //Inventory
+        "HasInventory"      "1"
+    }
+    "npc_dota_hero_mirana"
+    {
+        "override_hero"             "npc_dota_hero_mirana"           // Hero to override
+        "Ability1"                  "stab"      // Ability 1
+        "Ability2"          "arrow"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+        "Ability10"          ""
+        "Ability11"          ""
+        "Ability12"          ""
+        "Ability13"          ""
+        "Ability14"          ""
+        "Ability15"          ""
+        "Ability16"          ""
+        "Ability17"          ""
+        "Ability18"          ""
+        "Ability19"          ""
+        "Ability20"          ""
+        "ArmorPhysical"     "0"
+        "MagicalResistance"     "25"
+
+        
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+        "RingRadius"        "0"
+
+        
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"     "350"
+        "MovementTurnRate"      "1"
+
+        "StatusHealthRegen"     "0"
+        "StatusHealth"     "250" 
+        "StatusMana"        "0"
+        "StatusManaRegen"   "10"
+
+        "VisionDaytimeRange"        "1100"
+        "VisionNighttimeRange"      "1100"
+
+        //Inventory
+        "HasInventory"      "1"
+    }
+    "npc_dota_hero_faceless_void"
+    {
+        "override_hero"             "npc_dota_hero_faceless_void"           // Hero to override
+        "Ability1"                  "stab"      // Ability 1
+        "Ability2"          "timelock"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+        "Ability10"          ""
+        "Ability11"          ""
+        "Ability12"          ""
+        "Ability13"          ""
+        "Ability14"          ""
+        "Ability15"          ""
+        "Ability16"          ""
+        "Ability17"          ""
+        "Ability18"          ""
+        "Ability19"          ""
+        "Ability20"          ""
+        "ArmorPhysical"     "0"
+        "MagicalResistance"     "25"
+
+        
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+        "RingRadius"        "0"
+
+        
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"     "350"
+        "MovementTurnRate"      "1"
+
+        "StatusHealthRegen"     "0"
+        "StatusHealth"     "250" 
+        "StatusMana"        "0"
+        "StatusManaRegen"   "10"
+
+        "VisionDaytimeRange"        "1100"
+        "VisionNighttimeRange"      "1100"
+
+        //Inventory
+        "HasInventory"      "1"
+    }
+    "npc_dota_hero_meepo"
+    {
+        "override_hero"             "npc_dota_hero_meepo"           // Hero to override
+        "Ability1"                  "stab"      // Ability 1
+        "Ability2"          "earthbind"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+        "Ability10"          ""
+        "Ability11"          ""
+        "Ability12"          ""
+        "Ability13"          ""
+        "Ability14"          ""
+        "Ability15"          ""
+        "Ability16"          ""
+        "Ability17"          ""
+        "Ability18"          ""
+        "Ability19"          ""
+        "Ability20"          ""
+        "ArmorPhysical"     "0"
+        "MagicalResistance"     "25"
+
+        
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+        "RingRadius"        "0"
+
+        
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"     "350"
+        "MovementTurnRate"      "1"
+
+        "StatusHealthRegen"     "0"
+        "StatusHealth"     "250" 
+        "StatusMana"        "0"
+        "StatusManaRegen"   "0"
+
+        "VisionDaytimeRange"        "1100"
+        "VisionNighttimeRange"      "1100"
+
+        //Inventory
+        "HasInventory"      "1"
+    }
+    "npc_dota_hero_tinker"
+    {
+        "override_hero"             "npc_dota_hero_meepo"           // Hero to override
+        "Ability1"                  "stab"      // Ability 1
+        "Ability2"          "laser"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+        "Ability10"          ""
+        "Ability11"          ""
+        "Ability12"          ""
+        "Ability13"          ""
+        "Ability14"          ""
+        "Ability15"          ""
+        "Ability16"          ""
+        "Ability17"          ""
+        "Ability18"          ""
+        "Ability19"          ""
+        "Ability20"          ""
+        "ArmorPhysical"     "0"
+        "MagicalResistance"     "25"
+
+        
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+        "RingRadius"        "0"
+
+        
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"     "350"
+        "MovementTurnRate"      "1"
+
+        "StatusHealthRegen"     "0"
+        "StatusHealth"     "250" 
+        "StatusMana"        "0"
+        "StatusManaRegen"   "10"
+
+        "VisionDaytimeRange"        "1100"
+        "VisionNighttimeRange"      "1100"
+
+        //Inventory
+        "HasInventory"      "1"
+    }
+
+    "npc_dota_hero_bounty_hunter"
+    {
+        "override_hero"             "npc_dota_hero_bounty_hunter"           // Hero to override
+        "Ability1"                  "stab"      // Ability 1
+        "Ability2"          "boomerang"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+        "Ability10"          ""
+        "Ability11"          ""
+        "Ability12"          ""
+        "Ability13"          ""
+        "Ability14"          ""
+        "Ability15"          ""
+        "Ability16"          ""
+        "Ability17"          ""
+        "Ability18"          ""
+        "Ability19"          ""
+        "Ability20"          ""
+        "ArmorPhysical"     "0"
+        "MagicalResistance"     "25"
+
+        
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+        "RingRadius"        "0"
+
+        
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"     "350"
+        "MovementTurnRate"      "1"
+
+        "StatusHealthRegen"     "0"
+        "StatusHealth"     "250" 
+        "StatusMana"        "0"
+        "StatusManaRegen"   "10"
+
+        "VisionDaytimeRange"        "1100"
+        "VisionNighttimeRange"      "1100"
+
+        //Inventory
+        "HasInventory"      "1"       
+    }
+
+
+
+
+    // Use this to pre cast spells that lag when loading the first time
+    "npc_dota_hero_dummy"
+    {
+        "override_hero"             "npc_dota_hero_wisp"           // Hero to override
+        "Ability1"                  "rocket_flare"      // Ability 1
+        "Ability2"          "boomerang"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+    }
+}
+  

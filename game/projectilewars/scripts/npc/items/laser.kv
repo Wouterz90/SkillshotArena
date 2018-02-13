@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+  "item_spell_laser"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"              "3010"
+    "BaseClass"           "item_lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "tinker_laser"
+    "ScriptFile"              "items/item_laser.lua"
+    "Model"             "models/laser.vmdl"
+    "HasCharges"        "1"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "charges"   "3"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "max_charges"   "5"
+      }
+    }
+  }
+}

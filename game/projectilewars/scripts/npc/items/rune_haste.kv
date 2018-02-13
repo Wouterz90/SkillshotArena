@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+  "item_rune_haste"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"              "4003"
+    "BaseClass"           "item_lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "spirit_breaker_empowering_haste"
+    "ScriptFile"              "items/item_haste.lua"
+    "Model"             "models/props_gameplay/rune_haste01.vmdl"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"   "10"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "speed"   "550"
+      }
+    }
+  }
+}

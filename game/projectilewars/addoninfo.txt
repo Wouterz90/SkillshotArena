@@ -1,0 +1,14 @@
+"AddonInfo"
+{
+  "TeamCount" "6"
+  "maps"      "forest_solo"
+  "IsPlayable"  "1"
+  "forest_solo"
+  {
+    "MaxPlayers"                    "6"
+  }
+
+  "Default_Keys"
+  {
+  }
+}

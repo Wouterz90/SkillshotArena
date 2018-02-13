@@ -1,0 +1,23 @@
+.TeamSelect
+{	
+	width:100%;
+	height:100%;
+	z-index:4;
+}
+.Settings_Container
+{
+	width:100%;
+	height:100%;
+	background-color: black;
+	background-size: 100% 100%;
+}
+.Settings_Image
+{
+	horizontal-align:center;
+	width:80%;
+	height:100%;
+	z-index:5;
+	background-repeat: no-repeat no-repeat;
+	background-size: 100% 100%;
+	background-image: url("file://{images}/custom_game/loading_screen/laad_Page_1.png");
+}

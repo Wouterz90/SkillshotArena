@@ -1,0 +1,68 @@
+"DOTAAbilities"
+{  
+  "stone_kick"
+  {
+    "BaseClass"                 "ability_lua"
+    "AbilityTextureName"      "earth_spirit_boulder_smash"
+    "MaxLevel"                "4"
+    "AbilityCastAnimation"      "ACT_DOTA_OVERRIDE_ABILITY_1"
+    "ScriptFile"            "abilities/stone_kick.lua"
+    "AbilityManaCost" "40"
+    "AbilityCooldown"       "6.0"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_BOTH"
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "projectile_speed"    "900 1200 1500 1800"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "radius"        "50"
+      }
+      "03"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "damage"       "20"
+      }
+      "04"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "search_range"       "50"
+      }
+      "05"
+      {
+        "var_type"      "FIELD_FLOAT"
+        "push"       "0"
+      }
+      "06"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "range"    "900"
+      }
+      "07"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "cooldown"    "6"
+      }
+      "08"
+      {
+        "var_type"      "FIELD_FLOAT"
+        "cast_point"       "0.1"
+      }
+      "09"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "cast_range"       "150"
+      }
+      "10"
+      {
+        "var_type"   "FIELD_FLOAT"
+        "non_hero_range_factor" "1.5"
+      }
+    }
+  }
+}

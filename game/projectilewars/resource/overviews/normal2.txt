@@ -1,0 +1,8 @@
+normal2
+{
+	material materials/overviews/normal2.vmat
+	pos_x -3584
+	pos_y 3456
+	scale 6.750
+}
+
