@@ -1,7 +1,11 @@
 ---@class base_ability : CDOTA_Ability_Lua
 ---@overload base_ability  : CDOTA_Ability_Lua
 base_ability = class({})
-
+function base_ability.new(construct, ...)
+    local instance = setmetatable({}, base_ability)
+    if construct and base_ability.constructor then base_ability.constructor(instance, ...) end
+    return instance
+end
 -- These functions should/could be overridden
 ---@return string
 function base_ability:GetProjectileParticleName() return "particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf" end

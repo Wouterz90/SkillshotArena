@@ -19,6 +19,12 @@ end
 ---@class item_base_item : CDOTA_Item_Lua
 item_base_item = class({})
 
+function item_base_item.new(construct, ...)
+  local instance = setmetatable({}, item_spell_laser)
+  if construct and item_base_item.constructor then item_base_item.constructor(instance, ...) end
+  return instance
+end
+
 --- @param caster CDOTA_BaseNPC
 function item_base_item:OnItemEquip(caster)
   local name = string.sub(self:GetAbilityName(),12)
@@ -37,6 +43,12 @@ end
 LinkLuaModifier("modifier_charges_base_item","items/base_item.lua",LUA_MODIFIER_MOTION_NONE)
 ---@class modifier_charges_base_item : CDOTA_Modifier_Lua
 modifier_charges_base_item = class({})
+
+function modifier_charges_base_item.new(construct, ...)
+  local instance = setmetatable({}, modifier_charges_base_item)
+  if construct and modifier_charges_base_item.constructor then modifier_charges_base_item.constructor(instance, ...) end
+  return instance
+end
 --- Keep alive, destroying is done 10 seconds after with OnFunctionalEnd
 ---@override
 function modifier_charges_base_item:DestroyOnExpire()

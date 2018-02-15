@@ -2701,6 +2701,15 @@ declare abstract class CDOTA_BaseNPC extends CBaseFlex {
      */
     UnHideAbilityToSlot(pszAbilityName: string, pszReplacedAbilityName: string): void;
     UnitCanRespawn(): boolean;
+
+    // CUSTOM ADDED API
+    GetTurnRate():number
+    GetBonusCastTimeConstant():number
+    GetBonusCastTimePercentage():number
+    GetBonusProjectileSpeedConstant():number
+    GetBonusProjectileSpeedPercentage():number
+    GetBonusCooldownConstant():number
+    GetBonusCooldownPercentage():number
 }
 /**
  * A building.
@@ -3055,16 +3064,8 @@ declare interface CDOTA_BaseNPC_Hero extends CDOTA_BaseNPC {
     UpgradeAbility(hAbility: CDOTABaseAbility): void;
     WillReincarnate(): boolean;
 
-    //Added api
-    ////////////////////////////////////////////////////////////////
-    GetTurnRate():number
-    GetBonusCastTimeConstant():number
-    GetBonusCastTimePercentage():number
-    GetBonusProjectileSpeedConstant():number
-    GetBonusProjectileSpeedPercentage():number
-    GetBonusCooldownConstant():number
-    GetBonusCooldownPercentage():number
-}
+  
+}  
 /**
  * A Dota NPC Trap Ward
  */

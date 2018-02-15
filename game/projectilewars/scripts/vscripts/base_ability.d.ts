@@ -42,7 +42,21 @@ declare abstract class base_ability extends CDOTA_Ability_Lua {
 
   OnSpellStart():void
 }
+
+
+
 /** !NoClassOr */
 declare abstract class item_base_item extends CDOTA_Item_Lua {
   OnItemEquip(caster:CDOTA_BaseNPC_Hero):void
+}
+
+
+/** !NoClassOr */
+declare abstract class item_base_rune extends CDOTA_Item_Lua {
+  OnItemEquip(caster:CDOTA_BaseNPC_Hero):void
+}
+
+/** !NoClassOr */
+declare abstract class modifier_charges_base_item extends CDOTA_Modifier_Lua {
+
 }

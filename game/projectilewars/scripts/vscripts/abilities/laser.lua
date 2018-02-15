@@ -1,8 +1,6 @@
 require("abilities/base_ability")
 LinkLuaModifier("modifier_laser_blind","abilities/laser.lua",LUA_MODIFIER_MOTION_NONE)
 laser = class(base_ability)
-laser.__index = laser
-laser.__base = base_ability
 function laser.new(construct, ...)
     local instance = setmetatable({}, laser)
     if construct and laser.constructor then laser.constructor(instance, ...) end
@@ -35,7 +33,6 @@ function laser.OnProjectileHitUnit(self,projectile,target,caster)
     target.AddNewModifier(target,caster,self,"modifier_laser_blind",{duration=duration})
 end
 modifier_laser_blind = {}
-modifier_laser_blind.__index = modifier_laser_blind
 function modifier_laser_blind.new(construct, ...)
     local instance = setmetatable({}, modifier_laser_blind)
     if construct and modifier_laser_blind.constructor then modifier_laser_blind.constructor(instance, ...) end
