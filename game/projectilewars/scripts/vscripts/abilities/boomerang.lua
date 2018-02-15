@@ -123,7 +123,7 @@ function modifier_boomerang_rupture.DeclareFunctions(self)
     return {MODIFIER_EVENT_ON_UNIT_MOVED}
 end
 function modifier_boomerang_rupture.OnUnitMoved(self,keys)
-    if keys.unit==self.GetParent(self) and RollPercentage(75) then
+    if keys.unit==self.GetParent(self) and RollPercentage(25) then
         local damageTable = {ability=self.GetAbility(self),attacker=self.GetCaster(self),victim=self.GetParent(self),damage=1,damage_type=DAMAGE_TYPE_PURE}
         ApplyDamage(damageTable)
     end
