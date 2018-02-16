@@ -340,8 +340,8 @@ end
 function GameMode:OnEntityKilled( keys )
   local killedUnit = EntIndexToHScript( keys.entindex_killed )
   local origin = killedUnit:GetAbsOrigin()
-
+  --[[Not using this anymore to keep the spells unique
   local name = killedUnit:GetAbilityByIndex(1):GetAbilityName()
   local item_name = "item_spell_"..name
-  CreatePhysicsItem(item_name,origin)
+  CreatePhysicsItem(item_name,origin)]]
 end

@@ -323,8 +323,17 @@ end
 
 function GameMode:CreateItems()
   local items = {}
+  local allHeroes = HeroList:GetAllHeroes()
+  local itemHeroPairs = LoadKeyValues("scripts/kv/item_hero_pairs.kv")
+
   for k,v in pairs(ALLITEMS) do
+    for _,hero in pairs(allHeroes) do
+      if itemHeroPairs[k] == hero:GetUnitName() then
+        goto endCreateItemsLoop
+      end
+    end
     table.insert(items,k)
+    ::endCreateItemsLoop::
   end
   --[[local points = {
     [1] = GetGroundPosition(Vector(0,1,0),nil),
@@ -351,12 +360,12 @@ function GameMode:CreateItems()
     end
   end]]
   DROP_ITEMS = DROP_ITEMS or {}
-  for i = 1,3 do
+  for i = 1,9 do
     if IsValidEntity(DROP_ITEMS[i]) then
       UTIL_Remove(DROP_ITEMS[i])
     end
     if i ~= 1 then
-      DROP_ITEMS[i] = CreatePhysicsItem(items[RandomInt(1,#items)],RandomVector(RandomInt(750,0.95*MAP_SIZE)))
+      DROP_ITEMS[i] = CreatePhysicsItem(items[RandomInt(1,#items)],RandomVector(RandomInt(750,1000)))
     end
   end
 
