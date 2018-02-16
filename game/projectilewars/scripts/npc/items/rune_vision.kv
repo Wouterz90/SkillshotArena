@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+  "item_rune_vision"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"              "4005"
+    "BaseClass"           "item_lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "sniper_take_aim"
+    "ScriptFile"              "items/item_vision.lua"
+    "Model"             "models/goggles.vmdl"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "duration"   "10"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "bonus_vision"   "300"
+      }
+    }
+  }
+}

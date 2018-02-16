@@ -14,11 +14,16 @@
 #base "items/rune_castpoint.kv"
 #base "items/rune_haste.kv"
 #base "items/rune_turnrate.kv"
-
+#base "items/rune_vision.kv"
 
 "DOTAAbilities"
 {
   "item_base_item"
+  {
+    "BaseClass"                 "item_lua"
+    "ScriptFile"            "items/base_item.lua"
+  }
+  "item_base_rune"
   {
     "BaseClass"                 "item_lua"
     "ScriptFile"            "items/base_item.lua"
