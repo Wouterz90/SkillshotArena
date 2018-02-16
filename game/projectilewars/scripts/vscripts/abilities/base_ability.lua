@@ -233,6 +233,10 @@ function base_ability:OnSpellStart()
       return self:UnitTest(projectile,unit,caster)
     end,
     OnUnitHit = function(projectile,unit,caster)
+    
+      if self:GetAbilityName() == "shoot_" then self:OnProjectileHitUnit(projectile,unit,caster) return end
+
+      
       if unit.GetHealth then
         
         ApplyDamage({

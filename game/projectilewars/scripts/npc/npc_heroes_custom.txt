@@ -62,7 +62,7 @@
     "npc_dota_hero_puck"
     {
         "override_hero"             "npc_dota_hero_puck"           // Hero to override
-        "Ability1"                  "stab"      // Ability 1
+        "Ability1"                  "shoot_"      // Ability 1
         "Ability2"          "puck_orb"
         "Ability3"          ""
         "Ability4"          ""
@@ -87,6 +87,7 @@
 
         
         "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttackRange"       "550"
         "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
         "AttributeBaseStrength"     "0"
         "AttributeStrengthGain"     "0"
@@ -228,7 +229,7 @@
     "npc_dota_hero_mirana"
     {
         "override_hero"             "npc_dota_hero_mirana"           // Hero to override
-        "Ability1"                  "stab"      // Ability 1
+        "Ability1"                  "shoot_"      // Ability 1
         "Ability2"          "arrow"
         "Ability3"          ""
         "Ability4"          ""
@@ -253,6 +254,7 @@
 
         
         "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttackRange"       "630"
         "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
         "AttributeBaseStrength"     "0"
         "AttributeStrengthGain"     "0"
@@ -393,7 +395,7 @@
     "npc_dota_hero_tinker"
     {
         "override_hero"             "npc_dota_hero_meepo"           // Hero to override
-        "Ability1"                  "stab"      // Ability 1
+        "Ability1"                  "shoot_"      // Ability 1
         "Ability2"          "laser"
         "Ability3"          ""
         "Ability4"          ""
@@ -418,6 +420,7 @@
 
         
         "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttackRange"       "500"
         "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
         "AttributeBaseStrength"     "0"
         "AttributeStrengthGain"     "0"

@@ -5,6 +5,7 @@
 #base "abilities/boomerang.kv"
 #base "abilities/rocket_flare.kv"
 #base "abilities/stab.kv"
+#base "abilities/shoot.kv"
 #base "abilities/puck_orb.kv"
 #base "abilities/axe_lumberjack.kv"
 #base "abilities/timelock.kv"

@@ -4867,7 +4867,7 @@ declare function SendFrostyPointsMessageToGC(arg1: table): void;
 /**
  * ( DOTAPlayer sendToPlayer, int iMessageType, Entity targetEntity, int iValue, DOTAPlayer sourcePlayer ) - sendToPlayer and sourcePlayer can be nil - iMessageType is one of OVERHEAD_ALERT_*
  */
-declare function SendOverheadEventMessage(player: CDOTAPlayer, messageType: number, unit: CDOTA_BaseNPC, value: number, sourcePlayer: CDOTAPlayer): void;
+declare function SendOverheadEventMessage(player: CDOTAPlayer, messageType: OverheadAlerts_t, unit: CDOTA_BaseNPC, value: number, sourcePlayer: CDOTAPlayer): void;
 /**
  * Send a string to the console as a client command
  */
