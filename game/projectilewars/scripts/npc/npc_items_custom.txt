@@ -8,6 +8,7 @@
 #base "items/timelock.kv"
 #base "items/earthbind.kv"
 #base "items/laser.kv"
+#base "items/ranged_punch.kv"
 
 #base "items/rune_multishot.kv"
 #base "items/rune_speedshot.kv"

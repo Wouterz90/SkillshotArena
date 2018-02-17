@@ -31,7 +31,8 @@ function hook:OnSpellStarted()
   if hHook ~= nil then
     hHook:AddEffects( EF_NODRAW )
   end
-
+  --particles/abilities/punch/ranged_punch.vpcf
+  --particles/abilities/hook/pudge_meathook.vpcf
   self.end_position = caster:GetAbsOrigin() + direction * self.range
   self.particle = ParticleManager:CreateParticle( "particles/abilities/hook/pudge_meathook.vpcf", PATTACH_CUSTOMORIGIN, nil)
   ParticleManager:SetParticleAlwaysSimulate( self.particle)
@@ -52,7 +53,7 @@ end
 
 ---@override
 function hook:OnProjectileHitItem(hProjectile, hItem)
-  self:OnProjectileHitUnit(hProjectile,hItem,self:GetCaster())
+  self:OnProjectileHitUnit(hProjectile,hItem,hProjectile)
   Physics2D:DestroyProjectile(hProjectile)
 
 end

@@ -68,6 +68,9 @@ function SetUpHotKeys() {
 }
 function MouseTooltipManager() {
     $.Schedule(0.01, function () { MouseTooltipManager(); });
+    if (Game.GetState() < DOTA_GameState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) {
+        return;
+    }
     // Abilities
     for (var _i = 0, abilityPanels_1 = abilityPanels; _i < abilityPanels_1.length; _i++) {
         var panel = abilityPanels_1[_i];

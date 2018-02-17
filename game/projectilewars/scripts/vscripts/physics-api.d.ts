@@ -75,6 +75,9 @@ declare class PhysicsProjectile extends PhysicsObject {
   particle:ParticleID;
   maxSpeed:number;
   pos:Vec;
+  projParticle:ParticleID
+  target:CDOTA_BaseNPC
+  trackingUnit:CBaseEntity
 
 }
 
@@ -92,7 +95,7 @@ declare interface Physics {
   CreateLinearProjectile(PhysicsProjectileTable): PhysicsProjectile
   CreatePolygon(middle_location:Vec,edges:Vec[],material:null|string):PhysicsObject
   CreateCircle(middle_location:Vec,radius:number,material:null|string):PhysicsObject
-  CreateProjectileWall(unit:CBaseEntity,edcges:Vec[]):ParticleID[]
+  CreateProjectileWall(unit:CBaseEntity,edges:Vec[]):ParticleID[]
   DestroyProjectile(projectile:PhysicsProjectile)
 
   SetPhysicsVelocity(unit:CBaseEntity,velocity:Vec):void

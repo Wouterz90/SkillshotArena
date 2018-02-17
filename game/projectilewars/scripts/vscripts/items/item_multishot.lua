@@ -24,6 +24,7 @@ function modifier_rune_multishot:OnAbilityFullyCast(keys)
     ["puck_orb"] = true,
     ["rocket_flare"] = true,
     ["hookshot"] = true,
+    ["shoot_"] = true,
   }
   if banned_abilities[keys.ability:GetAbilityName()] then
     return 

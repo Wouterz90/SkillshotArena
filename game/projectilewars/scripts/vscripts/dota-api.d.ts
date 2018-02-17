@@ -151,6 +151,10 @@ declare abstract class CBaseCombatCharacter extends CBaseFlex {
  * Root class of all server-side entities
  */
 declare abstract class CBaseEntity extends CEntityInstance {
+    // Motion for motion controllers
+    motion:CBaseEntity
+
+
     /**
      * AddEffects( int ): Adds the render effect flag.
      */
@@ -326,6 +330,10 @@ declare abstract class CBaseEntity extends CEntityInstance {
      * See if an entity has a particular attribute.
      */
     HasAttribute(pName: string): boolean;
+    /**
+     * Is this entity deleted from c++?
+     */
+    IsNull():boolean; 
     /**
      * Is this entity alive?
      */

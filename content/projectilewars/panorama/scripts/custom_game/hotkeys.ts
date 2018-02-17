@@ -78,6 +78,10 @@ function SetUpHotKeys() : void {
 
 function MouseTooltipManager():void {
   $.Schedule(0.01,function(){MouseTooltipManager();})
+
+  if (Game.GetState() < DOTA_GameState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) { 
+    return 
+  } 
   // Abilities
   for (let panel of abilityPanels) {
     if (panel.visible == true) {

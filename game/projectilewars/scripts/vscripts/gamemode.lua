@@ -360,7 +360,7 @@ function GameMode:CreateItems()
     end
   end]]
   DROP_ITEMS = DROP_ITEMS or {}
-  for i = 1,9 do
+  for i = 1,3 do
     if IsValidEntity(DROP_ITEMS[i]) then
       UTIL_Remove(DROP_ITEMS[i])
     end

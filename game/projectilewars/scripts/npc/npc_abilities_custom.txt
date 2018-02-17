@@ -11,6 +11,7 @@
 #base "abilities/timelock.kv"
 #base "abilities/earthbind.kv"
 #base "abilities/laser.kv"
+#base "abilities/ranged_punch.kv"
 
 "DOTAAbilities"
 {
