@@ -51,7 +51,7 @@ class shoot_ extends base_ability {
 
     let range = this.GetCaster().GetAttackRange() //- 150
     let mult = range/650
-    mult = 1-mult
+    mult = 1
     let damageTable:DamageTable = {
       damage : this.GetSpecialValueFor("damage") *mult,
       victim : unit,

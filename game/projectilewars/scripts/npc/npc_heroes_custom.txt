@@ -48,7 +48,7 @@
         "MovementSpeed"     "350"
         "MovementTurnRate"      "1"
 
-        "StatusHealthRegen"     "0"
+        "StatusHealthRegen"     "2"
         "StatusHealth"     "250" 
         "StatusMana"        "0"
         "StatusManaRegen"   "10"
@@ -104,7 +104,7 @@
         "MovementSpeed"     "350"
         "MovementTurnRate"      "1"
 
-        "StatusHealthRegen"     "0"
+        "StatusHealthRegen"     "2"
         "StatusHealth"     "250" 
         "StatusMana"        "0"
         "StatusManaRegen"   "10"
@@ -160,7 +160,7 @@
         "MovementTurnRate"      "1"
 
 
-        "StatusHealthRegen"     "0"
+        "StatusHealthRegen"     "2"
         "StatusHealth"     "250" 
         "StatusMana"        "0"
         "StatusManaRegen"   "10"
@@ -215,7 +215,7 @@
         "MovementSpeed"     "350"
         "MovementTurnRate"      "1"
 
-        "StatusHealthRegen"     "0"
+        "StatusHealthRegen"     "2"
         "StatusHealth"     "250" 
         "StatusMana"        "0"
         "StatusManaRegen"   "10"
@@ -271,7 +271,7 @@
         "MovementSpeed"     "350"
         "MovementTurnRate"      "1"
 
-        "StatusHealthRegen"     "0"
+        "StatusHealthRegen"     "2"
         "StatusHealth"     "250" 
         "StatusMana"        "0"
         "StatusManaRegen"   "10"
@@ -326,7 +326,7 @@
         "MovementSpeed"     "350"
         "MovementTurnRate"      "1"
 
-        "StatusHealthRegen"     "0"
+        "StatusHealthRegen"     "2"
         "StatusHealth"     "250" 
         "StatusMana"        "0"
         "StatusManaRegen"   "10"
@@ -381,7 +381,7 @@
         "MovementSpeed"     "350"
         "MovementTurnRate"      "1"
 
-        "StatusHealthRegen"     "0"
+        "StatusHealthRegen"     "2"
         "StatusHealth"     "250" 
         "StatusMana"        "0"
         "StatusManaRegen"   "0"
@@ -437,7 +437,7 @@
         "MovementSpeed"     "350"
         "MovementTurnRate"      "1"
 
-        "StatusHealthRegen"     "0"
+        "StatusHealthRegen"     "2"
         "StatusHealth"     "250" 
         "StatusMana"        "0"
         "StatusManaRegen"   "10"
@@ -493,7 +493,7 @@
         "MovementSpeed"     "350"
         "MovementTurnRate"      "1"
 
-        "StatusHealthRegen"     "0"
+        "StatusHealthRegen"     "2"
         "StatusHealth"     "250" 
         "StatusMana"        "0"
         "StatusManaRegen"   "10"
@@ -549,7 +549,7 @@
         "MovementSpeed"     "350"
         "MovementTurnRate"      "1"
 
-        "StatusHealthRegen"     "0"
+        "StatusHealthRegen"     "2"
         "StatusHealth"     "250" 
         "StatusMana"        "0"
         "StatusManaRegen"   "10"

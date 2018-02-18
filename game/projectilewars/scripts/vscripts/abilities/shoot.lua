@@ -52,7 +52,7 @@ end
 function shoot_.OnProjectileHitUnit(self,projectile,unit,caster)
     local range = self.GetCaster(self).GetAttackRange(self.GetCaster(self))
     local mult = range/650
-    mult=(1-mult)
+    mult=1
     local damageTable = {damage=self.GetSpecialValueFor(self,"damage")*mult,victim=unit,attacker=self.GetCaster(self),ability=self,damage_type=DAMAGE_TYPE_PHYSICAL}
     ApplyDamage(damageTable)
 end

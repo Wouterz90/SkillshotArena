@@ -69,6 +69,10 @@ function ranged_punch.OnProjectileHitUnit(self,hProjectile,hTarget,hCaster)
             end
         end
     end
+,OnFinish=function(projectile)
+        local target = projectile.trackingUnit
+        GridNav.DestroyTreesAroundPoint(GridNav,target.GetAbsOrigin(target),50,true)
+    end
 }
     local projectile = Physics2D.CreateLinearProjectile(Physics2D,projectile_table)
     projectile.trackingUnit=hTarget

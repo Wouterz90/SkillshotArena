@@ -34,7 +34,7 @@ function hook:OnSpellStarted()
   --particles/abilities/punch/ranged_punch.vpcf
   --particles/abilities/hook/pudge_meathook.vpcf
   self.end_position = caster:GetAbsOrigin() + direction * self.range
-  self.particle = ParticleManager:CreateParticle( "particles/abilities/hook/pudge_meathook.vpcf", PATTACH_CUSTOMORIGIN, nil)
+  self.particle = ParticleManager:CreateParticle( "particles/units/heroes/hero_pudge/pudge_meathook.vpcf", PATTACH_CUSTOMORIGIN, nil)
   ParticleManager:SetParticleAlwaysSimulate( self.particle)
   ParticleManager:SetParticleControlEnt( self.particle, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_weapon_chain_rt", caster:GetAbsOrigin(), true )
   ParticleManager:SetParticleControl( self.particle, 1, self.end_position  )

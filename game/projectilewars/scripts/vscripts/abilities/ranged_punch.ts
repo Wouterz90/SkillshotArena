@@ -75,6 +75,10 @@ class ranged_punch extends base_ability {
           }
         }
       },
+      OnFinish:(projectile:PhysicsProjectile) => {
+        let target =  projectile.trackingUnit
+        GridNav.DestroyTreesAroundPoint(target.GetAbsOrigin(),50,true)
+      },
     }
     let projectile = Physics2D.CreateLinearProjectile(projectile_table)
     projectile.trackingUnit = hTarget
@@ -168,4 +172,5 @@ class modifier_ranged_punch_knockback extends CDOTA_Modifier_Lua {
       [modifierstate.MODIFIER_STATE_STUNNED]:true,
     }
   }
+
 }
