@@ -248,14 +248,13 @@ function ResolveCollision( collision )
   --Polygons are always walls
   if a.type == "Polygon" and b.IsProjectile then
     Physics2D:ProjectileHitWall(b,a)
-    if b.WallBehavior ~= PROJECTILES_BOUNCE then
+    if b.WallBehavior ~= PROJECTILES_BOUNCE --[[or (a.caster and  a.caster == b.caster)]] then
       return
     end
   end
   if b.type == "Polygon" and a.IsProjectile then
     Physics2D:ProjectileHitWall(a,b)
-
-    if a.WallBehavior ~= PROJECTILES_BOUNCE then
+    if a.WallBehavior ~= PROJECTILES_BOUNCE --[[or (b.caster and  a.caster == b.caster)]] then
       return
     end
   end

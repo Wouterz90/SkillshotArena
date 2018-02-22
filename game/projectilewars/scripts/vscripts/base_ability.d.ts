@@ -60,3 +60,12 @@ declare abstract class item_base_rune extends CDOTA_Item_Lua {
 declare abstract class modifier_charges_base_item extends CDOTA_Modifier_Lua {
 
 }
+
+/** !CompileMembersOnly */
+declare enum ItemDropRarity {
+  ITEM_DROP_CHANCE_COMMON = 10,
+  ITEM_DROP_CHANCE_UNCOMMON = 5,
+  ITEM_DROP_CHANCE_RARE = 3,
+  ITEM_DROP_CHANCE_LEGENDARY = 1,
+  ITEM_DROP_CHANCE_TOTAL = 19,
+}

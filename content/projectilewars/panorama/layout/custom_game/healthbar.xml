@@ -1,0 +1,11 @@
+<root>
+  <styles>
+    <include src="file://{resources}/styles/custom_game/healthbar.css" />
+  </styles>
+  <scripts>
+    
+  </scripts>
+  <Panel>
+
+  </Panel>
+ </root>

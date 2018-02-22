@@ -12,6 +12,7 @@ declare interface PhysicsProjectileTable {
   flMaxDistance?:number,
   sEffectName:string,
   sSoundName?:string,
+  hUnit?:CBaseEntity,
   sDestructionEffectName?:string,
   WallBehavior?:ProjectileInteractionType,
   TreeBehavior?:ProjectileInteractionType,
@@ -71,7 +72,7 @@ declare class PhysicsProjectile extends PhysicsObject {
   location:Vec;
   velocity:Vec;
   distanceTravelled:number;
-  hitByProjectile:CDOTA_BaseNPC[];
+  hitByProjectile:CBaseEntity[];
   particle:ParticleID;
   maxSpeed:number;
   pos:Vec;
@@ -82,11 +83,13 @@ declare class PhysicsProjectile extends PhysicsObject {
 }
 
 declare abstract class PhysicsObject extends CBaseEntity{
+  caster:CDOTA_BaseNPC
   unit : CBaseEntity
   draw:boolean
   type: "Polygon" | "Circle"
   location:Vec
   velocity:Vec
+  IsTimeLocked:boolean
 }
 
 declare interface Physics {
@@ -95,7 +98,7 @@ declare interface Physics {
   CreateLinearProjectile(PhysicsProjectileTable): PhysicsProjectile
   CreatePolygon(middle_location:Vec,edges:Vec[],material:null|string):PhysicsObject
   CreateCircle(middle_location:Vec,radius:number,material:null|string):PhysicsObject
-  CreateProjectileWall(unit:CBaseEntity,edges:Vec[]):ParticleID[]
+  
   DestroyProjectile(projectile:PhysicsProjectile)
 
   SetPhysicsVelocity(unit:CBaseEntity,velocity:Vec):void
@@ -112,3 +115,4 @@ declare function GetRightPerpendicular(vector:Vec):Vec
 declare function CreatePhysicsItem(name:string,location:Vec):CDOTA_Item_Physical
 
 declare function StoreSpecialKeyValues(storageobject:CDOTA_Modifier_Lua|CDOTA_Ability_Lua|CDOTA_Item_Lua,getobject?:CDOTA_Modifier_Lua|CDOTA_Ability_Lua|CDOTA_Item_Lua)
+declare function CreateProjectileWall(unit:CBaseEntity,edges:Vec[]):ParticleID[]

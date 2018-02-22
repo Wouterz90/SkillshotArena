@@ -15,6 +15,7 @@ function hookshot:GetProjectileItemBehavior() return true end
 ---@override
 function hookshot:OnProjectileHitItem(hProjectile, hItem)
   self:OnProjectileHitUnit(hProjectile,hItem,self:GetCaster())
+  Physics2D:DestroyProjectile(hProjectile)
 end
 
 ---@override
@@ -28,7 +29,7 @@ function hookshot:OnSpellStarted()
   local point = self:GetCursorPosition()
   local direction = (point-caster:GetAbsOrigin()):Normalized()
   self.end_position = caster:GetAbsOrigin() + direction * math.min(self:GetProjectileRange(),(caster:GetAbsOrigin()-point):Length2D())
-
+  
   self.particle = ParticleManager:CreateParticle("particles/units/heroes/hero_rattletrap/rattletrap_hookshot_b.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, caster)
   ParticleManager:SetParticleControlEnt(self.particle, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
   ParticleManager:SetParticleControl(self.particle, 3, caster:GetAbsOrigin()+Vector(0,0,128))
@@ -76,6 +77,8 @@ function hookshot:OnProjectileHitUnit(hProjectile,hTarget,hCaster)
       if self.target:IsNull() then
         ParticleManager:DestroyParticle(self.particle,false)
         ParticleManager:ReleaseParticleIndex(self.particle)
+        Physics2D:DestroyProjectile(projectile)
+        return
       end
       if caster.motion == self then
         hCaster:SetAbsOrigin(projectile_location)

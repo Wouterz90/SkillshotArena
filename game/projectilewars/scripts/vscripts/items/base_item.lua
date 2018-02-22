@@ -1,3 +1,8 @@
+ITEM_DROP_CHANCE_COMMON = 10
+ITEM_DROP_CHANCE_UNCOMMON = 5
+ITEM_DROP_CHANCE_RARE = 3
+ITEM_DROP_CHANCE_LEGENDARY = 1
+ITEM_DROP_CHANCE_TOTAL = ITEM_DROP_CHANCE_COMMON+ITEM_DROP_CHANCE_UNCOMMON+ITEM_DROP_CHANCE_RARE+ITEM_DROP_CHANCE_LEGENDARY 
 
 --- @param sItemName String
 --- @param vVector vector
@@ -18,7 +23,7 @@ end
 
 ---@class item_base_item : CDOTA_Item_Lua
 item_base_item = class({})
-
+item_base_item.__index = item_base_item
 function item_base_item.new(construct, ...)
   local instance = setmetatable({}, item_spell_laser)
   if construct and item_base_item.constructor then item_base_item.constructor(instance, ...) end
@@ -28,14 +33,15 @@ end
 --- @param caster CDOTA_BaseNPC
 function item_base_item:OnItemEquip(caster)
   local name = string.sub(self:GetAbilityName(),12)
-  local charges = self:GetSpecialValueFor("charges")
+  local charges = 2 --self:GetSpecialValueFor("charges")
+  local max_charges = 5
   local modifier = caster:FindModifierByName("modifier_charges_"..name)
   if modifier then
-    modifier:SetStackCount(modifier:GetStackCount()+charges)
-    modifier:SetStackCount(math.min(modifier:GetStackCount(),self:GetSpecialValueFor("max_charges")))
+    modifier:SetStackCount(modifier:GetStackCount()+1)
+    modifier:SetStackCount(math.min(modifier:GetStackCount(),max_charges))
   else
     modifier = caster:AddNewModifier(caster,self,"modifier_charges_"..name,{})
-    modifier:SetStackCount(math.min(charges,self:GetSpecialValueFor("max_charges")))
+    modifier:SetStackCount(math.min(charges,max_charges))
   end
 
   if not modifier then print("Something went wrong with",name) end

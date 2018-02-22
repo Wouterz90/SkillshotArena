@@ -1,7 +1,7 @@
 "use strict";
 var abilityPanels = [];
 function SetUpHotKeys() {
-    $.Schedule(0.1, function () { SetUpHotKeys(); });
+    $.Schedule(0.01, function () { SetUpHotKeys(); });
     var inputs;
     inputs = [
         "_",
@@ -17,9 +17,18 @@ function SetUpHotKeys() {
     var ability;
     var key;
     var pan;
-    var hero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
+    var hero = Players.GetSelectedEntities(Players.GetLocalPlayer())[0];
+    if (!hero) {
+        return;
+    }
+    //let hero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
     var j = 0;
     var abilities = 0;
+    var hbar = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse("BottomHealthbar");
+    hbar.style.width = Entities.GetHealthPercent(hero) * 7 + "px";
+    var red = Math.round(255 - (Entities.GetHealthPercent(hero) * 2.55));
+    var green = Math.round(Entities.GetHealthPercent(hero) * 2.55);
+    hbar.style.backgroundColor = "gradient( linear, 0% 33%, 66% 100%, from( rgb(" + red * 0.5 + "," + green * 0.5 + ",0) ), to( rgb(" + red + "," + green + ",0) ) )";
     for (var i = 0; i <= 6; i++) {
         ability = Entities.GetAbility(hero, i);
         if (ability && Abilities.GetAbilityName(ability) != "") {
@@ -40,6 +49,13 @@ function SetUpHotKeys() {
             pan.FindChildTraverse("Hotkey").style.visibility = "visible";
             pan.FindChildTraverse("HotkeyContainer").style.marginTop = "13%";
             pan.FindChildTraverse("HotkeyContainer").style.marginLeft = "10%";
+            var numPanel = pan.FindChildTraverse("GoldCostBG");
+            numPanel.style.width = "50px";
+            numPanel.style.height = "50px";
+            var numPanelText = pan.FindChildTraverse("GoldCost");
+            if (numPanelText.text && Number(numPanelText.text) > 0) {
+                numPanelText.style.fontSize = "30px";
+            }
             abilities = abilities + 1;
         }
         else {
@@ -68,12 +84,13 @@ function SetUpHotKeys() {
 }
 function MouseTooltipManager() {
     $.Schedule(0.01, function () { MouseTooltipManager(); });
-    if (Game.GetState() < DOTA_GameState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) {
+    if (Game.GetState() < DOTA_GameState.DOTA_GAMERULES_STATE_PRE_GAME) {
         return;
     }
     // Abilities
     for (var _i = 0, abilityPanels_1 = abilityPanels; _i < abilityPanels_1.length; _i++) {
         var panel = abilityPanels_1[_i];
+        //$.Msg(panel)
         if (panel.visible == true) {
             var x = Math.abs(panel.GetPositionWithinWindow().x + 35 - GameUI.GetCursorPosition()[0]);
             var y = Math.abs(panel.GetPositionWithinWindow().y + 70 - GameUI.GetCursorPosition()[1]);

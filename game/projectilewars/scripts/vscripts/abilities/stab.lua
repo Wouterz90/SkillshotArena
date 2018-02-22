@@ -29,7 +29,7 @@ function stab.OnSpellStart(self)
     local range = self.GetProjectileRange(self)
     caster.EmitSound(caster,"Hero_PhantomAssassin.Attack")
     local units = FindUnitsInRadius(caster.GetTeamNumber(caster),caster_origin,nil,range,DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_NONE,FIND_CLOSEST,false)
-    for _, unit in ipairs(units) do
+    for _, unit in pairs(units) do
         local unit_origin = unit.GetAbsOrigin(unit)
         local m = unit_origin-caster_origin
         if (caster_forward.Dot(caster_forward,m.Normalized(m))>0.5) or ((unit.GetRangeToUnit(unit,caster)<100) and (caster_forward.Dot(caster_forward,m.Normalized(m))>0)) then

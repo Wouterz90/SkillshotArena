@@ -184,6 +184,7 @@ function GameMode:OnHeroInGame(hero)
   Physics2D:CreateCircle(hero,50,"unit")
   hero:AddNewModifier(hero,nil,"modifier_cooldown_constant_reduction_controller",{})
   hero:AddNewModifier(hero,nil,"modifier_cooldown_percentage_reduction_controller",{})
+  hero:ModifyGold(20000, true, DOTA_ModifyGold_Unspecified)
   --hero:AddNewModifier(hero,nil,"modifier_vision_handler",{})
   --hero:AddNewModifier(hero,nil,"modifier_control",{})
   hero:AddNewModifier(hero,nil,"modifier_control_area",{})
@@ -215,6 +216,7 @@ function GameMode:OnNPCSpawned(keys)
       FindClearSpaceForUnit(npc,vector,true)
       PlayerResource:SetCameraTarget(npc:GetPlayerOwnerID(),npc)
       npc:AddNewModifier(npc,nil,"modifier_invulnerable",{duration =1.5})
+      npc:ModifyGold(20000, true, DOTA_ModifyGold_Unspecified)
     end
   end)
   Timers:CreateTimer(1,function()
@@ -365,7 +367,7 @@ function GameMode:CreateItems()
       UTIL_Remove(DROP_ITEMS[i])
     end
     if i ~= 1 then
-      DROP_ITEMS[i] = CreatePhysicsItem(items[RandomInt(1,#items)],RandomVector(RandomInt(750,1000)))
+      DROP_ITEMS[i] = CreatePhysicsItem(items[RandomInt(1,#items)],RandomVector(RandomInt(750,MAP_SIZE)))
     end
   end
 

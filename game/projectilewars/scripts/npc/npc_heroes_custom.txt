@@ -394,7 +394,7 @@
     }
     "npc_dota_hero_tinker"
     {
-        "override_hero"             "npc_dota_hero_meepo"           // Hero to override
+        "override_hero"             "npc_dota_hero_tinker"           // Hero to override
         "Ability1"                  "shoot_"      // Ability 1
         "Ability2"          "laser"
         "Ability3"          ""
@@ -560,7 +560,116 @@
         //Inventory
         "HasInventory"      "1"       
     }
+    "npc_dota_hero_dark_seer"
+    {
+        "override_hero"             "npc_dota_hero_dark_seer"           // Hero to override
+        "Ability1"                  "stab"      // Ability 1
+        "Ability2"          "wall"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+        "Ability10"          ""
+        "Ability11"          ""
+        "Ability12"          ""
+        "Ability13"          ""
+        "Ability14"          ""
+        "Ability15"          ""
+        "Ability16"          ""
+        "Ability17"          ""
+        "Ability18"          ""
+        "Ability19"          ""
+        "Ability20"          ""
+        "ArmorPhysical"     "0"
+        "MagicalResistance"     "25"
 
+        
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+        "RingRadius"        "0"
+
+        
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"     "350"
+        "MovementTurnRate"      "1"
+
+        "StatusHealthRegen"     "2"
+        "StatusHealth"     "250" 
+        "StatusMana"        "0"
+        "StatusManaRegen"   "10"
+
+        "VisionDaytimeRange"        "1100"
+        "VisionNighttimeRange"      "1100"
+
+        //Inventory
+        "HasInventory"      "1"       
+    }
+    "npc_dota_hero_gyrocopter"
+    {
+        "override_hero"             "npc_dota_hero_gyrocopter"           // Hero to override
+        "Ability1"                  "shoot_"      // Ability 1
+        "Ability2"          "homing_missile"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+        "Ability10"          ""
+        "Ability11"          ""
+        "Ability12"          ""
+        "Ability13"          ""
+        "Ability14"          ""
+        "Ability15"          ""
+        "Ability16"          ""
+        "Ability17"          ""
+        "Ability18"          ""
+        "Ability19"          ""
+        "Ability20"          ""
+        "ArmorPhysical"     "0"
+        "MagicalResistance"     "25"
+
+        
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+        "RingRadius"        "0"
+
+        
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"     "350"
+        "MovementTurnRate"      "1"
+
+        "StatusHealthRegen"     "2"
+        "StatusHealth"     "250" 
+        "StatusMana"        "0"
+        "StatusManaRegen"   "10"
+
+        "VisionDaytimeRange"        "1100"
+        "VisionNighttimeRange"      "1100"
+
+        //Inventory
+        "HasInventory"      "1"       
+    }
 
 
 

@@ -13,11 +13,11 @@ function arrow:GetProjectileWallBehavior() return PROJECTILES_BOUNCE end
 function arrow:GetSound() return "Hero_Mirana.ArrowCast" end
 
 function arrow:OnSpellStarted()
-  self.projectile.start_location = self.projectile.location
+ 
 end
 ---@override
 function arrow:OnProjectileHitUnit(hProjectile,hTarget,hCaster)
-  local distance = (self.projectile.start_location - hTarget:GetAbsOrigin()):Length2D()
+  local distance = hProjectile.distanceTravelled
   local duration = math.min(self.max_stun,distance/self.stun_duration_distance_factor)
 
   hTarget:AddNewModifier(hCaster,self,"modifier_stunned",{duration = duration})

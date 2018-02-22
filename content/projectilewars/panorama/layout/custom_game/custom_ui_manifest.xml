@@ -76,6 +76,9 @@
         else if (Game.GameStateIs(DOTA_GameState.DOTA_GAMERULES_STATE_SHOWCASE_TIME)) {
             $.GetContextPanel().GetParent().FindChildTraverse("HeroSelectTeamContainers").style.visibility = "collapse"
             loadingScreen.style.visibility = "collapse"
+
+        } else if (Game.GameStateIs(DOTA_GameState.DOTA_GAMERULES_STATE_PRE_GAME)) {
+            MouseTooltipManager()
         }
         
     }); 
@@ -102,6 +105,10 @@
         else if (Game.GameStateIs(DOTA_GameState.DOTA_GAMERULES_STATE_SHOWCASE_TIME)) {
             $.GetContextPanel().GetParent().FindChildTraverse("HeroSelectTeamContainers").style.visibility = "collapse"
             loadingScreen.style.visibility = "collapse"
+
+            
+        } else if (Game.GameStateIs(DOTA_GameState.DOTA_GAMERULES_STATE_PRE_GAME)) {
+            MouseTooltipManager()
         }
     }); 
 
@@ -119,7 +126,7 @@
     <CustomUIElement type="HeroSelection"       layoutfile="file://{resources}/layout/custom_game/multiteam_hero_select_overlay_timer.xml" />
 
     <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/controls.xml" />
-
+    <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/healthbar.xml" />
     <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/statcollection.xml" />
     
     <!-- From Overthrow.

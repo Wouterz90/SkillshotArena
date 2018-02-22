@@ -12,6 +12,8 @@
 #base "abilities/earthbind.kv"
 #base "abilities/laser.kv"
 #base "abilities/ranged_punch.kv"
+#base "abilities/wall.kv"
+#base "abilities/homing_missile.kv"
 
 "DOTAAbilities"
 {

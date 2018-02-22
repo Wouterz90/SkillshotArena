@@ -50,8 +50,10 @@ function Physics2D:CreateTrackingProjectile(keys)
   else
     location = keys.hCaster:GetAbsOrigin() + Vec(0,50)
   end
-
-  local unit =SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/development/invisiblebox.vmdl", DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
+  local unit = keys.hUnit
+  if not unit then
+    unit =SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/development/invisiblebox.vmdl", DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
+  end
   unit:SetAbsOrigin(location)
   local sType = keys.sType or "circle"
   --[[if sType == "polygon" then
@@ -210,7 +212,10 @@ function Physics2D:CreateLinearProjectile(keys)
     location = keys.hCaster:GetAbsOrigin()
   end
 
-  local unit =SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/development/invisiblebox.vmdl", DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
+  local unit = keys.hUnit
+  if not unit then
+    unit =SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/development/invisiblebox.vmdl", DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
+  end
   unit:SetAbsOrigin(location)
 
   local sType = keys.sType or "circle"
@@ -402,7 +407,7 @@ function Physics2D:ProjectileHitUnit(projectile,unit)
   return false
 end
 
-function Physics2D:ProjectileHiTre(projectile,tree)
+function Physics2D:ProjectileHiTree(projectile,tree)
   if projectile.destroyed then return end
   if projectile.TreeBehavior == PROJECTILES_DESTROY then
     Physics2D:DestroyProjectile(projectile)
@@ -419,11 +424,13 @@ end
 
 function Physics2D:ProjectileHitWall(projectile,wall)
   if projectile.destroyed then return end
-  if projectile.WallBehavior == PROJECTILES_DESTROY then
+  if projectile.WallBehavior == PROJECTILES_DESTROY and wall.caster and wall.caster ~= projectile.caster then
     Physics2D:DestroyProjectile(projectile)
   end
 
   if projectile.OnWallHit then
+    -- Change projectile ownership if wall is owned by a unit
+    if wall.caster then projectile.caster = wall.caster end
     local status, out = pcall(projectile.OnWallHit, projectile, wall)
     if not status then
       print('[PROJECTILES] OnWallHit Error!: ' .. out)

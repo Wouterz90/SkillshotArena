@@ -32,7 +32,7 @@ function laser.OnProjectileHitUnit(self,projectile,target,caster)
     target.EmitSound(target,"Hero_Tinker.LaserImpact")
     target.AddNewModifier(target,caster,self,"modifier_laser_blind",{duration=duration})
 end
-modifier_laser_blind = {}
+modifier_laser_blind = class({})
 function modifier_laser_blind.new(construct, ...)
     local instance = setmetatable({}, modifier_laser_blind)
     if construct and modifier_laser_blind.constructor then modifier_laser_blind.constructor(instance, ...) end

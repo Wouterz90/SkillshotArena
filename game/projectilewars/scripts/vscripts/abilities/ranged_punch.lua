@@ -124,7 +124,7 @@ function ranged_punch.BallReturned(self,projectile,hTarget)
     ParticleManager.DestroyParticle(ParticleManager,projectile.projParticle,false)
     ParticleManager.ReleaseParticleIndex(ParticleManager,projectile.projParticle)
 end
-modifier_ranged_punch_knockback = {}
+modifier_ranged_punch_knockback = class({})
 function modifier_ranged_punch_knockback.new(construct, ...)
     local instance = setmetatable({}, modifier_ranged_punch_knockback)
     if construct and modifier_ranged_punch_knockback.constructor then modifier_ranged_punch_knockback.constructor(instance, ...) end

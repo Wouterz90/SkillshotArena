@@ -9,13 +9,15 @@
 #base "items/earthbind.kv"
 #base "items/laser.kv"
 #base "items/ranged_punch.kv"
+#base "items/wall.kv"
+#base "items/homing_missile.kv" //3013
 
 #base "items/rune_multishot.kv"
 #base "items/rune_speedshot.kv"
 #base "items/rune_castpoint.kv"
 #base "items/rune_haste.kv"
 #base "items/rune_turnrate.kv"
-#base "items/rune_vision.kv"
+#base "items/rune_vision.kv" // 4006
 
 "DOTAAbilities"
 {

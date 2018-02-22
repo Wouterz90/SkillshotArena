@@ -7,7 +7,7 @@
 
 require('internal/util')
 require('gamemode')
-
+require('typescript')
 
 
 function Precache( context )

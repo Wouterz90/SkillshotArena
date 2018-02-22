@@ -87,5 +87,16 @@
     // Bots
     //----------------------------------------------------------------
     "AttackDesire"        "1.5"   // How much bots want to attack them vs other non-hero things
+  }
+  "npc_dota_unit_homing_missile"
+  {
+    
+    "BaseClass"         "npc_dota_base_additive"  // Class of entity of link to.
+    "Model"           "models/heroes/gyro/gyro_missile.vmdl"  // Model.
+    "SoundSet"          "Creep_Good_Range"          // Name of sound set.
+    "Level"           "0"
+    "UnitLabel"         "healing_ward"
+
+    "StatusHealth" "2"
   } 
 }

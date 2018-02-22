@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+  "item_spell_wall"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"              "3012"
+    "BaseClass"           "item_lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "dark_seer_wall_of_replica"
+    "ScriptFile"              "items/item_wall.lua"
+    "Model"             "models/creeps/neutral_creeps/n_creep_ghost_b/n_creep_ghost_red.vmdl"
+    "HasCharges"        "1"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "charges"   "2"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "max_charges"   "3"
+      }
+    }
+  }
+}

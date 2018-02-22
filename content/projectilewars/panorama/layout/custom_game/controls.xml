@@ -1,11 +1,15 @@
 <root>
   <styles>
     <include src="file://{resources}/styles/custom_game/crosshair.css" />
+    <include src="file://{resources}/styles/custom_game/healthbar.css" />
   </styles>
   <scripts>
     <include src="file://{resources}/scripts/custom_game/controls.js"/>
   </scripts>
   <Panel>
-    
+    <Panel id="BottomHealthbarBG">
+      <Panel id="BottomHealthbar">
+      </Panel>
+    </Panel>
   </Panel>
  </root>

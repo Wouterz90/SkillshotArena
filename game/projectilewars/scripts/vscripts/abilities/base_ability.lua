@@ -1,6 +1,9 @@
 ---@class base_ability : CDOTA_Ability_Lua
 ---@overload base_ability  : CDOTA_Ability_Lua
 base_ability = class({})
+--exports = exports or {}
+--exports.base_ability = base_ability
+base_ability.__index = base_ability
 function base_ability.new(construct, ...)
     local instance = setmetatable({}, base_ability)
     if construct and base_ability.constructor then base_ability.constructor(instance, ...) end
@@ -60,7 +63,8 @@ function base_ability:UnitTest(projectile, unit,caster)
     PlayerDodgedProjectile(caster,unit,projectile)
     return false
   end
-  return self:ShouldHitThisTeam(unit)
+  
+  return self:ShouldHitThisTeam(unit,projectile)
 end
 
 function base_ability:DestroyImmediatly() return false end
@@ -157,8 +161,11 @@ function base_ability:OnAbilityPhaseInterrupted()
 end
 
 ---@return boolean
-function base_ability:ShouldHitThisTeam(hUnit)
+function base_ability:ShouldHitThisTeam(hUnit,hProjectile)
   local caster = self:GetCaster()
+  if hProjectile then 
+    caster = hProjectile.caster or caster
+  end
   local n = self:GetAbilityTargetTeam()
   if n == DOTA_UNIT_TARGET_TEAM_BOTH then return true end
   if n == DOTA_UNIT_TARGET_TEAM_FRIENDLY and hUnit:GetTeamNumber() == caster:GetTeamNumber() then return true end

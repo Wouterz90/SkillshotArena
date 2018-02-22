@@ -6,7 +6,7 @@ function item_rune_vision.new(construct, ...)
     return instance
 end
 LinkLuaModifier("modifier_rune_vision","items/item_vision.lua",LUA_MODIFIER_MOTION_NONE)
-modifier_rune_vision = {}
+modifier_rune_vision = class({})
 function modifier_rune_vision.new(construct, ...)
     local instance = setmetatable({}, modifier_rune_vision)
     if construct and modifier_rune_vision.constructor then modifier_rune_vision.constructor(instance, ...) end

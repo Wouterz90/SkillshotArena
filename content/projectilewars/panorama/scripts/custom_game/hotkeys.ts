@@ -1,7 +1,7 @@
 let abilityPanels:Panel[] = []
 
 function SetUpHotKeys() : void {
-  $.Schedule(0.1,function(){SetUpHotKeys();})
+  $.Schedule(0.01,function(){SetUpHotKeys();})
   let inputs: [string,string,string,string,string,string,string];
   inputs = [
     "_",
@@ -19,9 +19,19 @@ function SetUpHotKeys() : void {
     let ability:number;
     let key: string;
     let pan:Panel;
-    let hero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
+    let hero = Players.GetSelectedEntities(Players.GetLocalPlayer())[0]
+    if (!hero) {return}
+    //let hero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
     let j = 0;
     let abilities:number = 0
+
+    let hbar = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse("BottomHealthbar")
+    hbar.style.width = Entities.GetHealthPercent(hero)*7 + "px"
+    
+    let red = Math.round(255 - (Entities.GetHealthPercent(hero) * 2.55))
+    let green =  Math.round(Entities.GetHealthPercent(hero) * 2.55)
+    
+    hbar.style.backgroundColor = "gradient( linear, 0% 33%, 66% 100%, from( rgb("+red*0.5+","+green*0.5+",0) ), to( rgb("+red+","+green+",0) ) )";
 
     for(let i = 0 ; i <=6 ; i++) {
       ability = Entities.GetAbility(hero,i)
@@ -47,6 +57,13 @@ function SetUpHotKeys() : void {
         pan.FindChildTraverse("HotkeyContainer").style.marginTop = "13%";
         pan.FindChildTraverse("HotkeyContainer").style.marginLeft = "10%";
 
+        let numPanel = pan.FindChildTraverse("GoldCostBG")
+        numPanel.style.width = "50px"
+        numPanel.style.height = "50px"
+        let numPanelText = pan.FindChildTraverse("GoldCost") as LabelPanel
+        if (numPanelText.text && Number(numPanelText.text) > 0) {
+          numPanelText.style.fontSize = "30px"
+        }
 
 
         abilities = abilities +1 
@@ -78,12 +95,13 @@ function SetUpHotKeys() : void {
 
 function MouseTooltipManager():void {
   $.Schedule(0.01,function(){MouseTooltipManager();})
-
-  if (Game.GetState() < DOTA_GameState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) { 
-    return 
+  
+  if (Game.GetState() < DOTA_GameState.DOTA_GAMERULES_STATE_PRE_GAME) { 
+    return
   } 
   // Abilities
   for (let panel of abilityPanels) {
+    //$.Msg(panel)
     if (panel.visible == true) {
       let x = Math.abs(panel.GetPositionWithinWindow().x+35 -GameUI.GetCursorPosition()[0])
       let y = Math.abs(panel.GetPositionWithinWindow().y+70-GameUI.GetCursorPosition()[1])

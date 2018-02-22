@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+  "item_spell_homing_missile"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"              "3013"
+    "BaseClass"           "item_lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "gyrocopter_homing_missile"
+    "ScriptFile"              "items/item_homing_missile.lua"
+    "Model"             "models/heroes/gyro/gyro_missile.vmdl"
+    "HasCharges"        "1"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "charges"   "2"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "max_charges"   "3"
+      }
+    }
+  }
+}
