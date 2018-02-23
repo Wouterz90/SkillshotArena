@@ -1,21 +1,26 @@
+require("typescript_lualib")
 require("abilities/base_ability")
-shoot_ = class(base_ability)
+shoot_ = base_ability.new()
+shoot_.__index = shoot_
+shoot_.__base = base_ability
 function shoot_.new(construct, ...)
     local instance = setmetatable({}, shoot_)
     if construct and shoot_.constructor then shoot_.constructor(instance, ...) end
     return instance
 end
 function shoot_.CastFilterResult(self)
-    if self.GetCaster(self).IsDisarmed(self.GetCaster(self)) then
+    if CDOTA_BaseNPC.IsDisarmed(shoot_.GetCaster(self)) then
         return UF_FAIL_CUSTOM
     end
     return UF_SUCCESS
 end
 function shoot_.GetCustomCastError(self)
-    if self.GetCaster(self).IsRooted(self.GetCaster(self)) then
+    if CDOTA_BaseNPC.IsRooted(shoot_.GetCaster(self)) then
         return "#Can't attack while rooted."
     end
 end
+
+function shoot_.OnSpellStarted(self) print("XX") end
 function shoot_.GetProjectileSpeed(self)
     return 900
 end
@@ -26,16 +31,16 @@ function shoot_.destroyImmediatly(self)
     return false
 end
 function shoot_.GetCastRange(self)
-    return self.GetCaster(self).GetAttackRange(self.GetCaster(self))*1.33
+    return CDOTA_BaseNPC.GetAttackRange(shoot_.GetCaster(self))*1.33
 end
 function shoot_.GetSound(self)
     return "Hero_Windrunner.Attack"
 end
 function shoot_.GetProjectileRange(self)
-    return self.GetCaster(self).GetAttackRange(self.GetCaster(self))*1.33
+    return CDOTA_BaseNPC.GetAttackRange(shoot_.GetCaster(self))*1.33
 end
 function shoot_.GetProjectileParticleName(self)
-    return self.GetCaster(self).GetRangedProjectileName(self.GetCaster(self))
+    return CDOTA_BaseNPC.GetRangedProjectileName(shoot_.GetCaster(self))
 end
 function shoot_.GetProjectileUnitBehavior(self)
     return PROJECTILES_NOTHING
@@ -50,9 +55,12 @@ function shoot_.GetProjectileItemBehavior(self)
     return PROJECTILES_NOTHING
 end
 function shoot_.OnProjectileHitUnit(self,projectile,unit,caster)
-    local range = self.GetCaster(self).GetAttackRange(self.GetCaster(self))
-    local mult = range/650
-    mult=1
-    local damageTable = {damage=self.GetSpecialValueFor(self,"damage")*mult,victim=unit,attacker=self.GetCaster(self),ability=self,damage_type=DAMAGE_TYPE_PHYSICAL}
+    local range = CDOTA_BaseNPC.GetAttackRange(shoot_.GetCaster(self))
+
+    local mult = 650/range
+
+    mult=(0.5+(mult/2))
+    local damageTable = {damage=shoot_.GetSpecialValueFor(self,"damage")*mult,victim=unit,attacker=shoot_.GetCaster(self),ability=self,damage_type=DAMAGE_TYPE_PHYSICAL}
+
     ApplyDamage(damageTable)
 end

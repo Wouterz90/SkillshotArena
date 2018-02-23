@@ -50,8 +50,9 @@ class shoot_ extends base_ability {
   OnProjectileHitUnit(projectile:PhysicsProjectile,unit:CDOTA_BaseNPC,caster:CDOTA_BaseNPC):void {
 
     let range = this.GetCaster().GetAttackRange() //- 150
-    let mult = range/650
-    mult = 1
+    let mult = 650/range
+    mult = 0.5 + mult/2
+    
     let damageTable:DamageTable = {
       damage : this.GetSpecialValueFor("damage") *mult,
       victim : unit,

@@ -1,6 +1,9 @@
+require("typescript_lualib")
 require("abilities/base_ability")
 LinkLuaModifier("modifier_laser_blind","abilities/laser.lua",LUA_MODIFIER_MOTION_NONE)
-laser = class(base_ability)
+laser = base_ability.new()
+laser.__index = laser
+laser.__base = base_ability
 function laser.new(construct, ...)
     local instance = setmetatable({}, laser)
     if construct and laser.constructor then laser.constructor(instance, ...) end
@@ -28,11 +31,13 @@ function laser.destroyImmediatly(self)
     return true
 end
 function laser.OnProjectileHitUnit(self,projectile,target,caster)
-    local duration = self.GetSpecialValueFor(self,"duration")
-    target.EmitSound(target,"Hero_Tinker.LaserImpact")
-    target.AddNewModifier(target,caster,self,"modifier_laser_blind",{duration=duration})
+    local duration = laser.GetSpecialValueFor(self,"duration")
+
+    CDOTA_BaseNPC.EmitSound(target,"Hero_Tinker.LaserImpact")
+    CDOTA_BaseNPC.AddNewModifier(target,caster,self,"modifier_laser_blind",{duration=duration})
 end
-modifier_laser_blind = class({})
+modifier_laser_blind = {}
+modifier_laser_blind.__index = modifier_laser_blind
 function modifier_laser_blind.new(construct, ...)
     local instance = setmetatable({}, modifier_laser_blind)
     if construct and modifier_laser_blind.constructor then modifier_laser_blind.constructor(instance, ...) end
@@ -42,8 +47,8 @@ function modifier_laser_blind.DeclareFunctions(self)
     return {MODIFIER_PROPERTY_FIXED_NIGHT_VISION,MODIFIER_PROPERTY_FIXED_DAY_VISION}
 end
 function modifier_laser_blind.GetFixedDayVision(self)
-    return self.GetAbility(self).GetSpecialValueFor(self.GetAbility(self),"vision_radius")
+    return CDOTABaseAbility.GetSpecialValueFor(modifier_laser_blind.GetAbility(self),"vision_radius")
 end
 function modifier_laser_blind.GetFixedNightVision(self)
-    return self.GetAbility(self).GetSpecialValueFor(self.GetAbility(self),"vision_radius")
+    return CDOTABaseAbility.GetSpecialValueFor(modifier_laser_blind.GetAbility(self),"vision_radius")
 end

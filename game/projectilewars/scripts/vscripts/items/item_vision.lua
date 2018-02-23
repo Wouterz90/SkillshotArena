@@ -1,12 +1,16 @@
+require("typescript_lualib")
 require("items/base_item")
-item_rune_vision = class(item_base_rune)
+item_rune_vision = item_base_rune.new()
+item_rune_vision.__index = item_rune_vision
+item_rune_vision.__base = item_base_rune
 function item_rune_vision.new(construct, ...)
     local instance = setmetatable({}, item_rune_vision)
     if construct and item_rune_vision.constructor then item_rune_vision.constructor(instance, ...) end
     return instance
 end
 LinkLuaModifier("modifier_rune_vision","items/item_vision.lua",LUA_MODIFIER_MOTION_NONE)
-modifier_rune_vision = class({})
+modifier_rune_vision = {}
+modifier_rune_vision.__index = modifier_rune_vision
 function modifier_rune_vision.new(construct, ...)
     local instance = setmetatable({}, modifier_rune_vision)
     if construct and modifier_rune_vision.constructor then modifier_rune_vision.constructor(instance, ...) end
@@ -16,7 +20,7 @@ function modifier_rune_vision.DeclareFunctions(self)
     return {MODIFIER_PROPERTY_BONUS_DAY_VISION,MODIFIER_PROPERTY_BONUS_NIGHT_VISION}
 end
 function modifier_rune_vision.OnCreated(self)
-    self.vision=self.GetAbility(self).GetSpecialValueFor(self.GetAbility(self),"bonus_vision")
+    self.vision=CDOTABaseAbility.GetSpecialValueFor(modifier_rune_vision.GetAbility(self),"bonus_vision")
 end
 function modifier_rune_vision.GetBonusDayVision(self)
     return self.vision

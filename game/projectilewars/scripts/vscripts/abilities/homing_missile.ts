@@ -29,7 +29,7 @@ class homing_missile extends base_ability {
       hTarget:target,
       flRadius:this.GetSpecialValueFor("radius"),
       flSpeed:this.GetProjectileSpeed(),
-      flTurnRate:1.5,
+      flTurnRate:1,
       sEffectName:this.GetProjectileParticleName(),
       hUnit:unit,
       UnitBehavior:ProjectileInteractionType.PROJECTILES_DESTROY,
@@ -37,7 +37,7 @@ class homing_missile extends base_ability {
       WallBehavior:ProjectileInteractionType.PROJECTILES_BOUNCE,
       ItemBehavior:ProjectileInteractionType.PROJECTILES_IGNORE,
       OnProjectileHit:(myProjectile:PhysicsProjectile,otherProjectile:PhysicsProjectile) => {
-        if (!myProjectile.hitByProjectile.indexOf(otherProjectile) && myProjectile.caster.GetTeamNumber() != otherProjectile.caster.GetTeamNumber()) {
+        if (myProjectile.hitByProjectile.indexOf(otherProjectile) && myProjectile.caster.GetTeamNumber() != otherProjectile.caster.GetTeamNumber()) {
           myProjectile.hitByProjectile.push(otherProjectile)
           let unit = myProjectile.unit as CDOTA_BaseNPC
           unit.SetHealth(unit.GetHealth()-1)

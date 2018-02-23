@@ -58,8 +58,8 @@ var shoot_ = /** @class */ (function (_super) {
     shoot_.prototype.GetProjectileItemBehavior = function () { return ProjectileInteractionType.PROJECTILES_NOTHING; };
     shoot_.prototype.OnProjectileHitUnit = function (projectile, unit, caster) {
         var range = this.GetCaster().GetAttackRange(); //- 150
-        var mult = range / 650;
-        mult = 1;
+        var mult = 650 / range;
+        mult = 0.5 + mult / 2;
         var damageTable = {
             damage: this.GetSpecialValueFor("damage") * mult,
             victim: unit,

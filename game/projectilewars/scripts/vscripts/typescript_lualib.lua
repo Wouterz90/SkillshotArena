@@ -1,14 +1,3 @@
---[[CDOTA_BaseNPC = CDOTA_BaseNPC or C_DOTA_BaseNPC
-CBaseEntity = CBaseEntity or C_BaseEntity
-CBaseModelEntity = CBaseModelEntity or C_BaseModelEntity
-CDOTABaseAbility = CDOTABaseAbility or C_DOTABaseAbility
-CDOTA_Ability_Lua = CDOTA_Ability_Lua or C_DOTA_Ability_Lua
-CDOTA_Ability_Lua = base_ability
-CDOTA_BaseNPC = CDOTA_BaseNPC or C_DOTA_BaseNPC
-CDOTA_Item = CDOTA_Item or C_DOTA_Item
-CDOTA_Item = item_base_item
-CDOTA_Item_Lua = CDOTA_Item_Lua or C_DOTA_Item_Lua
-CDOTA_Modifier_Lua = CDOTA_Modifier_Lua or C_DOTA_Modifier_Lua]]
 
 -- Ternary operator
 function TS_ITE(condition, v1f, v2f)
@@ -20,10 +9,10 @@ function TS_ITE(condition, v1f, v2f)
 end
 
 function TS_forEach(list, func)
-    for k, v in ipairs(list) do
-        func(v, k, list)
+    for i, v in ipairs(list) do
+        func(v, i-1, list)
     end
-end
+end    
 
 function TS_map(list, func)
     local out = {}
@@ -44,10 +33,38 @@ function TS_filter(list, func)
 end
 
 function TS_slice(list, startI, endI)
-    endI = endI or (#list-1)
+    endI = endI or #list
+    if startI < 0 then startI = #list + startI end
+    if endI < 0 then endI = #list + endI end
     local out = {}
-    for i = startI + 1, endI + 1 do
+    for i = startI + 1, endI do
         table.insert(out, list[i])
+    end
+    return out
+end
+
+function TS_splice(list, startI, deleteCount, ...)
+    if not deleteCount or deleteCount > #list - startI then
+        deleteCount = #list - startI
+    end
+    startI = startI + 1
+    local newElements = {...}
+    local out = {}
+    local outPtr = deleteCount
+    local newElementsCount = #newElements
+    for i = startI + deleteCount - 1, startI, -1 do
+        out[outPtr] = list[i]
+        outPtr = outPtr -1
+        if newElements[k] then
+            list[i] = newElements[k]
+            newElementsCount = newElementsCount - 1
+        else
+            table.remove(list, i)
+        end
+    end
+    while newElements[newElementsCount] do
+        table.insert(list, startI, newElements[newElementsCount])
+        newElementsCount = newElementsCount - 1
     end
     return out
 end
@@ -60,18 +77,14 @@ function TS_every(list, func)
     return #list == #TS_filter(list, func)
 end
 
-function TS_indexOf(list, object )
-    for i = 1, #list do
-        if object == list[i] then
-            return i
-        end
-    end
-    return nil
+function table.indexOf(tab, value) 
+    for k,v in pairs(tab) do 
+        if v == value then 
+            return k 
+        end 
+    end 
+    return nil 
 end
-
-
-
-
 
 -- Set data structure implementation
 Set = Set or {}
@@ -163,4 +176,3 @@ function Map.count(self)
     end
     return count
 end
-

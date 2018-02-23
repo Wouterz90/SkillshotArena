@@ -22,7 +22,7 @@ function Precache( context )
     ]]
 
   DebugPrint("[BAREBONES] Performing pre-load precache")
-
+  
 
 
   PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts", context)
@@ -48,4 +48,6 @@ end
 function Activate()
   GameRules.GameMode = GameMode()
   GameRules.GameMode:_InitGameMode()
+
+
 end
