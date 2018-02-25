@@ -31,9 +31,9 @@ function laser.destroyImmediatly(self)
     return true
 end
 function laser.OnProjectileHitUnit(self,projectile,target,caster)
-    local duration = laser.GetSpecialValueFor(self,"duration")
+    local duration = CDOTABaseAbility.GetSpecialValueFor(self,"duration")
 
-    CDOTA_BaseNPC.EmitSound(target,"Hero_Tinker.LaserImpact")
+    CBaseEntity.EmitSound(target,"Hero_Tinker.LaserImpact")
     CDOTA_BaseNPC.AddNewModifier(target,caster,self,"modifier_laser_blind",{duration=duration})
 end
 modifier_laser_blind = {}
@@ -47,8 +47,8 @@ function modifier_laser_blind.DeclareFunctions(self)
     return {MODIFIER_PROPERTY_FIXED_NIGHT_VISION,MODIFIER_PROPERTY_FIXED_DAY_VISION}
 end
 function modifier_laser_blind.GetFixedDayVision(self)
-    return CDOTABaseAbility.GetSpecialValueFor(modifier_laser_blind.GetAbility(self),"vision_radius")
+    return CDOTABaseAbility.GetSpecialValueFor(CDOTA_Buff.GetAbility(self),"vision_radius")
 end
 function modifier_laser_blind.GetFixedNightVision(self)
-    return CDOTABaseAbility.GetSpecialValueFor(modifier_laser_blind.GetAbility(self),"vision_radius")
+    return CDOTABaseAbility.GetSpecialValueFor(CDOTA_Buff.GetAbility(self),"vision_radius")
 end

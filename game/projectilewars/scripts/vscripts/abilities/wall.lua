@@ -9,13 +9,13 @@ function wall.new(construct, ...)
     return instance
 end
 function wall.OnSpellStart(self)
-    local caster = wall.GetCaster(self)
+    local caster = CDOTABaseAbility.GetCaster(self)
 
-    local origin = CDOTA_BaseNPC.GetAbsOrigin(caster)
+    local origin = CBaseEntity.GetAbsOrigin(caster)
 
     local point = CDOTA_BaseNPC.GetCursorPosition(caster)
 
-    local forward = CDOTA_BaseNPC.GetForwardVector(caster)
+    local forward = CBaseEntity.GetForwardVector(caster)
 
     local right = GetRightPerpendicular(forward)
 
@@ -31,9 +31,9 @@ function wall.OnSpellStart(self)
     end
     local wallParticles = CreateProjectileWall(wall,locs)
 
-    wall.ConsumeCharge(self)
+    base_ability.ConsumeCharge(self)
     timers.CreateTimer(Timers,5,function()
-        if wall and not PhysicsObject.IsNull(wall) then
+        if wall and not CBaseEntity.IsNull(wall) then
             if wallParticles then
                 for _, p in ipairs(wallParticles) do
                     CScriptParticleManager.DestroyParticle(ParticleManager,p,true)

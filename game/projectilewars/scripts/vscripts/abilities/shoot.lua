@@ -9,18 +9,16 @@ function shoot_.new(construct, ...)
     return instance
 end
 function shoot_.CastFilterResult(self)
-    if CDOTA_BaseNPC.IsDisarmed(shoot_.GetCaster(self)) then
+    if CDOTA_BaseNPC.IsDisarmed(CDOTABaseAbility.GetCaster(self)) then
         return UF_FAIL_CUSTOM
     end
     return UF_SUCCESS
 end
 function shoot_.GetCustomCastError(self)
-    if CDOTA_BaseNPC.IsRooted(shoot_.GetCaster(self)) then
+    if CDOTA_BaseNPC.IsRooted(CDOTABaseAbility.GetCaster(self)) then
         return "#Can't attack while rooted."
     end
 end
-
-function shoot_.OnSpellStarted(self) print("XX") end
 function shoot_.GetProjectileSpeed(self)
     return 900
 end
@@ -31,16 +29,16 @@ function shoot_.destroyImmediatly(self)
     return false
 end
 function shoot_.GetCastRange(self)
-    return CDOTA_BaseNPC.GetAttackRange(shoot_.GetCaster(self))*1.33
+    return CDOTA_BaseNPC.GetAttackRange(CDOTABaseAbility.GetCaster(self))*1.33
 end
 function shoot_.GetSound(self)
     return "Hero_Windrunner.Attack"
 end
 function shoot_.GetProjectileRange(self)
-    return CDOTA_BaseNPC.GetAttackRange(shoot_.GetCaster(self))*1.33
+    return CDOTA_BaseNPC.GetAttackRange(CDOTABaseAbility.GetCaster(self))*1.33
 end
 function shoot_.GetProjectileParticleName(self)
-    return CDOTA_BaseNPC.GetRangedProjectileName(shoot_.GetCaster(self))
+    return CDOTA_BaseNPC.GetRangedProjectileName(CDOTABaseAbility.GetCaster(self))
 end
 function shoot_.GetProjectileUnitBehavior(self)
     return PROJECTILES_NOTHING
@@ -55,12 +53,12 @@ function shoot_.GetProjectileItemBehavior(self)
     return PROJECTILES_NOTHING
 end
 function shoot_.OnProjectileHitUnit(self,projectile,unit,caster)
-    local range = CDOTA_BaseNPC.GetAttackRange(shoot_.GetCaster(self))
+    local range = CDOTA_BaseNPC.GetAttackRange(CDOTABaseAbility.GetCaster(self))
 
     local mult = 650/range
 
     mult=(0.5+(mult/2))
-    local damageTable = {damage=shoot_.GetSpecialValueFor(self,"damage")*mult,victim=unit,attacker=shoot_.GetCaster(self),ability=self,damage_type=DAMAGE_TYPE_PHYSICAL}
+    local damageTable = {damage=CDOTABaseAbility.GetSpecialValueFor(self,"damage")*mult,victim=unit,attacker=CDOTABaseAbility.GetCaster(self),ability=self,damage_type=DAMAGE_TYPE_PHYSICAL}
 
     ApplyDamage(damageTable)
 end

@@ -31,23 +31,23 @@ function ranged_punch.GetProjectileWallBehavior(self)
     return PROJECTILES_DESTROY
 end
 function ranged_punch.OnSpellStarted(self)
-    local caster = ranged_punch.GetCaster(self)
+    local caster = CDOTABaseAbility.GetCaster(self)
 
-    local point = ranged_punch.GetCursorPosition(self)
+    local point = CDOTABaseAbility.GetCursorPosition(self)
 
-    local direction = point-CDOTA_BaseNPC_Hero.GetAbsOrigin(caster)
+    local direction = point-CBaseEntity.GetAbsOrigin(caster)
 
     direction=direction.Normalized(direction)
-    self.end_position=(CDOTA_BaseNPC_Hero.GetAbsOrigin(caster)+(direction*self.range))
+    self.end_position=(CBaseEntity.GetAbsOrigin(caster)+(direction*self.range))
     self.particle=CScriptParticleManager.CreateParticle(ParticleManager,"particles/abilities/punch/ranged_punch.vpcf",PATTACH_CUSTOMORIGIN,nil)
     CScriptParticleManager.SetParticleAlwaysSimulate(ParticleManager,self.particle)
-    CScriptParticleManager.SetParticleControlEnt(ParticleManager,self.particle,0,ranged_punch.GetCaster(self),PATTACH_POINT_FOLLOW,"attach_weapon_chain_rt",CDOTA_BaseNPC_Hero.GetAbsOrigin(caster),true)
+    CScriptParticleManager.SetParticleControlEnt(ParticleManager,self.particle,0,CDOTABaseAbility.GetCaster(self),PATTACH_POINT_FOLLOW,"attach_weapon_chain_rt",CBaseEntity.GetAbsOrigin(caster),true)
     CScriptParticleManager.SetParticleControl(ParticleManager,self.particle,1,self.end_position)
     CScriptParticleManager.SetParticleControl(ParticleManager,self.particle,2,Vector(self.projectile_speed,0,0))
     CScriptParticleManager.SetParticleControl(ParticleManager,self.particle,3,Vector(100,0,0))
     CScriptParticleManager.SetParticleControl(ParticleManager,self.particle,4,Vector(1,0,0))
     CScriptParticleManager.SetParticleControl(ParticleManager,self.particle,5,Vector(0,0,0))
-    CScriptParticleManager.SetParticleControlEnt(ParticleManager,self.particle,7,caster,PATTACH_CUSTOMORIGIN,nil,CDOTA_BaseNPC_Hero.GetAbsOrigin(caster),true)
+    CScriptParticleManager.SetParticleControlEnt(ParticleManager,self.particle,7,caster,PATTACH_CUSTOMORIGIN,nil,CBaseEntity.GetAbsOrigin(caster),true)
     self.projectile.projParticle=self.particle
 end
 function ranged_punch.OnProjectileThink(self,projectile,location)
@@ -68,8 +68,8 @@ function ranged_punch.OnProjectileHitUnit(self,hProjectile,hTarget,hCaster)
     if CBaseEntity.IsNPC(hTarget) then
         CDOTA_BaseNPC.AddNewModifier(hTarget,hCaster,self,"modifier_ranged_punch_knockback",{})
     end
-    CDOTA_BaseNPC.EmitSound(hCaster,"")
-    local projectile_table = {vDirection=direction,flMaxDistance=ranged_punch.GetSpecialValueFor(self,"knockback_distance"),hCaster=hCaster,vSpawnOrigin=CBaseEntity.GetAbsOrigin(hTarget),flSpeed=ranged_punch.GetProjectileSpeed(self),flRadius=5,sEffectName="",WallBehavior=PROJECTILES_BOUNCE,OnProjectileThink=function(projectile,projectile_location)
+    CBaseEntity.EmitSound(hCaster,"")
+    local projectile_table = {vDirection=direction,flMaxDistance=CDOTABaseAbility.GetSpecialValueFor(self,"knockback_distance"),hCaster=hCaster,vSpawnOrigin=CBaseEntity.GetAbsOrigin(hTarget),flSpeed=base_ability.GetProjectileSpeed(self),flRadius=5,sEffectName="",WallBehavior=PROJECTILES_BOUNCE,OnProjectileThink=function(projectile,projectile_location)
         local target = projectile.trackingUnit
 
         if target and not CBaseEntity.IsNull(target) then
@@ -91,16 +91,16 @@ function ranged_punch.OnProjectileHitUnit(self,hProjectile,hTarget,hCaster)
     hTarget.motion=projectile
 end
 function ranged_punch.OnProjectileFinish(self,hProjectile)
-    local caster = ranged_punch.GetCaster(self)
+    local caster = CDOTABaseAbility.GetCaster(self)
 
-    local origin = PhysicsProjectile.GetAbsOrigin(hProjectile)
+    local origin = CBaseEntity.GetAbsOrigin(hProjectile)
 
     local projParticle = hProjectile.projParticle
 
     local target = hProjectile.target
 
-    local projectile_table = {hTarget=caster,hCaster=caster,vSpawnOrigin=origin,flSpeed=ranged_punch.GetProjectileSpeed(self),flRadius=ranged_punch.GetSpecialValueFor(self,"radius"),sEffectName="",ProjectileBehavior=PROJECTILES_NOTHING,UnitBehavior=PROJECTILES_NOTHING,ItemBehavior=PROJECTILES_NOTHING,UnitTest=function(projectile,unit,caster)
-        return ranged_punch.UnitTest(self,projectile,unit,caster)
+    local projectile_table = {hTarget=caster,hCaster=caster,vSpawnOrigin=origin,flSpeed=base_ability.GetProjectileSpeed(self),flRadius=CDOTABaseAbility.GetSpecialValueFor(self,"radius"),sEffectName="",ProjectileBehavior=PROJECTILES_NOTHING,UnitBehavior=PROJECTILES_NOTHING,ItemBehavior=PROJECTILES_NOTHING,UnitTest=function(projectile,unit,caster)
+        return base_ability.UnitTest(self,projectile,unit,caster)
     end
 ,OnUnitHit=function(projectile,unit,caster)
         if unit==caster then
@@ -114,11 +114,11 @@ function ranged_punch.OnProjectileFinish(self,hProjectile)
         end
     end
 ,OnProjectileThink=function(projectile,projectile_location)
-        if target and not CDOTA_BaseNPC.IsNull(target) then
+        if target and not CBaseEntity.IsNull(target) then
             if target.motion==projectile then
-                CDOTA_BaseNPC.SetAbsOrigin(target,projectile.location)
+                CBaseEntity.SetAbsOrigin(target,projectile.location)
             else
-                if CDOTA_BaseNPC.IsNPC(target) then
+                if CBaseEntity.IsNPC(target) then
                     CDOTA_BaseNPC.RemoveModifierByName(target,"modifier_ranged_punch_knockback")
                 end
             end
@@ -131,10 +131,10 @@ function ranged_punch.OnProjectileFinish(self,hProjectile)
     if target then
         target.motion=self.projectile
     end
-    CScriptParticleManager.SetParticleControlEnt(ParticleManager,self.projectile.projParticle,1,ranged_punch.GetCaster(self),PATTACH_POINT_FOLLOW,"attach_weapon_chain_rt",CDOTA_BaseNPC.GetAbsOrigin(ranged_punch.GetCaster(self)),true)
+    CScriptParticleManager.SetParticleControlEnt(ParticleManager,self.projectile.projParticle,1,CDOTABaseAbility.GetCaster(self),PATTACH_POINT_FOLLOW,"attach_weapon_chain_rt",CBaseEntity.GetAbsOrigin(CDOTABaseAbility.GetCaster(self)),true)
 end
 function ranged_punch.BallReturned(self,projectile,hTarget)
-    local caster = ranged_punch.GetCaster(self)
+    local caster = CDOTABaseAbility.GetCaster(self)
 
     if hTarget and hTarget.AddNewModifier then
         CDOTA_BaseNPC.RemoveModifierByName(hTarget,"modifier_hook_motion")

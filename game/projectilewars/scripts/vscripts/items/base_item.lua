@@ -25,9 +25,10 @@ end
 item_base_item = class({})
 item_base_item.__index = item_base_item
 function item_base_item.new(construct, ...)
-  local instance = setmetatable({}, item_base_item)
-  if construct and item_base_item.constructor then item_base_item.constructor(instance, ...) end
-  return instance
+  --local instance = setmetatable({}, item_base_item)
+  --if construct and item_base_item.constructor then item_base_item.constructor(instance, ...) end
+  --return instance
+  return item_base_item
 end
 
 --- @param caster CDOTA_BaseNPC
@@ -129,9 +130,10 @@ item_base_rune = class({})
 item_base_rune.__index = item_base_rune
 
 function item_base_rune.new(construct, ...)
-    local instance = setmetatable({}, item_base_rune)
-    if construct and item_base_rune.constructor then item_base_rune.constructor(instance, ...) end
-    return instance
+    --local instance = setmetatable({}, item_base_rune)
+    --if construct and item_base_rune.constructor then item_base_rune.constructor(instance, ...) end
+    --return instance
+    return class(item_base_rune)
 end
 
 --- @param caster CDOTA_BaseNPC

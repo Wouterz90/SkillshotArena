@@ -4,10 +4,12 @@ base_ability = class({})
 --exports = exports or {}
 --exports.base_ability = base_ability
 base_ability.__index = base_ability
+base_ability.__base = base_ability
 function base_ability.new(construct, ...)
-    local instance = setmetatable({}, base_ability)
-    if construct and base_ability.constructor then base_ability.constructor(instance, ...) end
-    return instance
+    --local instance = setmetatable({}, shoot_)
+    --if construct and base_ability.constructor then base_ability.constructor(instance, ...) end
+    --return instance
+    return class(base_ability)
 end
 -- These functions should/could be overridden
 ---@return string

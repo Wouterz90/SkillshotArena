@@ -1,4 +1,3 @@
-
 -- Ternary operator
 function TS_ITE(condition, v1f, v2f)
     if condition then
@@ -12,7 +11,7 @@ function TS_forEach(list, func)
     for i, v in ipairs(list) do
         func(v, i-1, list)
     end
-end    
+end
 
 function TS_map(list, func)
     local out = {}
@@ -77,13 +76,13 @@ function TS_every(list, func)
     return #list == #TS_filter(list, func)
 end
 
-function table.indexOf(tab, value) 
-    for k,v in pairs(tab) do 
-        if v == value then 
-            return k 
-        end 
-    end 
-    return nil 
+function TS_indexOf(list, object )
+    for i = 1, #list do
+        if object == list[i] then
+            return i - 1
+        end
+    end
+    return -1
 end
 
 -- Set data structure implementation

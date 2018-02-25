@@ -20,7 +20,7 @@ function modifier_rune_vision.DeclareFunctions(self)
     return {MODIFIER_PROPERTY_BONUS_DAY_VISION,MODIFIER_PROPERTY_BONUS_NIGHT_VISION}
 end
 function modifier_rune_vision.OnCreated(self)
-    self.vision=CDOTABaseAbility.GetSpecialValueFor(modifier_rune_vision.GetAbility(self),"bonus_vision")
+    self.vision=CDOTABaseAbility.GetSpecialValueFor(CDOTA_Buff.GetAbility(self),"bonus_vision")
 end
 function modifier_rune_vision.GetBonusDayVision(self)
     return self.vision

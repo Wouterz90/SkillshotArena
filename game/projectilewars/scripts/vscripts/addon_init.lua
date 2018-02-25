@@ -1,0 +1,10 @@
+-- Fix clientside c_ stuff
+CDOTA_BaseNPC = CDOTA_BaseNPC or C_DOTA_BaseNPC
+CBaseEntity = CBaseEntity or C_BaseEntity
+CBaseModelEntity = CBaseModelEntity or C_BaseModelEntity
+CDOTABaseAbility = CDOTABaseAbility or C_DOTABaseAbility
+CDOTA_Ability_Lua = CDOTA_Ability_Lua or C_DOTA_Ability_Lua
+CDOTA_BaseNPC = CDOTA_BaseNPC or C_DOTA_BaseNPC
+CDOTA_Item = CDOTA_Item or C_DOTA_Item
+CDOTA_Item_Lua = CDOTA_Item_Lua or C_DOTA_Item_Lua
+CDOTA_Modifier_Lua = CDOTA_Modifier_Lua or C_DOTA_Modifier_Lua
