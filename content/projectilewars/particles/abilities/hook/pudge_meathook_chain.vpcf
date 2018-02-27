@@ -90,7 +90,7 @@
 	m_Children = 
 	[
 		{
-			m_ChildRef = resource:"particles/abilities/punch/ranged_punch_punch.vpcf"
+			m_ChildRef = resource:"particles/abilities/hook/pudge_meathook_hook.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_pudge/pudge_meathook_blur.vpcf"

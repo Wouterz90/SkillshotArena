@@ -1,5 +1,12 @@
+declare abstract class global {
+  [key: string]: any
+}
+declare const _G:global
+
+
 /** !NoClassOr */
 declare abstract class base_ability extends CDOTA_Ability_Lua {
+
   //These functions should/could be overridden
   GetProjectileParticleName():string
   GetProjectileWallBehavior():ProjectileInteractionType
@@ -30,6 +37,9 @@ declare abstract class base_ability extends CDOTA_Ability_Lua {
   GetCastRange():number
   GetProjectileSpeed():number
   GetCooldown(level:number):number
+  CanBeSilenced():boolean
+  IsSilenced():boolean
+  SetSilenceEndTime(duration:number):void
 
   OnUpgrade():void
   OnAbilityPhaseStart():boolean

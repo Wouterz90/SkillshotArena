@@ -1,6 +1,17 @@
 
 if IsServer() then
   --- Returns the turnrate of the unit
+  function CDOTA_BaseNPC:IsSilenced()
+    for i=1,8 do
+      local ability = self:GetAbilityByIndex(i)
+      if ability and not ability.IsSilenced() then
+        return false
+      end
+    end
+    return true
+  end
+
+
   ---@return number
   function CDOTA_BaseNPC:GetTurnRate()
     HEROES_TXT = HEROES_TXT or  LoadKeyValues("scripts/npc/npc_heroes_custom.txt")

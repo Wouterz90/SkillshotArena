@@ -74,6 +74,7 @@ TIMERS_THINK = 0.01
 if Timers == nil then
   print ( '[Timers] creating Timers' )
   Timers = {}
+  timers = Timers
   setmetatable(Timers, {
     __call = function(t, ...)
       return t:CreateTimer(...)

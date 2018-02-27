@@ -147,10 +147,46 @@ end
 function base_ability:OnUpgrade()
   StoreSpecialKeyValues(self)
 end
+
+function base_ability:CastFilterResult()
+  if IsServer() then
+    if self:IsSilenced() and self:CanBeSilenced() then
+      EmitSoundOnClient("General.Cancel",self:GetCaster():GetPlayerOwner())
+      return UF_FAIL_CUSTOM
+    end
+  end
+  return UF_SUCCESS
+end 
+
+function base_ability:CastFilterResultLocation(vLocation)
+  return self:CastFilterResult()
+end
+
+function base_ability:CastFilterResultTarget(hTarget)
+  return self:CastFilterResult()
+end
+
+function base_ability:GetCustomCastError()
+  if IsServer() then
+    if self:IsSilenced() and self:CanBeSilenced() then
+      return "#dota_hud_error_unit_silenced"
+    end
+  end
+  return ""
+end 
+
+function base_ability:GetCustomCastErrorLocation(vLocation)
+  return self:GetCustomCastError()
+end 
+
+function base_ability:GetCustomCastErrorTarget(hTarget)
+  return self:GetCustomCastError()
+end 
 ---@override
 function base_ability:OnAbilityPhaseStart()
   local caster = self:GetCaster()
   --StartAnimation(caster,{duration = self:GetCastPoint(),activity = self:GetCastAnimation(),rate = })
+  
   StartSoundEventFromPosition(self:GetSound(),caster:GetAbsOrigin())
   return true
 end
@@ -191,6 +227,15 @@ end
 ---@return boolean
 function base_ability:IsConsumable()
   return self.bConsumable or false
+end
+
+function base_ability:CanBeSilenced() return true end
+function base_ability:IsSilenced() 
+  self.isSilenced = self.isSilenced or -1000
+  return self.isSilenced >= GameRules:GetGameTime()
+end
+function base_ability:SetSilenceEndTime(flDuration)
+  self.isSilenced = GameRules:GetGameTime() + flDuration
 end
 
 ---@override

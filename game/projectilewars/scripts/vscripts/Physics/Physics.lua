@@ -1,6 +1,7 @@
 
 ---@class Physics2D
 Physics2D = Physics2D or class({})
+Physics = Physics2D
 inv_ft = 1/FrameTime()
 require('physics/physics_util')
 

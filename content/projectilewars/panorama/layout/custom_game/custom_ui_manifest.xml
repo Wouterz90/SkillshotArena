@@ -9,6 +9,7 @@
 
   <styles>
         <include src="file://{resources}/styles/custom_game/ability_icons.css" />
+        <include src="file://{resources}/styles/custom_game/healthbar.css" />
     </styles>
 
   <script>

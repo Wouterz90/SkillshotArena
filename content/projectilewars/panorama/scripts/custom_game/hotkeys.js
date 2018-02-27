@@ -36,25 +36,31 @@ function SetUpHotKeys() {
             if (!abilityPanels[i]) {
                 abilityPanels[i] = pan;
             }
-            pan.style.visibility = "visible";
+            if (pan.style.visibility != "visible") {
+                pan.style.visibility = "visible";
+            }
             key = inputs[i];
             pan.style.width = "100px";
             var textP = pan.FindChildTraverse("HotkeyText");
             textP.text = key;
-            pan.FindChildTraverse("AbilityLevelContainer").style.visibility = "collapse";
-            pan.FindChildTraverse("ButtonWell").style.width = "100px";
-            pan.FindChildTraverse("ButtonWell").style.height = "100px";
-            pan.FindChildTraverse("ButtonSize").style.width = "100px";
-            pan.FindChildTraverse("ButtonSize").style.height = "100px";
-            pan.FindChildTraverse("Hotkey").style.visibility = "visible";
-            pan.FindChildTraverse("HotkeyContainer").style.marginTop = "13%";
-            pan.FindChildTraverse("HotkeyContainer").style.marginLeft = "10%";
-            var numPanel = pan.FindChildTraverse("GoldCostBG");
-            numPanel.style.width = "50px";
-            numPanel.style.height = "50px";
-            var numPanelText = pan.FindChildTraverse("GoldCost");
-            if (numPanelText.text && Number(numPanelText.text) > 0) {
-                numPanelText.style.fontSize = "30px";
+            if (pan.FindChildTraverse("AbilityLevelContainer").style.visibility != "collapse") {
+                pan.FindChildTraverse("AbilityLevelContainer").style.visibility = "collapse";
+            }
+            if (pan.FindChildTraverse("ButtonWell").style.width != "100px") {
+                pan.FindChildTraverse("ButtonWell").style.width = "100px";
+                pan.FindChildTraverse("ButtonWell").style.height = "100px";
+                pan.FindChildTraverse("ButtonSize").style.width = "100px";
+                pan.FindChildTraverse("ButtonSize").style.height = "100px";
+                pan.FindChildTraverse("Hotkey").style.visibility = "visible";
+                pan.FindChildTraverse("HotkeyContainer").style.marginTop = "13%";
+                pan.FindChildTraverse("HotkeyContainer").style.marginLeft = "10%";
+                var numPanel = pan.FindChildTraverse("GoldCostBG");
+                numPanel.style.width = "50px";
+                numPanel.style.height = "50px";
+                var numPanelText = pan.FindChildTraverse("GoldCost");
+                if (numPanelText.text && Number(numPanelText.text) > 0) {
+                    numPanelText.style.fontSize = "30px";
+                }
             }
             abilities = abilities + 1;
         }
@@ -164,25 +170,37 @@ function MouseTooltipManager() {
     //$.DispatchEvent( "DOTAHideBuffTooltip");
     $.DispatchEvent("DOTAHideAbilityTooltip");
 }
+function SilenceAbilities(kv) {
+    for (var _i = 0, _a = kv.silenceIndex; _i < _a.length; _i++) {
+        var i = _a[_i];
+        if (DotaAbilityList.FindChildTraverse("Ability" + i)) {
+            var silencePanel = $.CreatePanel("Image", DotaAbilityList.FindChildTraverse("Ability" + i).FindChildTraverse("AbilityButton"), "SilencedAbility");
+            silencePanel.AddClass("SilenceAbility");
+            silencePanel.SetImage("file://{images}/custom_game/silence.png");
+        }
+    }
+}
+function UnSilenceAbilities(kv) {
+    for (var _i = 0, _a = kv.silenceIndex; _i < _a.length; _i++) {
+        var i = _a[_i];
+        var pan = DotaAbilityList.FindChildTraverse("Ability" + i);
+        if (pan) {
+            var panel = pan.FindChildTraverse("SilencedAbility");
+            if (panel) {
+                panel.DeleteAsync(0);
+            }
+        }
+    }
+}
 var DotaAbilityList = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("abilities");
 SetUpHotKeys();
 MouseTooltipManager();
-//DOTAShowBuffTooltip
-function GetBuffAbility(textureName) {
-    if (textureName == "kobold_taskmaster_speed_aura") {
-        return "item_rune_speedshot";
+GameUI.SetMouseCallback(function (eventName, arg) {
+    if (eventName == "pressed" && arg === 0 && GameUI.GetClickBehaviors() == CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_NONE) {
+        CastAbility_0();
+        return true;
     }
-    else if (textureName == "medusa_split_shot") {
-        return "item_rune_multishot";
-    }
-    else if (textureName == "rune_haste") {
-        return "item_rune_haste";
-    }
-    else if (textureName == "obsidian_destroyer_essence_aura") {
-        return "item_rune_castpoint";
-    }
-    else if (textureName == "wisp_spirits") {
-        return "item_rune_turnrate";
-    }
-    return "";
-}
+    return false;
+});
+GameEvents.Subscribe("hero_silence_created", SilenceAbilities);
+GameEvents.Subscribe("hero_silence_removed", UnSilenceAbilities);

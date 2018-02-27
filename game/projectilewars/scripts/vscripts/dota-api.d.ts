@@ -3092,6 +3092,7 @@ declare abstract class CDOTA_BaseNPC_Trap_Ward extends CDOTA_BaseNPC_Creature {
  * A modifier.
  */
 declare abstract class CDOTA_Buff {
+    IsSilenceDebuff:boolean
     /**
      * (index, bDestroyImmediately, bStatusEffect, priority, bHeroEffect, bOverheadEffect
      */

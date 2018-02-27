@@ -9,6 +9,7 @@ ITEM_DROP_CHANCE_TOTAL = ITEM_DROP_CHANCE_COMMON+ITEM_DROP_CHANCE_UNCOMMON+ITEM_
 --- @return CDOTA_Item_Physical
 function CreatePhysicsItem(sItemName,vVector)
   local item = CreateItem(sItemName,nil,nil)
+  vVector = GetGroundPosition(vVector, nil)
   local item_p = CreateItemOnPositionSync(vVector,item)
   item_p:SetContainedItem(item)
   
@@ -28,7 +29,7 @@ function item_base_item.new(construct, ...)
   --local instance = setmetatable({}, item_base_item)
   --if construct and item_base_item.constructor then item_base_item.constructor(instance, ...) end
   --return instance
-  return item_base_item
+  return class(item_base_item)
 end
 
 --- @param caster CDOTA_BaseNPC
@@ -61,6 +62,8 @@ end
 function modifier_charges_base_item:DestroyOnExpire()
   return false
 end
+
+function modifier_charges_base_item:RemoveOnDeath() return true end
 ---@override
 function modifier_charges_base_item:OnCreated()
  -- Spell is added via the item added filter, since the item checks are done there anyway

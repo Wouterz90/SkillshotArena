@@ -41,29 +41,35 @@ function SetUpHotKeys() : void {
           abilityPanels[i] = pan
         }
 
-        pan.style.visibility = "visible"
-        
+        if (pan.style.visibility != "visible") {
+          pan.style.visibility = "visible"
+        }
         key = inputs[i];
 
         pan.style.width = "100px";
         let textP = pan.FindChildTraverse("HotkeyText") as LabelPanel
         textP.text = key;
-        pan.FindChildTraverse("AbilityLevelContainer").style.visibility = "collapse";
-        pan.FindChildTraverse("ButtonWell").style.width = "100px";
-        pan.FindChildTraverse("ButtonWell").style.height = "100px";
-        pan.FindChildTraverse("ButtonSize").style.width = "100px";
-        pan.FindChildTraverse("ButtonSize").style.height = "100px";
-        pan.FindChildTraverse("Hotkey").style.visibility = "visible";
-        pan.FindChildTraverse("HotkeyContainer").style.marginTop = "13%";
-        pan.FindChildTraverse("HotkeyContainer").style.marginLeft = "10%";
-
-        let numPanel = pan.FindChildTraverse("GoldCostBG")
-        numPanel.style.width = "50px"
-        numPanel.style.height = "50px"
-        let numPanelText = pan.FindChildTraverse("GoldCost") as LabelPanel
-        if (numPanelText.text && Number(numPanelText.text) > 0) {
-          numPanelText.style.fontSize = "30px"
+        if (pan.FindChildTraverse("AbilityLevelContainer").style.visibility != "collapse") {
+          pan.FindChildTraverse("AbilityLevelContainer").style.visibility = "collapse";
         }
+        if (pan.FindChildTraverse("ButtonWell").style.width != "100px") {
+          pan.FindChildTraverse("ButtonWell").style.width = "100px";
+          pan.FindChildTraverse("ButtonWell").style.height = "100px";
+          pan.FindChildTraverse("ButtonSize").style.width = "100px";
+          pan.FindChildTraverse("ButtonSize").style.height = "100px";
+          pan.FindChildTraverse("Hotkey").style.visibility = "visible";
+          pan.FindChildTraverse("HotkeyContainer").style.marginTop = "13%";
+          pan.FindChildTraverse("HotkeyContainer").style.marginLeft = "10%";
+
+          let numPanel = pan.FindChildTraverse("GoldCostBG")
+          numPanel.style.width = "50px"
+          numPanel.style.height = "50px"
+          let numPanelText = pan.FindChildTraverse("GoldCost") as LabelPanel
+          if (numPanelText.text && Number(numPanelText.text) > 0) {
+            numPanelText.style.fontSize = "30px"
+          }
+        }
+        
 
 
         abilities = abilities +1 
@@ -178,24 +184,40 @@ function MouseTooltipManager():void {
   
 }
 
+function SilenceAbilities(kv:{silenceIndex:number[]}) {
+  for (let i of kv.silenceIndex) {
+    if (DotaAbilityList.FindChildTraverse("Ability"+i)) {
+      let silencePanel = $.CreatePanel("Image",DotaAbilityList.FindChildTraverse("Ability"+i).FindChildTraverse("AbilityButton"),"SilencedAbility")
+      silencePanel.AddClass("SilenceAbility")
+      silencePanel.SetImage("file://{images}/custom_game/silence.png")
+    }
+
+  }
+}
+
+function UnSilenceAbilities(kv) {
+  for (let i of kv.silenceIndex) {
+    let pan = DotaAbilityList.FindChildTraverse("Ability"+i)
+
+    if (pan) {
+      let panel = pan.FindChildTraverse("SilencedAbility")
+      if (panel) {
+        panel.DeleteAsync(0)
+      }
+    }
+  }
+}
+
 const DotaAbilityList = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("abilities");
 SetUpHotKeys();
 MouseTooltipManager();
-
-
-//DOTAShowBuffTooltip
-
-function GetBuffAbility(textureName:string):string {
-  if (textureName == "kobold_taskmaster_speed_aura") {
-    return "item_rune_speedshot"
-  } else if (textureName == "medusa_split_shot") {
-    return "item_rune_multishot"
-  } else if (textureName == "rune_haste") {
-    return "item_rune_haste"
-  } else if (textureName == "obsidian_destroyer_essence_aura") {
-    return "item_rune_castpoint"
-  } else if (textureName == "wisp_spirits") {
-    return "item_rune_turnrate"
+GameUI.SetMouseCallback( (eventName,arg) => {
+  if (eventName == "pressed" && arg === 0 && GameUI.GetClickBehaviors() == CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_NONE) {
+    CastAbility_0()
+    return true
   }
-  return ""
-}
+  return false
+})
+
+GameEvents.Subscribe("hero_silence_created",SilenceAbilities)
+GameEvents.Subscribe("hero_silence_removed",UnSilenceAbilities)
