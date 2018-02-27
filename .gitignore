@@ -30,6 +30,9 @@
 # Map files
 *.vpk
 
+game/ *.js
+content/ *.lua
+
 settings.kv
 
 # Map overviews
