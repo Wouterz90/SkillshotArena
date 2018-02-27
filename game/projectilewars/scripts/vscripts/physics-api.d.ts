@@ -92,7 +92,7 @@ declare abstract class PhysicsObject extends CBaseEntity{
   IsTimeLocked:boolean
 }
 
-declare interface Physics {
+declare interface Physics2D {
 
   CreateTrackingProjectile(PhysicsProjectileTable): PhysicsProjectile
   CreateLinearProjectile(PhysicsProjectileTable): PhysicsProjectile
@@ -108,7 +108,7 @@ declare interface Physics {
 
 }
 
-declare const Physics2D:Physics
+declare const Physics2D:Physics2D
 
 declare function LengthSquared(vector:Vec):number
 declare function GetRightPerpendicular(vector:Vec):Vec

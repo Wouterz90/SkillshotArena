@@ -1,6 +1,5 @@
-declare interface timers {
-  CreateTimer:(time:number,callback:() => void) => void
-
+declare interface Timers {
+    CreateTimer(delay: number, callback: () => void|number): void;
+    CreateTimer<T>(delay: number, callback: (context: T) => void|number, context: T): void;
 }
-declare const Timers: timers;
-
+declare const Timers: Timers;

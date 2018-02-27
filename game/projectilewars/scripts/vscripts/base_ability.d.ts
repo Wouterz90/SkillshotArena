@@ -1,7 +1,7 @@
-declare abstract class global {
+declare interface _G {
   [key: string]: any
 }
-declare const _G:global
+declare const _G:_G
 
 
 /** !NoClassOr */
