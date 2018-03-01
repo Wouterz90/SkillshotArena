@@ -40,8 +40,10 @@ end
 ---@override
 function boomerang:OnProjectileThink(projectile, projectile_location)
   if LengthSquared(projectile_location- projectile.dummyUnit:GetAbsOrigin()) < 150*150 then
-    projectile.hitByProjectile = {}
     projectile.AimAtPoint = projectile.AimAtPoint +1
+    if projectile.AimAtPoint == 3 then
+      projectile.hitByProjectile = {}
+    end
     if projectile.AimAtPoint <= #projectile.points then
       projectile.speed = projectile.speed * 0.8
       projectile.dummyUnit:SetAbsOrigin(projectile.points[projectile.AimAtPoint])

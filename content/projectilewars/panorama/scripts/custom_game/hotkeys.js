@@ -78,7 +78,6 @@ function SetUpHotKeys() {
                     }
                 }
                 else if (pan.FindChildTraverse("DisarmedAbility")) {
-                    $.Msg("Removed");
                     pan.FindChildTraverse("DisarmedAbility").DeleteAsync(0);
                 }
             }

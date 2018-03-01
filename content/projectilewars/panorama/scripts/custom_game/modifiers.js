@@ -48,6 +48,7 @@ var modifier = /** @class */ (function () {
     function modifier(name, abilityName, starttime, endtime, buff, panel, ring, buffindex) {
         this.modifierName = name;
         this.abilityname = abilityName;
+        this.itemname = abilityName;
         this.startTime = starttime;
         this.endTime = endtime;
         this.isBuff = buff;

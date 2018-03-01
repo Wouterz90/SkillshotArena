@@ -56,6 +56,7 @@ function CreateModifierPanel(name:string,abilityName:string,starttime:number,end
 class modifier  {
   modifierName:string
   abilityname:string
+  itemname:string
   endTime:number
   startTime:number
   isBuff:boolean
@@ -66,6 +67,7 @@ class modifier  {
   constructor(name:string,abilityName:string,starttime:number,endtime,buff:boolean,panel:AbilityImage,ring:Panel,buffindex:number) {
     this.modifierName = name
     this.abilityname = abilityName
+    this.itemname = abilityName
     this.startTime = starttime
     this.endTime =endtime
     this.isBuff = buff
