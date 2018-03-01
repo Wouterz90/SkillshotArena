@@ -11,7 +11,7 @@
     https://github.com/ModDota/API.
 */
 
-interface Panel {
+declare abstract class Panel {
     paneltype: string;
     rememberchildfocus: boolean;
     style: VCSSStyleDeclaration;
@@ -49,11 +49,11 @@ interface Panel {
     visible: boolean;
 
     AddClass(name: string): void;
-    RemoveClass(name: string): void;
-    BHasClass(name: string): boolean;
-    SetHasClass(name: string, active: boolean): void;
-    ToggleClass(name: string): void;
-    SwitchClass(name: string, replacement: string): void;
+    Removeclass(name: string): void;
+    BHasclass(name: string): boolean;
+    SetHasclass(name: string, active: boolean): void;
+    Toggleclass(name: string): void;
+    Switchclass(name: string, replacement: string): void;
 
     ClearPanelEvent(): void;
 
@@ -138,7 +138,7 @@ interface Panel {
     RunScriptInPanelContext(script: string): void;
 }
 
-interface VCSSStyleDeclaration extends CSSStyleDeclaration {
+declare abstract class VCSSStyleDeclaration extends CSSStyleDeclaration {
     x: string;
     y: string;
     contrast: string;
@@ -146,7 +146,7 @@ interface VCSSStyleDeclaration extends CSSStyleDeclaration {
     brightness: string;
 }
 
-interface LabelPanel extends Panel {
+declare abstract class LabelPanel extends Panel {
     text: string;
     html: boolean;
 }
@@ -170,30 +170,32 @@ declare const enum ScalingFunction {
     STRETCH_TO_COVER_PRESERVE_ASPECT = "stretch-to-cover-preserve-aspect"
 }
 
-interface ImagePanel extends Panel {
+declare abstract class ImagePanel extends Panel {
     /**
      * Sets the image of this Image.
      * Example: image.SetImage("s2r://panorama/images/hud/hudv2_iconglyph.png")
      */
-    SetImage(path: string): void;
-    SetScaling(scale: ScalingFunction): void;
+    SetImage?(path: string): void;
+    SetScaling?(scale: ScalingFunction): void;
 }
 
-interface AbilityImage extends ImagePanel {
+
+declare abstract class AbilityImage extends ImagePanel {
     abilityname: string;
     contextEntityIndex: number;
 }
+declare const DOTAAbilityImage:AbilityImage
 
-interface ItemImage extends ImagePanel {
+declare abstract class ItemImage extends ImagePanel {
     itemname: string;
     contextEntityIndex: number;
 }
 
-interface ContextMenuScriptPanel extends Panel {
+declare abstract class ContextMenuScriptPanel extends Panel {
     GetContentsPanel(): Panel;
 }
 
-interface ScenePanel extends Panel {
+declare abstract class ScenePanel extends Panel {
     FireEntityInput(entityID: string, inputName: string, value: string): void;
     PlayEntitySoundEvent(arg1: any, arg2: any): number;
     SetUnit(unitName: string, environment: string): void;
@@ -201,7 +203,7 @@ interface ScenePanel extends Panel {
 }
 
 //Only put single string literals in here, it'll be merged with the main one
-interface DollarStatic {
+declare abstract class DollarStatic {
     CreatePanel(type: "Label", root: Panel, name: string): LabelPanel;
     CreatePanel(type: "Image", root: Panel, name: string): ImagePanel;
     CreatePanel(type: "DOTAAbilityImage", root: Panel, name: string): AbilityImage;

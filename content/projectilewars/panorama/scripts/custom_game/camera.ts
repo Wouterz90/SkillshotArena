@@ -5,8 +5,7 @@ function CameraThink() {
   if (Game.GetState() < DOTA_GameState.DOTA_GAMERULES_STATE_PRE_GAME) { return;}
   if (!hidden) {HideStuff();}
   // Camera defaults
-  
-
+  let pan = $.GetContextPanel().GetParent().GetParent()
   
 
   let player = Players.GetLocalPlayer();
@@ -103,6 +102,9 @@ function HideStuff():void {
   pan.FindChildTraverse("unitname").style.visibility = "collapse"
   pan.FindChildTraverse("HUDSkinAbilityContainerBG").style.visibility = "collapse"
   pan.FindChildTraverse("AbilityLevelContainer").style.visibility = "collapse"
+  pan.GetParent().FindChildTraverse("debuffs").style.visibility = "collapse"
+  pan.GetParent().FindChildTraverse("buffs").style.visibility = "collapse"
+  
   for (let p of pan.FindChildrenWithClassTraverse("AbilityInsetShadowRight")) {
     p.style.visibility = "collapse"
   }

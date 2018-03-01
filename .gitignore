@@ -30,8 +30,9 @@
 # Map files
 *.vpk
 
-game/ *.js
-content/ *.lua
+/game/**/*.js
+/content/**/*.lua
+
 
 settings.kv
 

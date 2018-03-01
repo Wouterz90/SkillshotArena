@@ -1,0 +1,11 @@
+<root>
+  <styles>
+    <include src="file://{resources}/styles/custom_game/modifier_icons.css" />
+  </styles>
+  <scripts>
+    <include src="file://{resources}/scripts/custom_game/modifiers.js" />
+  </scripts>
+  <Panel>
+
+  </Panel>
+ </root>

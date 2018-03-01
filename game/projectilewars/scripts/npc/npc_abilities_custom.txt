@@ -1,3 +1,5 @@
+#base "abilities/runes.kv"
+
 #base "abilities/arrow.kv"
 #base "abilities/hook.kv"
 #base "abilities/hookshot.kv"

@@ -3,12 +3,13 @@
     <include src="file://{resources}/scripts/playertables/playertables_base.js" />
     <include src="file://{resources}/scripts/custom_game/vectors.js" />
     <include src="file://{resources}/scripts/custom_game/camera.js" />
-    
+    <include src="file://{resources}/scripts/custom_game/modifiers.js" />
     <include src="file://{resources}/scripts/custom_game/hotkeys.js" />
   </scripts>
 
   <styles>
         <include src="file://{resources}/styles/custom_game/ability_icons.css" />
+        <include src="file://{resources}/styles/custom_game/modifier_icons.css" />
         <include src="file://{resources}/styles/custom_game/healthbar.css" />
     </styles>
 
@@ -125,13 +126,17 @@
     <CustomUIElement type="HeroSelection"       layoutfile="file://{resources}/layout/custom_game/multiteam_hero_select_overlay_player.xml" />
     <CustomUIElement type="HeroSelection"       layoutfile="file://{resources}/layout/custom_game/multiteam_hero_select_overlay_team.xml" />
     <CustomUIElement type="HeroSelection"       layoutfile="file://{resources}/layout/custom_game/multiteam_hero_select_overlay_timer.xml" />
-
+    <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/modifiers.xml" />
     <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/controls.xml" />
     <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/healthbar.xml" />
     <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/statcollection.xml" />
     
     <!-- From Overthrow.
-    
+    // Compile these
+    <Image src="file://{images}/custom_game/disarm.png" />
+    <Image src="file://{images}/custom_game/silence.png" />
+
+
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_notifications.xml" /> 
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_attachments.xml" /> 
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_worldpanels.xml" />

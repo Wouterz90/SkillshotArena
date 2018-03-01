@@ -68,7 +68,7 @@ function ranged_punch.OnProjectileHitUnit(self,hProjectile,hTarget,hCaster)
     if CBaseEntity.IsNPC(hTarget) then
         CDOTA_BaseNPC.AddNewModifier(hTarget,hCaster,self,"modifier_ranged_punch_knockback",{})
     end
-    CBaseEntity.EmitSound(hCaster,"")
+    CBaseEntity.EmitSound(hCaster,"Hero_Tusk.WalrusPunch.Target")
     local projectile_table = {vDirection=direction,flMaxDistance=CDOTABaseAbility.GetSpecialValueFor(self,"knockback_distance"),hCaster=hCaster,vSpawnOrigin=CBaseEntity.GetAbsOrigin(hTarget),flSpeed=base_ability.GetProjectileSpeed(self),flRadius=5,sEffectName="",WallBehavior=PROJECTILES_BOUNCE,OnProjectileThink=function(projectile,projectile_location)
         local target = projectile.trackingUnit
 
@@ -85,7 +85,7 @@ function ranged_punch.OnProjectileHitUnit(self,hProjectile,hTarget,hCaster)
     end
 }
 
-    local projectile = Physics.CreateLinearProjectile(Physics2D,projectile_table)
+    local projectile = Physics2D.CreateLinearProjectile(Physics2D,projectile_table)
 
     projectile.trackingUnit=hTarget
     hTarget.motion=projectile
@@ -126,7 +126,7 @@ function ranged_punch.OnProjectileFinish(self,hProjectile)
     end
 }
 
-    self.projectile=Physics.CreateTrackingProjectile(Physics2D,projectile_table)
+    self.projectile=Physics2D.CreateTrackingProjectile(Physics2D,projectile_table)
     self.projectile.projParticle=projParticle
     if target then
         target.motion=self.projectile

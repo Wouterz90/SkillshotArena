@@ -17,6 +17,9 @@ function SetUpHotKeys() {
     var ability;
     var key;
     var pan;
+    if (!Players.GetSelectedEntities(Players.GetLocalPlayer())) {
+        return;
+    }
     var hero = Players.GetSelectedEntities(Players.GetLocalPlayer())[0];
     if (!hero) {
         return;
@@ -60,6 +63,23 @@ function SetUpHotKeys() {
                 var numPanelText = pan.FindChildTraverse("GoldCost");
                 if (numPanelText.text && Number(numPanelText.text) > 0) {
                     numPanelText.style.fontSize = "30px";
+                }
+            }
+            if (i == 0) {
+                if (Entities.IsDisarmed(hero) || Entities.IsRooted(hero)) {
+                    if (!pan.FindChildTraverse("DisarmedAbility")) {
+                        var disarmPanel = $.CreatePanel("Image", pan.FindChildTraverse("AbilityButton"), "DisarmedAbility");
+                        disarmPanel.AddClass("DisarmAbility");
+                        // @ts-ignore
+                        disarmPanel.SetImage("file://{images}/custom_game/disarm.png");
+                        disarmPanel.style.height = "110%";
+                        disarmPanel.style.width = "110%";
+                        disarmPanel.style.verticalAlign = "center";
+                    }
+                }
+                else if (pan.FindChildTraverse("DisarmedAbility")) {
+                    $.Msg("Removed");
+                    pan.FindChildTraverse("DisarmedAbility").DeleteAsync(0);
                 }
             }
             abilities = abilities + 1;
@@ -113,61 +133,6 @@ function MouseTooltipManager() {
             }
         }
     }
-    // Debuffs
-    // No way to get the image source
-    /*let debuffMainPanel = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("debuffs")
-    for (let i =0; i <=7;i++) {
-      let panel = debuffMainPanel.GetChild(i)
-      if (!panel.BHasClass("Hidden")) {
-        let x = Math.abs(panel.GetPositionWithinWindow().x+35 -GameUI.GetCursorPosition()[0])
-        let y = Math.abs(panel.GetPositionWithinWindow().y+70-GameUI.GetCursorPosition()[1])
-        if (x < 20 && y < 20) {
-          let childPan = panel.FindChildTraverse("BuffImage") as ImagePanel
-          if (childPan) {
-            let name = childPan.src
-  
-            name = name.substr(40,name.length - 4)
-            // Name is the texture icon now
-            name = GetBuffAbility(name)
-            let hero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
-            
-            
-            $.DispatchEvent( "DOTAShowBuffTooltip", panel,name );
-            return
-          } else {
-            //$.DispatchEvent( "DOTAHideBuffTooltip");
-          }
-        }
-      }
-    }
-    // Buffs
-    let buffMainPanel = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("buffs")
-    for (let i =0; i <=7;i++) {
-      let panel = buffMainPanel.GetChild(i)
-      if (!panel.BHasClass("Hidden")) {
-        let x = Math.abs(panel.GetPositionWithinWindow().x+10 -GameUI.GetCursorPosition()[0])
-        let y = Math.abs(panel.GetPositionWithinWindow().y+10-GameUI.GetCursorPosition()[1])
-        $.Msg(x,"  ",y  )
-        if (x < 20 && y < 20) {
-          let childPan = panel.FindChildTraverse("BuffImage") as ImagePanel
-          if (childPan) {
-            let name = childPan.src
-            name = name.substr(40,name.length - 4)
-            // Name is the texture icon now
-            name = GetBuffAbility(name)
-            let hero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
-            
-            
-            $.DispatchEvent( "DOTAShowBuffTooltip", panel,name );
-            return
-          } else {
-            //$.DispatchEvent( "DOTAHideBuffTooltip");
-          }
-        }
-      }
-    }
-    */
-    //$.DispatchEvent( "DOTAHideBuffTooltip");
     $.DispatchEvent("DOTAHideAbilityTooltip");
 }
 function SilenceAbilities(kv) {
@@ -176,6 +141,7 @@ function SilenceAbilities(kv) {
         if (DotaAbilityList.FindChildTraverse("Ability" + i)) {
             var silencePanel = $.CreatePanel("Image", DotaAbilityList.FindChildTraverse("Ability" + i).FindChildTraverse("AbilityButton"), "SilencedAbility");
             silencePanel.AddClass("SilenceAbility");
+            //@ts-ignore
             silencePanel.SetImage("file://{images}/custom_game/silence.png");
         }
     }
@@ -195,12 +161,5 @@ function UnSilenceAbilities(kv) {
 var DotaAbilityList = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("abilities");
 SetUpHotKeys();
 MouseTooltipManager();
-GameUI.SetMouseCallback(function (eventName, arg) {
-    if (eventName == "pressed" && arg === 0 && GameUI.GetClickBehaviors() == CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_NONE) {
-        CastAbility_0();
-        return true;
-    }
-    return false;
-});
 GameEvents.Subscribe("hero_silence_created", SilenceAbilities);
 GameEvents.Subscribe("hero_silence_removed", UnSilenceAbilities);

@@ -6,7 +6,7 @@ function ConfirmHeroPick(keys)
         end
         return false
     end
-    if _G.options.AllowDuplicatePicksForPlayers and _G.pickedHeroes["player"..keys.playerID][keys.heroName] then
+    if _G.options.AllowDuplicatePicksForPlayers and _G.pickedHeroes["player" .. keys.playerID][keys.heroName] then
         if IsInToolsMode() then
             print("Duplicate hero picked for player")
         end
@@ -42,7 +42,7 @@ end
 function HeroPickPhaseStarted()
     _G.pickedHeroes={}
     for i=-1,23,1 do
-        _G.pickedHeroes["player"..i]=(_G.pickedHeroes["player"..i] or {})
+        _G.pickedHeroes["player" .. i]=(_G.pickedHeroes["player" .. i] or {})
     end
 end
 function HeroPickPhaseEnded()

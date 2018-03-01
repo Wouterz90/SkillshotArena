@@ -15,7 +15,6 @@ function homing_missile.OnAbilityPhaseStart(self)
     local caster = CDOTABaseAbility.GetCaster(self)
 
     self.unit=CreateUnitByName("npc_dota_unit_homing_missile",CBaseEntity.GetAbsOrigin(caster),true,caster,CDOTA_BaseNPC.GetPlayerOwner(caster),CBaseEntity.GetTeamNumber(caster))
-    CDOTA_BaseNPC.StartGesture(self.unit,ACT_DOTA_RUN)
     return true
 end
 function homing_missile.OnAbilityPhaseInterrupted(self)
@@ -32,21 +31,23 @@ function homing_missile.OnSpellStart(self)
     local unit = self.unit
 
     local projectileTable = {hCaster=caster,hTarget=target,flRadius=CDOTABaseAbility.GetSpecialValueFor(self,"radius"),flSpeed=base_ability.GetProjectileSpeed(self),flTurnRate=1,sEffectName=homing_missile.GetProjectileParticleName(self),hUnit=unit,UnitBehavior=PROJECTILES_DESTROY,ProjectileBehavior=PROJECTILES_NOTHING,WallBehavior=PROJECTILES_BOUNCE,ItemBehavior=PROJECTILES_IGNORE,OnProjectileHit=function(myProjectile,otherProjectile)
-        if TS_indexOf(myProjectile.hitByProjectile, otherProjectile) and (CBaseEntity.GetTeamNumber(myProjectile.caster)~=CBaseEntity.GetTeamNumber(otherProjectile.caster)) then
+        if not TS_indexOf(myProjectile.hitByProjectile, otherProjectile) and (CBaseEntity.GetTeamNumber(myProjectile.caster)~=CBaseEntity.GetTeamNumber(otherProjectile.caster)) then
             table.insert(myProjectile.hitByProjectile, otherProjectile)
             local unit = myProjectile.unit
 
             CBaseEntity.SetHealth(unit,CBaseEntity.GetHealth(unit)-1)
             if CBaseEntity.GetHealth(unit)<=0 then
-                Physics.DestroyProjectile(Physics2D,myProjectile)
+                Physics2D.DestroyProjectile(Physics2D,myProjectile)
             end
         end
     end
 ,OnProjectileThink=function(hProjectile,location)
         if (hProjectile.speed<5) and not hProjectile.IsTimeLocked then
-            Physics.DestroyProjectile(Physics2D,hProjectile)
+            Physics2D.DestroyProjectile(Physics2D,hProjectile)
         end
         local dir = CBaseEntity.GetAbsOrigin(hProjectile.unit)-location
+
+        local unit = hProjectile.unit
 
     end
 ,UnitTest=function(hProjectile,hTarget,hCaster)
@@ -68,7 +69,7 @@ function homing_missile.OnSpellStart(self)
     end
 }
 
-    local projectile = Physics.CreateTrackingProjectile(Physics2D,projectileTable)
+    local projectile = Physics2D.CreateTrackingProjectile(Physics2D,projectileTable)
 
     projectile.projParticle=CScriptParticleManager.CreateParticle(ParticleManager,"particles/units/heroes/hero_gyrocopter/gyro_homing_missile_fuse.vpcf",PATTACH_ABSORIGIN_FOLLOW,unit)
     CScriptParticleManager.SetParticleControlEnt(ParticleManager,projectile.projParticle,0,unit,PATTACH_POINT_FOLLOW,"attach_hitloc",CBaseEntity.GetAbsOrigin(unit),true)

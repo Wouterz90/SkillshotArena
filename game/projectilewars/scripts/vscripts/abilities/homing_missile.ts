@@ -8,7 +8,7 @@ class homing_missile extends base_ability {
   OnAbilityPhaseStart() {
     let caster = this.GetCaster()
     this.unit = CreateUnitByName("npc_dota_unit_homing_missile",caster.GetAbsOrigin(),true,caster,caster.GetPlayerOwner(),caster.GetTeamNumber())
-    this.unit.StartGesture(GameActivity_t.ACT_DOTA_RUN)
+    //this.unit.StartGesture(GameActivity_t.ACT_DOTA_RUN)
     return true
   }
 
@@ -37,7 +37,7 @@ class homing_missile extends base_ability {
       WallBehavior:ProjectileInteractionType.PROJECTILES_BOUNCE,
       ItemBehavior:ProjectileInteractionType.PROJECTILES_IGNORE,
       OnProjectileHit:(myProjectile:PhysicsProjectile,otherProjectile:PhysicsProjectile) => {
-        if (myProjectile.hitByProjectile.indexOf(otherProjectile) && myProjectile.caster.GetTeamNumber() != otherProjectile.caster.GetTeamNumber()) {
+        if (!myProjectile.hitByProjectile.indexOf(otherProjectile) && myProjectile.caster.GetTeamNumber() != otherProjectile.caster.GetTeamNumber()) {
           myProjectile.hitByProjectile.push(otherProjectile)
           let unit = myProjectile.unit as CDOTA_BaseNPC
           unit.SetHealth(unit.GetHealth()-1)
@@ -51,7 +51,8 @@ class homing_missile extends base_ability {
           Physics2D.DestroyProjectile(hProjectile)
         }
         let dir = hProjectile.unit.GetAbsOrigin()-location
-        //hProjectile.unit.SetForwardVector(dir.Normalized())
+        let unit = hProjectile.unit as CDOTA_BaseNPC
+        // SetForwardVector etc seems to do nothing
       },
       // Normal unit test, projectile can hit other units while chasing
       UnitTest: (hProjectile:PhysicsProjectile,hTarget:CDOTA_BaseNPC,hCaster:CDOTA_BaseNPC) => {return this.UnitTest(hProjectile,hTarget,hCaster)},

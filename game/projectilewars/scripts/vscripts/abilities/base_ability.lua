@@ -86,7 +86,7 @@ function base_ability:GetCastSoundRadius() return self:GetSpecialValueFor("cast_
 
 function base_ability:ConsumeCharge()
   local caster = self:GetCaster()
-  if self:IsConsumable() then
+  if self:IsConsumable() or self:GetAbilityIndex() > 1 then
     local modifier = caster:FindModifierByName("modifier_charges_"..self:GetAbilityName())
     if not modifier then self:Destroy() caster:Interrupt() return false end
     modifier:DecrementStackCount()

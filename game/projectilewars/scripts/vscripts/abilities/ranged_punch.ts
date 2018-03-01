@@ -56,7 +56,7 @@ class ranged_punch extends base_ability {
       hTarget.AddNewModifier(hCaster,this,"modifier_ranged_punch_knockback",{})
     }
 
-    hCaster.EmitSound("")
+    hCaster.EmitSound("Hero_Tusk.WalrusPunch.Target")
     // Create a new projectile managing the unit's knockback
     let projectile_table = {
       vDirection: direction,

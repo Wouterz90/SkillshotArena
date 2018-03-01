@@ -81,6 +81,13 @@ function CastAbility_6() {
     var ability = Entities.GetAbility(hero, 6);
     Abilities.ExecuteAbility(ability, hero, true);
 }
+/*GameUI.SetMouseCallback( (eventName,arg) => {
+  if (eventName == "pressed" && arg === 0 && GameUI.GetClickBehaviors() == CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_NONE) {
+    CastAbility_0()
+    return true
+  }
+  return false
+})*/
 Game.CreateCustomKeyBind(inputSpell_0, "CastAbility_0");
 Game.CreateCustomKeyBind(inputSpell_1, "CastAbility_1");
 Game.CreateCustomKeyBind(inputSpell_2, "CastAbility_2");

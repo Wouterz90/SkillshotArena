@@ -10,6 +10,7 @@ function CameraThink() {
         HideStuff();
     }
     // Camera defaults
+    var pan = $.GetContextPanel().GetParent().GetParent();
     var player = Players.GetLocalPlayer();
     var hero = Players.GetPlayerHeroEntityIndex(player);
     var hero_origin = ArrayToVector(Entities.GetAbsOrigin(hero));
@@ -97,6 +98,8 @@ function HideStuff() {
     pan.FindChildTraverse("unitname").style.visibility = "collapse";
     pan.FindChildTraverse("HUDSkinAbilityContainerBG").style.visibility = "collapse";
     pan.FindChildTraverse("AbilityLevelContainer").style.visibility = "collapse";
+    pan.GetParent().FindChildTraverse("debuffs").style.visibility = "collapse";
+    pan.GetParent().FindChildTraverse("buffs").style.visibility = "collapse";
     for (var _i = 0, _a = pan.FindChildrenWithClassTraverse("AbilityInsetShadowRight"); _i < _a.length; _i++) {
         var p = _a[_i];
         p.style.visibility = "collapse";

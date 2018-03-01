@@ -55,7 +55,7 @@ modifier_charges_base_item = class({})
 function modifier_charges_base_item.new(construct, ...)
   local instance = setmetatable({}, modifier_charges_base_item)
   if construct and modifier_charges_base_item.constructor then modifier_charges_base_item.constructor(instance, ...) end
-  return instance
+  return class(modifier_charges_base_item)
 end
 --- Keep alive, destroying is done 10 seconds after with OnFunctionalEnd
 ---@override

@@ -23,7 +23,7 @@ function wall.OnSpellStart(self)
 
     local locs = {right*200,-right*200}
 
-    local wall = Physics.CreatePolygon(Physics2D,Vector(0,0,0),locs,nil)
+    local wall = Physics2D.CreatePolygon(Physics2D,Vector(0,0,0),locs,nil)
 
     wall.caster=caster
     for i=0,#locs-1,1 do
@@ -32,7 +32,7 @@ function wall.OnSpellStart(self)
     local wallParticles = CreateProjectileWall(wall,locs)
 
     base_ability.ConsumeCharge(self)
-    timers.CreateTimer(Timers,5,function()
+    Timers.CreateTimer(Timers,5,function()
         if wall and not CBaseEntity.IsNull(wall) then
             if wallParticles then
                 for _, p in ipairs(wallParticles) do
