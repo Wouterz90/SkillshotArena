@@ -56,8 +56,10 @@ function SetUpHotKeys() : void {
           pan.FindChildTraverse("AbilityLevelContainer").style.visibility = "collapse";
         }
         if (pan.FindChildTraverse("ButtonWell").style.width != "100px") {
-          pan.FindChildTraverse("ButtonWell").style.width = "100px";
-          pan.FindChildTraverse("ButtonWell").style.height = "100px";
+          let buttonWell = pan.FindChildTraverse("ButtonWell")
+          buttonWell.style.width = "100px";
+          buttonWell.style.height = "100px";
+          
           pan.FindChildTraverse("ButtonSize").style.width = "100px";
           pan.FindChildTraverse("ButtonSize").style.height = "100px";
           pan.FindChildTraverse("Hotkey").style.visibility = "visible";
@@ -71,6 +73,8 @@ function SetUpHotKeys() : void {
           if (numPanelText.text && Number(numPanelText.text) > 0) {
             numPanelText.style.fontSize = "30px"
           }
+
+          pan.FindChildTraverse("AbilityButton").hittest = false
         }
         
         if (i == 0) {
@@ -115,6 +119,42 @@ function SetUpHotKeys() : void {
     }*/
   //} 
 }
+
+// Detect that an ability has been clicked, this breaks vector targetting and is stupid to do anyways
+// Make the hotkey textbox and text a lot bigger to notify the player what action is required
+
+GameUI.SetMouseCallback((eventName,arg ) => {
+  
+  if ((eventName == "pressed" || eventName == "doublepressed") && arg === 0) {
+    if (!abilityPanels || abilityPanels.length == 0) {
+      
+      return false
+    } else {
+      for (let panel of abilityPanels) {
+        if (panel.visible == true) {
+          let x = Math.abs(panel.GetPositionWithinWindow().x+35 -GameUI.GetCursorPosition()[0])
+          let y = Math.abs(panel.GetPositionWithinWindow().y+70-GameUI.GetCursorPosition()[1])
+          
+          if (x < 35 && y < 35) {
+            panel.FindChildTraverse("Hotkey").style.width = "50px"
+            panel.FindChildTraverse("Hotkey").style.height = "50px"
+            panel.FindChildTraverse("Hotkey").style.maxHeight = "50px"
+            panel.FindChildTraverse("HotkeyText").style.fontSize = "30px"
+            $.Schedule(1,()=>{
+              panel.FindChildTraverse("Hotkey").style.width = "14px"
+              panel.FindChildTraverse("Hotkey").style.height = "14px"
+              panel.FindChildTraverse("HotkeyText").style.fontSize = "12px"
+            })
+            //eval("CastAbility_"+abilityPanels.indexOf(panel))()
+            return true
+          }
+        }
+      }
+    }
+  }
+  return false
+})
+
 
 function MouseTooltipManager():void {
   $.Schedule(0.01,function(){MouseTooltipManager();})

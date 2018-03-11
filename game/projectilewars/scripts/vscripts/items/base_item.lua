@@ -103,7 +103,7 @@ function modifier_charges_base_item:OnFunctionalEnd()
   local ab = caster:FindAbilityByName(name)
   ab:SetActivated(false)
   -- Safely remove it later
-  Timers:CreateTimer(10,function()
+  Timers:CreateTimer(6,function()
     if not self:IsNull() then
       if not ab.StopRemove then
         self:Destroy()

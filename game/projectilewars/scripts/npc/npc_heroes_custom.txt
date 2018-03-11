@@ -505,10 +505,10 @@
         "HasInventory"      "1"       
     }
 
-    "npc_dota_hero_tusk"
+    "npc_dota_hero_warlock"
     {
-        "override_hero"             "npc_dota_hero_tusk"           // Hero to override
-        "Ability1"                  "stab"      // Ability 1
+        "override_hero"             "npc_dota_hero_warlock"           // Hero to override
+        "Ability1"                  "shoot_"      // Ability 1
         "Ability2"          "ranged_punch"
         "Ability3"          ""
         "Ability4"          ""
@@ -671,6 +671,171 @@
         "HasInventory"      "1"       
     }
 
+    "npc_dota_hero_rubick"
+    {
+        "override_hero"             "npc_dota_hero_rubick"           // Hero to override
+        "Ability1"                  "shoot_"      // Ability 1
+        "Ability2"          "spellsteal"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+        "Ability10"          ""
+        "Ability11"          ""
+        "Ability12"          ""
+        "Ability13"          ""
+        "Ability14"          ""
+        "Ability15"          ""
+        "Ability16"          ""
+        "Ability17"          ""
+        "Ability18"          ""
+        "Ability19"          ""
+        "Ability20"          ""
+        "ArmorPhysical"     "0"
+        "MagicalResistance"     "25"
+
+        
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+        "RingRadius"        "0"
+
+        
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"     "350"
+        "MovementTurnRate"      "1"
+
+        "StatusHealthRegen"     "1"
+        "StatusHealth"     "150" 
+        "StatusMana"        "0"
+        "StatusManaRegen"   "10"
+
+        "VisionDaytimeRange"        "1100"
+        "VisionNighttimeRange"      "1100"
+
+        //Inventory
+        "HasInventory"      "1"       
+    }
+    "npc_dota_hero_tusk"
+    {
+        "override_hero"             "npc_dota_hero_tusk"           // Hero to override
+        "Ability1"                  "stab"      // Ability 1
+        "Ability2"          "shards"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+        "Ability10"          ""
+        "Ability11"          ""
+        "Ability12"          ""
+        "Ability13"          ""
+        "Ability14"          ""
+        "Ability15"          ""
+        "Ability16"          ""
+        "Ability17"          ""
+        "Ability18"          ""
+        "Ability19"          ""
+        "Ability20"          ""
+        "ArmorPhysical"     "0"
+        "MagicalResistance"     "25"
+
+        
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+        "RingRadius"        "0"
+
+        
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"     "350"
+        "MovementTurnRate"      "1"
+
+        "StatusHealthRegen"     "1"
+        "StatusHealth"     "150" 
+        "StatusMana"        "0"
+        "StatusManaRegen"   "10"
+
+        "VisionDaytimeRange"        "1100"
+        "VisionNighttimeRange"      "1100"
+
+        //Inventory
+        "HasInventory"      "1"       
+    }
+    "npc_dota_hero_enchantress"
+    {
+        "override_hero"             "npc_dota_hero_enchantress"           // Hero to override
+        "Ability1"                  "shoot_"      // Ability 1
+        "Ability2"          "impetus"
+        "Ability3"          ""
+        "Ability4"          ""
+        "Ability5"          ""
+        "Ability6"          ""
+        "Ability7"          ""
+        "Ability8"          ""
+        "Ability9"          ""
+        "Ability10"          ""
+        "Ability11"          ""
+        "Ability12"          ""
+        "Ability13"          ""
+        "Ability14"          ""
+        "Ability15"          ""
+        "Ability16"          ""
+        "Ability17"          ""
+        "Ability18"          ""
+        "Ability19"          ""
+        "Ability20"          ""
+        "ArmorPhysical"     "0"
+        "MagicalResistance"     "25"
+
+        
+        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+        "AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"     "0"
+        "AttributeStrengthGain"     "0"
+        "AttributeBaseIntelligence"     "0"
+        "AttributeIntelligenceGain"     "0"
+        "AttributeBaseAgility"      "0"
+        "AttributeAgilityGain"      "0"
+
+        "BoundsHullName"        "DOTA_HULL_SIZE_REGULAR"
+        "RingRadius"        "0"
+
+        
+        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"     "350"
+        "MovementTurnRate"      "1"
+
+        "StatusHealthRegen"     "1"
+        "StatusHealth"     "150" 
+        "StatusMana"        "0"
+        "StatusManaRegen"   "10"
+
+        "VisionDaytimeRange"        "1100"
+        "VisionNighttimeRange"      "1100"
+
+        //Inventory
+        "HasInventory"      "1"       
+    }
 
 
     // Use this to pre cast spells that lag when loading the first time

@@ -44,7 +44,7 @@ function ranged_punch.OnSpellStarted(self)
     CScriptParticleManager.SetParticleControlEnt(ParticleManager,self.particle,0,CDOTABaseAbility.GetCaster(self),PATTACH_POINT_FOLLOW,"attach_weapon_chain_rt",CBaseEntity.GetAbsOrigin(caster),true)
     CScriptParticleManager.SetParticleControl(ParticleManager,self.particle,1,self.end_position)
     CScriptParticleManager.SetParticleControl(ParticleManager,self.particle,2,Vector(self.projectile_speed,0,0))
-    CScriptParticleManager.SetParticleControl(ParticleManager,self.particle,3,Vector(100,0,0))
+    CScriptParticleManager.SetParticleControl(ParticleManager,self.particle,3,Vector(5,0,0))
     CScriptParticleManager.SetParticleControl(ParticleManager,self.particle,4,Vector(1,0,0))
     CScriptParticleManager.SetParticleControl(ParticleManager,self.particle,5,Vector(0,0,0))
     CScriptParticleManager.SetParticleControlEnt(ParticleManager,self.particle,7,caster,PATTACH_CUSTOMORIGIN,nil,CBaseEntity.GetAbsOrigin(caster),true)
@@ -79,9 +79,11 @@ function ranged_punch.OnProjectileHitUnit(self,hProjectile,hTarget,hCaster)
         end
     end
 ,OnFinish=function(projectile)
-        local target = projectile.trackingUnit
+        if not CBaseEntity.IsNull(projectile.trackingUnit) then
+            local target = projectile.trackingUnit
 
-        GridNav.DestroyTreesAroundPoint(GridNav,CBaseEntity.GetAbsOrigin(target),50,true)
+            GridNav.DestroyTreesAroundPoint(GridNav,CBaseEntity.GetAbsOrigin(target),50,true)
+        end
     end
 }
 
@@ -99,7 +101,7 @@ function ranged_punch.OnProjectileFinish(self,hProjectile)
 
     local target = hProjectile.target
 
-    local projectile_table = {hTarget=caster,hCaster=caster,vSpawnOrigin=origin,flSpeed=base_ability.GetProjectileSpeed(self),flRadius=CDOTABaseAbility.GetSpecialValueFor(self,"radius"),sEffectName="",ProjectileBehavior=PROJECTILES_NOTHING,UnitBehavior=PROJECTILES_NOTHING,ItemBehavior=PROJECTILES_NOTHING,UnitTest=function(projectile,unit,caster)
+    local projectile_table = {hTarget=caster,hCaster=caster,vSpawnOrigin=origin,flSpeed=base_ability.GetProjectileSpeed(self),flRadius=CDOTABaseAbility.GetSpecialValueFor(self,"radius"),flTurnRate=100,sEffectName="",ProjectileBehavior=PROJECTILES_NOTHING,UnitBehavior=PROJECTILES_NOTHING,ItemBehavior=PROJECTILES_NOTHING,UnitTest=function(projectile,unit,caster)
         return base_ability.UnitTest(self,projectile,unit,caster)
     end
 ,OnUnitHit=function(projectile,unit,caster)

@@ -30,6 +30,70 @@ declare interface PhysicsProjectileTable {
   bCantBeStolen?: boolean,
 }
 
+declare interface PhysicsLinearProjectile {
+  vSpawnOrigin?: Vec,
+  iSourceAttachment?: number,
+  flRadius:number,
+  vDirection:Vec,
+  hCaster:CDOTA_BaseNPC,
+  hTarget?:CBaseEntity,
+  flDuration?:number,
+  flSpeed:number,
+  flTurnRate?:number,
+  flAcceleration?:number,
+  flMaxDistance?:number,
+  sEffectName:string,
+  sSoundName?:string,
+  hUnit?:CBaseEntity,
+  sDestructionEffectName?:string,
+  WallBehavior?:ProjectileInteractionType,
+  TreeBehavior?:ProjectileInteractionType,
+  UnitBehavior?:ProjectileInteractionType,
+  ProjectileBehavior?:ProjectileInteractionType,
+  ItemBehavior?:ProjectileInteractionType,
+  OnWallHit?: (projectile:PhysicsProjectile,wall:CBaseEntity) => void,
+  OnItemHit?: (projectile:PhysicsProjectile,item:CDOTA_Item_Physical) => void,
+  OnTreeHit?: (projectile:PhysicsProjectile,tree:CDOTA_MapTree,) => void,
+  OnUnitHit?: (projectile:PhysicsProjectile,unit:CDOTA_BaseNPC,caster:CDOTA_BaseNPC) => void,
+  OnProjectileHit?: (a:PhysicsProjectile,b:PhysicsProjectile) => void,
+  UnitTest?: (projectile:PhysicsProjectile,unit:CDOTA_BaseNPC,caster:CDOTA_BaseNPC) => boolean,
+  OnProjectileThink?:(projectile:PhysicsProjectile,location:Vec) => void,
+  OnFinish?: (projectile:PhysicsProjectile) => void,
+  bCantBeStolen?: boolean,
+}
+
+declare interface PhysicsTrackingProjectile {
+  vSpawnOrigin?: Vec,
+  iSourceAttachment?: number,
+  flRadius:number,
+  vDirection?:Vec,
+  hCaster:CDOTA_BaseNPC,
+  hTarget:CBaseEntity,
+  flDuration?:number,
+  flSpeed:number,
+  flTurnRate:number,
+  flAcceleration?:number,
+  flMaxDistance?:number,
+  sEffectName:string,
+  sSoundName?:string,
+  hUnit?:CBaseEntity,
+  sDestructionEffectName?:string,
+  WallBehavior?:ProjectileInteractionType,
+  TreeBehavior?:ProjectileInteractionType,
+  UnitBehavior?:ProjectileInteractionType,
+  ProjectileBehavior?:ProjectileInteractionType,
+  ItemBehavior?:ProjectileInteractionType,
+  OnWallHit?: (projectile:PhysicsProjectile,wall:CBaseEntity) => void,
+  OnItemHit?: (projectile:PhysicsProjectile,item:CDOTA_Item_Physical) => void,
+  OnTreeHit?: (projectile:PhysicsProjectile,tree:CDOTA_MapTree,) => void,
+  OnUnitHit?: (projectile:PhysicsProjectile,unit:CDOTA_BaseNPC,caster:CDOTA_BaseNPC) => void,
+  OnProjectileHit?: (a:PhysicsProjectile,b:PhysicsProjectile) => void,
+  UnitTest?: (projectile:PhysicsProjectile,unit:CDOTA_BaseNPC,caster:CDOTA_BaseNPC) => boolean,
+  OnProjectileThink?:(projectile:PhysicsProjectile,location:Vec) => void,
+  OnFinish?: (projectile:PhysicsProjectile) => void,
+  bCantBeStolen?: boolean,
+}
+
 
 /** !CompileMembersOnly */
 declare enum ProjectileInteractionType {
@@ -41,6 +105,7 @@ declare enum ProjectileInteractionType {
 }
 
 declare class PhysicsProjectile extends PhysicsObject {
+  data:{[key:string]:any}
   startLoc:Vec;
   direction:Vec;
   caster:CDOTA_BaseNPC;
@@ -89,13 +154,15 @@ declare abstract class PhysicsObject extends CBaseEntity{
   type: "Polygon" | "Circle"
   location:Vec
   velocity:Vec
-  IsTimeLocked:boolean
+  IsProjectile: null|"Tracking"|"Linear"
+  IsTimeLocked:null|number
 }
 
 declare interface Physics2D {
 
-  CreateTrackingProjectile(PhysicsProjectileTable): PhysicsProjectile
-  CreateLinearProjectile(PhysicsProjectileTable): PhysicsProjectile
+  units: CBaseEntity[]
+  CreateTrackingProjectile(ptable:PhysicsProjectileTable | PhysicsTrackingProjectile): PhysicsProjectile
+  CreateLinearProjectile(ptable:PhysicsProjectileTable | PhysicsLinearProjectile): PhysicsProjectile
   CreatePolygon(middle_location:Vec,edges:Vec[],material:null|string):PhysicsObject
   CreateCircle(middle_location:Vec,radius:number,material:null|string):PhysicsObject
   

@@ -19,8 +19,14 @@ var entities = [];
 
 function WorldPanelChange(id, changes, dels)
 {
+
   //$.Msg("change ", id, ' -- ', changes, ' -- ', dels);
+  
+ 
+  //$.Msg("Ability ", changes.entityHeight)
+  
   for (var k in changes){
+    //$.Msg(changes[k]["ability"])
     var wp = panels[k];
     if (!wp){
       wp = {};
@@ -30,8 +36,19 @@ function WorldPanelChange(id, changes, dels)
     if (changes[k].layout !== wp.layout){
       if (wp.panel)
         wp.panel.DeleteAsync(0);
-
-      wp.panel = $.CreatePanel( "Panel", $.GetContextPanel(), "" );
+      
+      if (changes[k]["ability"] !== undefined) {
+        wp.panel = $.CreatePanel( "DOTAAbilityImage", $.GetContextPanel(), "" );
+        wp.panel.abilityname = changes[k]["ability"]
+      }
+      else if (changes[k]["item"] !== undefined) {
+        wp.panel = $.CreatePanel( "DOTAItemImage", $.GetContextPanel(), "" );
+        wp.panel.itemname = changes[k]["item"]
+      }
+      else {
+         //$.Msg("else")
+        wp.panel = $.CreatePanel( "Panel", $.GetContextPanel(), "" );
+      }
       wp.panel.BLoadLayout(changes[k].layout, false, false);
       wp.panel.WorldPanel = wp;
       wp.panel.OnEdge = false;

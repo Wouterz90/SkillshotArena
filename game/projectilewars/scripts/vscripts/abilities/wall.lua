@@ -9,25 +9,32 @@ function wall.new(construct, ...)
     return instance
 end
 function wall.OnSpellStart(self)
+    local direction = nil
+
+    local origin = nil
+
     local caster = CDOTABaseAbility.GetCaster(self)
 
-    local origin = CBaseEntity.GetAbsOrigin(caster)
+    local distance = nil
 
-    local point = CDOTA_BaseNPC.GetCursorPosition(caster)
+    if self.endPos then
+        direction=(self.endPos-self.startPos)
+        distance=direction.Length2D(direction)
+        direction=direction.Normalized(direction)
+        origin=(self.startPos+(direction*(distance/2)))
+    else
+        direction=CBaseEntity.GetForwardVector(caster)
+        origin=(CBaseEntity.GetAbsOrigin(caster)+(direction*200))
+        direction=GetRightPerpendicular(direction)
+    end
+    distance=500
+    local locs = {(direction*distance)/2,(-direction*distance)/2}
 
-    local forward = CBaseEntity.GetForwardVector(caster)
-
-    local right = GetRightPerpendicular(forward)
-
-    local pos = origin+(forward*200)
-
-    local locs = {right*200,-right*200}
-
-    local wall = Physics2D.CreatePolygon(Physics2D,Vector(0,0,0),locs,nil)
+    local wall = Physics2D.CreatePolygon(Physics2D,origin,locs,nil)
 
     wall.caster=caster
     for i=0,#locs-1,1 do
-        locs[i+1]=(locs[i+1]+pos)
+        locs[i+1]=(locs[i+1]+origin)
     end
     local wallParticles = CreateProjectileWall(wall,locs)
 
@@ -44,4 +51,6 @@ function wall.OnSpellStart(self)
         end
     end
 )
+    self.startPos=nil
+    self.endPos=nil
 end

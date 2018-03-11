@@ -30,8 +30,8 @@ function homing_missile.OnSpellStart(self)
 
     local unit = self.unit
 
-    local projectileTable = {hCaster=caster,hTarget=target,flRadius=CDOTABaseAbility.GetSpecialValueFor(self,"radius"),flSpeed=base_ability.GetProjectileSpeed(self),flTurnRate=1,sEffectName=homing_missile.GetProjectileParticleName(self),hUnit=unit,UnitBehavior=PROJECTILES_DESTROY,ProjectileBehavior=PROJECTILES_NOTHING,WallBehavior=PROJECTILES_BOUNCE,ItemBehavior=PROJECTILES_IGNORE,OnProjectileHit=function(myProjectile,otherProjectile)
-        if not TS_indexOf(myProjectile.hitByProjectile, otherProjectile) and (CBaseEntity.GetTeamNumber(myProjectile.caster)~=CBaseEntity.GetTeamNumber(otherProjectile.caster)) then
+    local projectileTable = {hCaster=caster,hTarget=target,flRadius=CDOTABaseAbility.GetSpecialValueFor(self,"radius"),flSpeed=base_ability.GetProjectileSpeed(self),flTurnRate=0.75,flAcceleration=0.996,sEffectName=homing_missile.GetProjectileParticleName(self),hUnit=unit,UnitBehavior=PROJECTILES_DESTROY,ProjectileBehavior=PROJECTILES_NOTHING,WallBehavior=PROJECTILES_BOUNCE,ItemBehavior=PROJECTILES_IGNORE,OnProjectileHit=function(myProjectile,otherProjectile)
+        if (TS_indexOf(myProjectile.hitByProjectile, otherProjectile)==-1) and (CBaseEntity.GetTeamNumber(myProjectile.caster)==CBaseEntity.GetTeamNumber(otherProjectile.caster)) then
             table.insert(myProjectile.hitByProjectile, otherProjectile)
             local unit = myProjectile.unit
 
@@ -44,9 +44,11 @@ function homing_missile.OnSpellStart(self)
 ,OnProjectileThink=function(hProjectile,location)
         if (hProjectile.speed<5) and not hProjectile.IsTimeLocked then
             Physics2D.DestroyProjectile(Physics2D,hProjectile)
+            return
         end
-        local dir = CBaseEntity.GetAbsOrigin(hProjectile.unit)-location
+        local dir = location-CBaseEntity.GetAbsOrigin(hProjectile.unit)
 
+        dir=dir.Normalized(dir)
         local unit = hProjectile.unit
 
     end
@@ -54,7 +56,6 @@ function homing_missile.OnSpellStart(self)
         return base_ability.UnitTest(self,hProjectile,hTarget,hCaster)
     end
 ,OnUnitHit=function(hProjectile,hTarget,hCaster)
-        ApplyDamage({ability=self,attacker=hCaster,victim=hTarget,damage=CDOTABaseAbility.GetAbilityDamage(self),damage_type=DAMAGE_TYPE_MAGICAL})
     end
 ,OnFinish=function(projectile)
         CScriptParticleManager.DestroyParticle(ParticleManager,projectile.projParticle,false)
@@ -63,6 +64,12 @@ function homing_missile.OnSpellStart(self)
 
         CScriptParticleManager.SetParticleControl(ParticleManager,particle,0,projectile.location)
         CScriptParticleManager.ReleaseParticleIndex(ParticleManager,particle)
+        local units = FindUnitsInRadius(CBaseEntity.GetTeamNumber(projectile.caster),projectile.location,nil,150,DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
+
+        TS_forEach(units, function(hTarget)
+            ApplyDamage({ability=self,attacker=projectile.caster,victim=hTarget,damage=CDOTABaseAbility.GetAbilityDamage(self),damage_type=DAMAGE_TYPE_MAGICAL})
+        end
+)
         if not CBaseEntity.IsNull(projectile.unit) then
             UTIL_Remove(projectile.unit)
         end

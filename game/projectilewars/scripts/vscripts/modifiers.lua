@@ -56,6 +56,6 @@ function modifier_control_area:GetModifierMoveSpeed_Limit()
   if self:GetStackCount() == 1 then
     return 0.01
   else
-    return 550
+    return 9000
   end
 end

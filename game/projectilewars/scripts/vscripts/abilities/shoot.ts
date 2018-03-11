@@ -46,6 +46,7 @@ class shoot_ extends base_ability {
   GetProjectileProjectileBehavior() {return ProjectileInteractionType.PROJECTILES_NOTHING}
   GetProjectileWallBehavior() {return ProjectileInteractionType.PROJECTILES_BOUNCE}
   GetProjectileItemBehavior() {return ProjectileInteractionType.PROJECTILES_NOTHING}
+  GetProjectileTreeBehavior() {return ProjectileInteractionType.PROJECTILES_DESTROY}
 
   OnProjectileHitUnit(projectile:PhysicsProjectile,unit:CDOTA_BaseNPC,caster:CDOTA_BaseNPC):void {
 

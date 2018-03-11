@@ -3093,6 +3093,7 @@ declare abstract class CDOTA_BaseNPC_Trap_Ward extends CDOTA_BaseNPC_Creature {
  */
 declare abstract class CDOTA_Buff {
     IsSilenceDebuff:boolean
+    OnFunctionalEnd()
     /**
      * (index, bDestroyImmediately, bStatusEffect, priority, bHeroEffect, bOverheadEffect
      */
@@ -4045,7 +4046,7 @@ declare interface CEntities {
      */
     Next(previous: CBaseEntity): CBaseEntity;
 }
-declare const Entitites: CEntities;
+declare const Entities: CEntities;
 
 /**
  * CEntityInstance: Root class for all entities

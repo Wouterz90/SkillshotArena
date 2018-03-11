@@ -4,6 +4,8 @@
     <include src="file://{resources}/styles/custom_game/healthbar.css" />
   </styles>
   <scripts>
+    <include src="file://{resources}/scripts/custom_game/vectors.js" />
+    <include src="file://{resources}/scripts/custom_game/vector_target.js" />
     <include src="file://{resources}/scripts/custom_game/controls.js"/>
   </scripts>
   <Panel>

@@ -1,3 +1,5 @@
+-- Was used for fps like controls, plays shit.
+--[[
 LinkLuaModifier("modifier_control","controls.lua",LUA_MODIFIER_MOTION_NONE)
 ---@class control
 
@@ -154,4 +156,4 @@ function modifier_control:OnIntervalThink()
 
 end
 
-control:Init()
+control:Init()]]

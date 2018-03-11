@@ -28,7 +28,7 @@ class ranged_punch extends base_ability {
     ParticleManager.SetParticleControlEnt( this.particle, 0, this.GetCaster(), ParticleAttachment_t.PATTACH_POINT_FOLLOW, "attach_weapon_chain_rt", caster.GetAbsOrigin(), true )
     ParticleManager.SetParticleControl( this.particle, 1, this.end_position  )
     ParticleManager.SetParticleControl( this.particle, 2, Vector( this.projectile_speed , 0, 0 ) )
-    ParticleManager.SetParticleControl( this.particle, 3, Vector(100,0,0) )
+    ParticleManager.SetParticleControl( this.particle, 3, Vector(5,0,0) )
     ParticleManager.SetParticleControl( this.particle, 4, Vector( 1, 0, 0 ) )
     ParticleManager.SetParticleControl( this.particle, 5, Vector( 0, 0, 0 ) )
     ParticleManager.SetParticleControlEnt( this.particle, 7, caster, ParticleAttachment_t.PATTACH_CUSTOMORIGIN, null, caster.GetAbsOrigin(), true )
@@ -58,7 +58,7 @@ class ranged_punch extends base_ability {
 
     hCaster.EmitSound("Hero_Tusk.WalrusPunch.Target")
     // Create a new projectile managing the unit's knockback
-    let projectile_table = {
+    let projectile_table:PhysicsLinearProjectile = {
       vDirection: direction,
       flMaxDistance:this.GetSpecialValueFor("knockback_distance"),
       hCaster:hCaster,
@@ -76,8 +76,10 @@ class ranged_punch extends base_ability {
         }
       },
       OnFinish:(projectile:PhysicsProjectile) => {
-        let target =  projectile.trackingUnit
-        GridNav.DestroyTreesAroundPoint(target.GetAbsOrigin(),50,true)
+        if (!projectile.trackingUnit.IsNull()) {
+          let target =  projectile.trackingUnit
+          GridNav.DestroyTreesAroundPoint(target.GetAbsOrigin(),50,true)
+        }
       },
     }
     let projectile = Physics2D.CreateLinearProjectile(projectile_table)
@@ -102,6 +104,7 @@ class ranged_punch extends base_ability {
       vSpawnOrigin:origin,
       flSpeed:this.GetProjectileSpeed() ,
       flRadius:this.GetSpecialValueFor("radius"),
+      flTurnRate:100,
       sEffectName:"",
       ProjectileBehavior:ProjectileInteractionType.PROJECTILES_NOTHING,
       UnitBehavior:ProjectileInteractionType.PROJECTILES_NOTHING,

@@ -1318,7 +1318,7 @@ interface CScriptBindingPR_Entities {
     GetContainedItem(nEntityIndex: entityID): itemID;
 }
 
-interface CScriptBindingPR_Abilities {
+declare abstract class CScriptBindingPR_Abilities {
     /**
      * 
      */

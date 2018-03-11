@@ -53,20 +53,25 @@ function base_ability:OnSpellStarted() end
 ---@return vector
 function base_ability:GetSpawnOrigin() return self:GetCaster():GetAbsOrigin() end
 ---@return number
-function base_ability:GetProjectileRange() return self.range end
+function base_ability:GetProjectileRange() return self:GetSpecialValueFor("range") end
 ---@param projectile CBaseEntity
 ---@param unit CDOTA_BaseNPC
 ---@param caster CDOTA_BaseNPC
 ---@return boolean
 function base_ability:UnitTest(projectile, unit,caster)
   if not unit.HasModifier then return false end
-  if (unit:IsOutOfGame() or unit:IsInvulnerable()) or unit:GetUnitName() == "npc_unit_dodgedummy" then
-    self:OnSpellDodged(caster,unit)
-    PlayerDodgedProjectile(caster,unit,projectile)
-    return false
+  self.unitsHitTime = self.unitsHitTime or {}
+  self.unitsHitTime[unit] = self.unitsHitTime[unit] or 0
+  if self.unitsHitTime[unit] < GameRules:GetGameTime() - 0.2 then
+    self.unitsHitTime[unit] = GameRules:GetGameTime()
+    if (unit:IsOutOfGame() or unit:IsInvulnerable()) or unit:GetUnitName() == "npc_unit_dodgedummy" then
+      self:OnSpellDodged(caster,unit)
+      PlayerDodgedProjectile(caster,unit,projectile)
+      return false
+    end
+    return self:ShouldHitThisTeam(unit,projectile)
   end
-  
-  return self:ShouldHitThisTeam(unit,projectile)
+  return false
 end
 
 function base_ability:DestroyImmediatly() return false end
@@ -287,12 +292,12 @@ function base_ability:OnSpellStart()
       return self:UnitTest(projectile,unit,caster)
     end,
     OnUnitHit = function(projectile,unit,caster)
-    
       if self:GetAbilityName() == "shoot_" then self:OnProjectileHitUnit(projectile,unit,caster) return end
 
       
       if unit.GetHealth then
-        
+        -- Prevent splitshot from instantly killing
+
         ApplyDamage({
           ability = self,
           attacker = caster,

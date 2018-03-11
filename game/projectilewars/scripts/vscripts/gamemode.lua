@@ -19,16 +19,20 @@ BAREBONES_VERSION = "1.00"
 -- You can also change the cvar 'barebones_spew' at any time to 1 or 0 for output/no output
 BAREBONES_DEBUG_SPEW = false 
 
+
+
 if GameMode == nil then
     DebugPrint( '[BAREBONES] creating barebones game mode' )
     _G.GameMode = class({})
 end
 require('statcollection/init')
 require('libraries/timers')
+require('libraries/worldpanels')
 require('physics/physics')
 require('physics/projectiles')
 require('abilities/base_ability')
 require('items/base_item')
+require('vector_target')
 require('util')
 require('funcs')
 require('vision')
@@ -170,7 +174,8 @@ end
 ---@param hero CDOTA_BaseNPC_Hero
 function GameMode:OnHeroInGame(hero)
   DebugPrint("[BAREBONES] Hero spawned in game for first time -- " .. hero:GetUnitName())
-
+  SendToServerConsole("script_reload")
+  
   if not FIRST then
     FIRST = true
     -- Fix a spike with rocket flare
@@ -255,7 +260,7 @@ function GameMode:InitGameMode()
   Convars:RegisterCommand( "create_item", Dynamic_Wrap(GameMode, 'CreateTestItem'), "create a test arrow at 0,0", FCVAR_CHEAT )
 
 
-
+  CustomGameEventManager:RegisterListener("VectorTargettedAbilityCastFinished",ExecuteVectorTargetAbility)
 
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
   GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode,"FilterExecuteOrder"),self)

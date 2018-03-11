@@ -16,6 +16,9 @@
 #base "abilities/ranged_punch.kv"
 #base "abilities/wall.kv"
 #base "abilities/homing_missile.kv"
+#base "abilities/spell_steal.kv"
+#base "abilities/shards.kv"
+#base "abilities/impetus.kv"
 
 "DOTAAbilities"
 {

@@ -6,7 +6,9 @@ declare const _G:_G
 
 /** !NoClassOr */
 declare abstract class base_ability extends CDOTA_Ability_Lua {
-
+  startPos:Vec
+  endPos:Vec
+  points:Vec[]
   //These functions should/could be overridden
   GetProjectileParticleName():string
   GetProjectileWallBehavior():ProjectileInteractionType
@@ -25,6 +27,7 @@ declare abstract class base_ability extends CDOTA_Ability_Lua {
   OnProjectileHitItem(projectile:PhysicsProjectile,item:CDOTA_Item_Physical):void
   OnProjectileThink(projectile:PhysicsProjectile,location:Vec):void
   OnProjectileFinish(projecttile:PhysicsProjectile):void
+  OnSpellStart():void
   OnSpellStarted():void
   GetSpawnOrigin():Vec
   GetProjectileRange():number 
@@ -53,8 +56,6 @@ declare abstract class base_ability extends CDOTA_Ability_Lua {
   OnSpellStart():void
 }
 
-
-
 /** !NoClassOr */
 declare abstract class item_base_item extends CDOTA_Item_Lua {
   OnItemEquip(caster:CDOTA_BaseNPC_Hero):void
@@ -68,7 +69,7 @@ declare abstract class item_base_rune extends CDOTA_Item_Lua {
 
 /** !NoClassOr */
 declare abstract class modifier_charges_base_item extends CDOTA_Modifier_Lua {
-
+   OnFunctionalEnd():void
 }
 
 /** !CompileMembersOnly */

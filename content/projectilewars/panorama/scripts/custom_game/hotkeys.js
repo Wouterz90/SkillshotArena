@@ -50,8 +50,9 @@ function SetUpHotKeys() {
                 pan.FindChildTraverse("AbilityLevelContainer").style.visibility = "collapse";
             }
             if (pan.FindChildTraverse("ButtonWell").style.width != "100px") {
-                pan.FindChildTraverse("ButtonWell").style.width = "100px";
-                pan.FindChildTraverse("ButtonWell").style.height = "100px";
+                var buttonWell = pan.FindChildTraverse("ButtonWell");
+                buttonWell.style.width = "100px";
+                buttonWell.style.height = "100px";
                 pan.FindChildTraverse("ButtonSize").style.width = "100px";
                 pan.FindChildTraverse("ButtonSize").style.height = "100px";
                 pan.FindChildTraverse("Hotkey").style.visibility = "visible";
@@ -64,6 +65,7 @@ function SetUpHotKeys() {
                 if (numPanelText.text && Number(numPanelText.text) > 0) {
                     numPanelText.style.fontSize = "30px";
                 }
+                pan.FindChildTraverse("AbilityButton").hittest = false;
             }
             if (i == 0) {
                 if (Entities.IsDisarmed(hero) || Entities.IsRooted(hero)) {
@@ -107,14 +109,50 @@ function SetUpHotKeys() {
     }*/
     //} 
 }
+// Detect that an ability has been clicked, this breaks vector targetting and is stupid to do anyways
+// Make the hotkey textbox and text a lot bigger to notify the player what action is required
+GameUI.SetMouseCallback(function (eventName, arg) {
+    if ((eventName == "pressed" || eventName == "doublepressed") && arg === 0) {
+        if (!abilityPanels || abilityPanels.length == 0) {
+            return false;
+        }
+        else {
+            var _loop_1 = function (panel) {
+                if (panel.visible == true) {
+                    var x = Math.abs(panel.GetPositionWithinWindow().x + 35 - GameUI.GetCursorPosition()[0]);
+                    var y = Math.abs(panel.GetPositionWithinWindow().y + 70 - GameUI.GetCursorPosition()[1]);
+                    if (x < 35 && y < 35) {
+                        panel.FindChildTraverse("Hotkey").style.width = "50px";
+                        panel.FindChildTraverse("Hotkey").style.height = "50px";
+                        panel.FindChildTraverse("Hotkey").style.maxHeight = "50px";
+                        panel.FindChildTraverse("HotkeyText").style.fontSize = "30px";
+                        $.Schedule(1, function () {
+                            panel.FindChildTraverse("Hotkey").style.width = "14px";
+                            panel.FindChildTraverse("Hotkey").style.height = "14px";
+                            panel.FindChildTraverse("HotkeyText").style.fontSize = "12px";
+                        });
+                        return { value: true };
+                    }
+                }
+            };
+            for (var _i = 0, abilityPanels_1 = abilityPanels; _i < abilityPanels_1.length; _i++) {
+                var panel = abilityPanels_1[_i];
+                var state_1 = _loop_1(panel);
+                if (typeof state_1 === "object")
+                    return state_1.value;
+            }
+        }
+    }
+    return false;
+});
 function MouseTooltipManager() {
     $.Schedule(0.01, function () { MouseTooltipManager(); });
     if (Game.GetState() < DOTA_GameState.DOTA_GAMERULES_STATE_PRE_GAME) {
         return;
     }
     // Abilities
-    for (var _i = 0, abilityPanels_1 = abilityPanels; _i < abilityPanels_1.length; _i++) {
-        var panel = abilityPanels_1[_i];
+    for (var _i = 0, abilityPanels_2 = abilityPanels; _i < abilityPanels_2.length; _i++) {
+        var panel = abilityPanels_2[_i];
         //$.Msg(panel)
         if (panel.visible == true) {
             var x = Math.abs(panel.GetPositionWithinWindow().x + 35 - GameUI.GetCursorPosition()[0]);

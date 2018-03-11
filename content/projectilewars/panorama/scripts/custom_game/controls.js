@@ -43,43 +43,57 @@ function CastAbility_0() {
     var player = Players.GetLocalPlayer();
     var hero = Players.GetPlayerHeroEntityIndex(player);
     var ability = Entities.GetAbility(hero, 0);
-    Abilities.ExecuteAbility(ability, hero, true);
+    SendAbilityEventToServer(ability, hero);
 }
 function CastAbility_1() {
     var player = Players.GetLocalPlayer();
     var hero = Players.GetPlayerHeroEntityIndex(player);
     var ability = Entities.GetAbility(hero, 1);
-    Abilities.ExecuteAbility(ability, hero, true);
+    SendAbilityEventToServer(ability, hero);
 }
 function CastAbility_2() {
     var player = Players.GetLocalPlayer();
     var hero = Players.GetPlayerHeroEntityIndex(player);
     var ability = Entities.GetAbility(hero, 2);
-    Abilities.ExecuteAbility(ability, hero, true);
+    SendAbilityEventToServer(ability, hero);
 }
 function CastAbility_3() {
     var player = Players.GetLocalPlayer();
     var hero = Players.GetPlayerHeroEntityIndex(player);
     var ability = Entities.GetAbility(hero, 3);
-    Abilities.ExecuteAbility(ability, hero, true);
+    SendAbilityEventToServer(ability, hero);
 }
 function CastAbility_4() {
     var player = Players.GetLocalPlayer();
     var hero = Players.GetPlayerHeroEntityIndex(player);
     var ability = Entities.GetAbility(hero, 4);
-    Abilities.ExecuteAbility(ability, hero, true);
+    SendAbilityEventToServer(ability, hero);
 }
 function CastAbility_5() {
     var player = Players.GetLocalPlayer();
     var hero = Players.GetPlayerHeroEntityIndex(player);
     var ability = Entities.GetAbility(hero, 5);
-    Abilities.ExecuteAbility(ability, hero, true);
+    SendAbilityEventToServer(ability, hero);
 }
 function CastAbility_6() {
     var player = Players.GetLocalPlayer();
     var hero = Players.GetPlayerHeroEntityIndex(player);
     var ability = Entities.GetAbility(hero, 6);
-    Abilities.ExecuteAbility(ability, hero, true);
+    SendAbilityEventToServer(ability, hero);
+}
+function SendAbilityEventToServer(ability, hero) {
+    if (Abilities.GetBehavior(ability) <= DOTA_ABILITY_BEHAVIOR.DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL) {
+        Abilities.ExecuteAbility(ability, hero, true);
+    }
+    else {
+        if (Abilities.AbilityReady(ability) == -1) {
+            $.Msg(Abilities.GetAbilityName(ability));
+            VectorTargetStart(ability);
+        }
+        else {
+            Abilities.ExecuteAbility(ability, hero, true);
+        }
+    }
 }
 /*GameUI.SetMouseCallback( (eventName,arg) => {
   if (eventName == "pressed" && arg === 0 && GameUI.GetClickBehaviors() == CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_NONE) {
@@ -113,4 +127,4 @@ Game.AddCommand( "+MLeftPressed", LeftButtonPressedFunc, "", 0 );
 Game.AddCommand( "-MLeftPressed", LeftButtonReleasedFunc, "", 0 );
 
 Game.AddCommand( "+MDownPressed", DownButtonPressedFunc, "", 0 );
-Game.AddCommand( "-MDownPressed", DownButtonReleasedFunc, "", 0 );*/ 
+Game.AddCommand( "-MDownPressed", DownButtonReleasedFunc, "", 0 );*/

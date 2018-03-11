@@ -16,7 +16,6 @@ function boomerang:GetProjectileTreeBehavior() return PROJECTILES_NOTHING end
 function boomerang:GetSound() return "Hero_BountyHunter.Shuriken" end
 
 function boomerang:OnProjectileHitUnit(projectile,unit,caster)
-    
     local duration = self:GetSpecialValueFor("duration")
     if unit.GetHealth then
         ApplyDamage({
@@ -41,7 +40,7 @@ end
 function boomerang:OnProjectileThink(projectile, projectile_location)
   if LengthSquared(projectile_location- projectile.dummyUnit:GetAbsOrigin()) < 150*150 then
     projectile.AimAtPoint = projectile.AimAtPoint +1
-    if projectile.AimAtPoint == 3 then
+    if projectile.AimAtPoint == #projectile.points then
       projectile.hitByProjectile = {}
     end
     if projectile.AimAtPoint <= #projectile.points then
@@ -97,14 +96,7 @@ function boomerang:OnSpellStart()
     ProjectileBehavior = self:GetProjectileProjectileBehavior(),
     UnitBehavior = self:GetProjectileUnitBehavior(),
     UnitTest = function(projectile, unit,caster)
-      if self:HitsItems() and unit.GetContainedItem then return true end
-      if unit.HasModifier and (unit:IsOutOfGame() or unit:IsInvulnerable()) or unit:GetUnitName() == "npc_unit_dodgedummy" then
-        self:OnSpellDodged(caster,unit)
-        PlayerDodgedProjectile(caster,unit,projectile)
-        return false
-      end
-
-      return self:ShouldHitThisTeam(unit)
+      return self:UnitTest(projectile, unit,caster)
     end,
     OnUnitHit = function(projectile,unit,caster)
       self:OnProjectileHitUnit(projectile,unit,caster)

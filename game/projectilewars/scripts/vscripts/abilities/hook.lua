@@ -39,7 +39,7 @@ function hook:OnSpellStarted()
   ParticleManager:SetParticleControlEnt( self.particle, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_weapon_chain_rt", caster:GetAbsOrigin(), true )
   ParticleManager:SetParticleControl( self.particle, 1, self.end_position  )
   ParticleManager:SetParticleControl( self.particle, 2, Vector( self.projectile_speed , 0, 0 ) )
-  ParticleManager:SetParticleControl( self.particle, 3, Vector(100,0,0) )
+  ParticleManager:SetParticleControl( self.particle, 3, Vector(5,0,0) )
   ParticleManager:SetParticleControl( self.particle, 4, Vector( 1, 0, 0 ) )
   ParticleManager:SetParticleControl( self.particle, 5, Vector( 0, 0, 0 ) )
   ParticleManager:SetParticleControlEnt( self.particle, 7, caster, PATTACH_CUSTOMORIGIN, nil, caster:GetAbsOrigin(), true )
@@ -149,6 +149,10 @@ end
 LinkLuaModifier("modifier_hook_motion","abilities/hook.lua",LUA_MODIFIER_MOTION_NONE)
 ---@class modifier_hook_motion : CDOTA_Modifier_Lua
 modifier_hook_motion = {}
+
+function modifier_hook_motion:IsHidden()
+  return true
+end
 
 function modifier_hook_motion:OnCreated()
   if IsServer() then

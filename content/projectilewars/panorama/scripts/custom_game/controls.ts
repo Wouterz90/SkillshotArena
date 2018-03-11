@@ -47,49 +47,63 @@ function CastAbility_0(): void {
   let player = Players.GetLocalPlayer()
   let hero = Players.GetPlayerHeroEntityIndex(player)
   let ability = Entities.GetAbility(hero,0)
-  Abilities.ExecuteAbility(ability, hero, true )
+  SendAbilityEventToServer(ability,hero)
 }
 
 function CastAbility_1(): void {
+
   let player = Players.GetLocalPlayer()
   let hero = Players.GetPlayerHeroEntityIndex(player)
   let ability = Entities.GetAbility(hero,1)
-  Abilities.ExecuteAbility(ability, hero, true )
+  SendAbilityEventToServer(ability,hero)
 }
 
 function CastAbility_2(): void {
   let player = Players.GetLocalPlayer()
   let hero = Players.GetPlayerHeroEntityIndex(player)
   let ability = Entities.GetAbility(hero,2)
-  Abilities.ExecuteAbility(ability, hero, true )
+  SendAbilityEventToServer(ability,hero)
 }
 
 function CastAbility_3(): void {
   let player = Players.GetLocalPlayer()
   let hero = Players.GetPlayerHeroEntityIndex(player)
   let ability = Entities.GetAbility(hero,3)
-  Abilities.ExecuteAbility(ability, hero, true )
+  SendAbilityEventToServer(ability,hero)
 }
 
 function CastAbility_4(): void {
   let player = Players.GetLocalPlayer()
   let hero = Players.GetPlayerHeroEntityIndex(player)
   let ability = Entities.GetAbility(hero,4)
-  Abilities.ExecuteAbility(ability, hero, true )
+  SendAbilityEventToServer(ability,hero)
 }
 
 function CastAbility_5(): void {
   let player = Players.GetLocalPlayer()
   let hero = Players.GetPlayerHeroEntityIndex(player)
   let ability = Entities.GetAbility(hero,5)
-  Abilities.ExecuteAbility(ability, hero, true )
+  SendAbilityEventToServer(ability,hero)
 }
 
 function CastAbility_6(): void {
   let player = Players.GetLocalPlayer()
   let hero = Players.GetPlayerHeroEntityIndex(player)
   let ability = Entities.GetAbility(hero,6)
-  Abilities.ExecuteAbility(ability, hero, true )
+  SendAbilityEventToServer(ability,hero)
+}
+
+function SendAbilityEventToServer(ability:abilityID,hero:entityID) {
+  if (Abilities.GetBehavior(ability) <= DOTA_ABILITY_BEHAVIOR.DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL) {
+    Abilities.ExecuteAbility(ability, hero, true )
+  } else {
+    if (Abilities.AbilityReady(ability) == -1) {
+      $.Msg(Abilities.GetAbilityName(ability))
+      VectorTargetStart(ability)
+    } else {
+      Abilities.ExecuteAbility(ability, hero, true )
+    }
+  }
 }
 
 /*GameUI.SetMouseCallback( (eventName,arg) => {
@@ -128,3 +142,4 @@ Game.AddCommand( "-MLeftPressed", LeftButtonReleasedFunc, "", 0 );
 
 Game.AddCommand( "+MDownPressed", DownButtonPressedFunc, "", 0 );
 Game.AddCommand( "-MDownPressed", DownButtonReleasedFunc, "", 0 );*/
+

@@ -2,7 +2,9 @@
   <scripts>
     <include src="file://{resources}/scripts/playertables/playertables_base.js" />
     <include src="file://{resources}/scripts/custom_game/vectors.js" />
+    <include src="file://{resources}/scripts/custom_game/vector_target.js" />
     <include src="file://{resources}/scripts/custom_game/camera.js" />
+    
     <include src="file://{resources}/scripts/custom_game/modifiers.js" />
     <include src="file://{resources}/scripts/custom_game/hotkeys.js" />
   </scripts>

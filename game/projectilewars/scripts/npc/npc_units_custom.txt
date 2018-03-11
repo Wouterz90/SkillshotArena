@@ -97,6 +97,6 @@
     "Level"           "0"
     "UnitLabel"         "healing_ward"
 
-    "StatusHealth" "2"
+    "StatusHealth" "1"
   } 
 }

@@ -10,7 +10,9 @@
 #base "items/laser.kv"
 #base "items/ranged_punch.kv"
 #base "items/wall.kv"
-#base "items/homing_missile.kv" //3013
+#base "items/homing_missile.kv" 
+#base "items/spellsteal.kv"
+#base "items/shards.kv" //3015
 
 #base "items/rune_multishot.kv"
 #base "items/rune_speedshot.kv"

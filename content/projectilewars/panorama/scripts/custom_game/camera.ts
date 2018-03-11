@@ -1,4 +1,4 @@
-let previousMousePosition:[number,number] = [0.5,0.5]
+/*let previousMousePosition:[number,number] = [0.5,0.5]
 const n = 0.45
 function CameraThink() {
   $.Schedule(0.01,function(){CameraThink();})
@@ -48,7 +48,7 @@ function CameraThink() {
 
 
 
-    /*let difference = mousePosition[0] - previousMousePosition[0]
+    let difference = mousePosition[0] - previousMousePosition[0]
     
     if (Math.abs(difference) < 0.0025 && mousePosition[0] < 0.999 && mousePosition[0] > 0.001) {
       GameEvents.SendCustomGameEventToServer("ButtonPressed",{button:"MouseLeft",pressed:0})
@@ -67,7 +67,7 @@ function CameraThink() {
     GameEvents.SendCustomGameEventToServer("ButtonPressed",{button:"MouseRight",pressed:0})
   }
    
-  previousMousePosition = mousePosition */
+  previousMousePosition = mousePosition 
 
   GameUI.SetCameraPitchMin(15);
   GameUI.SetCameraPitchMax(15);
@@ -75,11 +75,11 @@ function CameraThink() {
   GameUI.SetCameraLookAtPositionHeightOffset(hero_origin.z-225);
   GameUI.SetCameraDistance(750);
 
-}
 
 const distance = 850;
 let prevPitch = 0;
 //CameraThink();
+}*/
 
 
 // Remove shitty things

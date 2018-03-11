@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+  "item_spell_spellsteal"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "ID"              "3014"
+    "BaseClass"           "item_lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    "AbilityTextureName"      "rubick_spell_steal"
+    "ScriptFile"              "items/item_spellsteal.lua"
+    "Model"             "models/rubickcube.vmdl"
+    "HasCharges"        "1"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "charges"   "2"
+      }
+      "02"
+      {
+        "var_type"      "FIELD_INTEGER"
+        "max_charges"   "3"
+      }
+    }
+  }
+}

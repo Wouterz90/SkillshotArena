@@ -52,6 +52,9 @@ end
 function shoot_.GetProjectileItemBehavior(self)
     return PROJECTILES_NOTHING
 end
+function shoot_.GetProjectileTreeBehavior(self)
+    return PROJECTILES_DESTROY
+end
 function shoot_.OnProjectileHitUnit(self,projectile,unit,caster)
     local range = CDOTA_BaseNPC.GetAttackRange(CDOTABaseAbility.GetCaster(self))
 
