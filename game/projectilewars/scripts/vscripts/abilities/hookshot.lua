@@ -3,6 +3,7 @@ require('abilities/base_ability')
 hookshot = class(base_ability)
 ---@override
 function hookshot:GetProjectileProjectileBehavior() return PROJECTILES_IGNORE end
+function hookshot:GetProjectileTreeBehavior() return PROJECTILES_DESTROY end
 ---@override
 function hookshot:GetProjectileParticleName() return "" end
 ---@override

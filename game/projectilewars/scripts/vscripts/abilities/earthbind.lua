@@ -13,6 +13,7 @@ function earthbind:GetProjectileParticleName() return "particles/abilities/earth
 function earthbind:GetProjectileUnitBehavior() return PROJECTILES_NOTHING end
 ---@override
 function earthbind:GetProjectileProjectileBehavior() return PROJECTILES_NOTHING end
+function earthbind:GetProjectileTreeBehavior() return PROJECTILES_DESTROY end
 ---@override
 function earthbind:GetSound() return "Hero_Meepo.Earthbind.Cast" end
 ---@override

@@ -21,10 +21,11 @@ function modifier_rune_multishot:OnAbilityFullyCast(keys)
 
   -- Return on unsuited projectile spells.
   local banned_abilities = {
+    ["shoot_"] = true,
     ["puck_orb"] = true,
     ["rocket_flare"] = true,
     ["hookshot"] = true,
-    ["shoot_"] = true,
+    ["tree_toss"] = true,
   }
   if banned_abilities[keys.ability:GetAbilityName()] then
     return 

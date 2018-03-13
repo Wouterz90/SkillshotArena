@@ -65,6 +65,7 @@ function puck_orb:OnSpellStart()
     }
     self.projectile = Physics2D:CreateLinearProjectile(projectile_table)
     self:EndCooldown()
+    self:StartCooldown(0.25)
   else -- Move to orb and remove orb
     --caster:SetAbsOrigin(self.projectile:GetAbsOrigin())
     FindClearSpaceForUnit(caster,self.projectile:GetAbsOrigin(),true)

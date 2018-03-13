@@ -5,6 +5,7 @@ class laser extends base_ability {
   GetProjectileUnitBehavior() {return ProjectileInteractionType.PROJECTILES_NOTHING}
   GetProjectileProjectileBehavior() {return ProjectileInteractionType.PROJECTILES_NOTHING}
   GetProjectileWallBehavior() {return ProjectileInteractionType.PROJECTILES_BOUNCE}
+  GetProjectileTreeBehavior() {return ProjectileInteractionType.PROJECTILES_DESTROY}
   GetSound() {return "Hero_Tinker.Laser"}
   GetProjectileControlPoint() {return 9}
   destroyImmediatly() {return true}

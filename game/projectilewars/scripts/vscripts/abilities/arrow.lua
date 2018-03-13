@@ -5,6 +5,7 @@ arrow = class(base_ability)
 function arrow:GetProjectileParticleName() return "particles/abilities/arrow/mirana_spell_arrow.vpcf" end
 ---@override
 function arrow:GetProjectileUnitBehavior() return PROJECTILES_DESTROY end
+function arrow:GetProjectileTreeBehavior() return PROJECTILES_DESTROY end
 ---@override
 function arrow:GetProjectileProjectileBehavior() return PROJECTILES_DESTROY end
 ---@override

@@ -12,7 +12,8 @@
 #base "items/wall.kv"
 #base "items/homing_missile.kv" 
 #base "items/spellsteal.kv"
-#base "items/shards.kv" //3015
+#base "items/shards.kv" 
+#base "items/tree_toss.kv" //3016
 
 #base "items/rune_multishot.kv"
 #base "items/rune_speedshot.kv"

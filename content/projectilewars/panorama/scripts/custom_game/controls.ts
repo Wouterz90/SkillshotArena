@@ -98,7 +98,6 @@ function SendAbilityEventToServer(ability:abilityID,hero:entityID) {
     Abilities.ExecuteAbility(ability, hero, true )
   } else {
     if (Abilities.AbilityReady(ability) == -1) {
-      $.Msg(Abilities.GetAbilityName(ability))
       VectorTargetStart(ability)
     } else {
       Abilities.ExecuteAbility(ability, hero, true )

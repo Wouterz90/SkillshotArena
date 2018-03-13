@@ -781,11 +781,11 @@
         //Inventory
         "HasInventory"      "1"       
     }
-    "npc_dota_hero_enchantress"
+    "npc_dota_hero_tiny"
     {
-        "override_hero"             "npc_dota_hero_enchantress"           // Hero to override
-        "Ability1"                  "shoot_"      // Ability 1
-        "Ability2"          "impetus"
+        "override_hero"             "npc_dota_hero_tiny"           // Hero to override
+        "Ability1"                  "stab"      // Ability 1
+        "Ability2"          "tree_toss"
         "Ability3"          ""
         "Ability4"          ""
         "Ability5"          ""

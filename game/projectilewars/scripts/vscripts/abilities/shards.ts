@@ -32,7 +32,7 @@ class shards extends base_ability {
       let angle = -120 + i * 40
       //@ts-ignore
       let direction = RotatePosition(Vector(0,0,0), QAngle(0,angle,0), projectile.direction)
-      let position = GetGroundPosition(projectile.pos + direction * shard_distance,null)
+      let position = GetGroundPosition(projectile.location + direction * shard_distance,null)
       shards[i] = Physics2D.CreatePolygon(position,[GetRightPerpendicular(direction)*shard_distance/2,-GetRightPerpendicular(direction)*shard_distance/2],null)
       ParticleManager.SetParticleControl(particle,i+1,position)
 

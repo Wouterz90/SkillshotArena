@@ -33,7 +33,7 @@ function CreateAllTrees()
 end
 
 ---@param tree CBaseEntity
-function CutDownTree(tree)
+function CutDownTree(tree,regrowTime)
 
 
 
@@ -47,26 +47,24 @@ function CutDownTree(tree)
   ParticleManager:SetParticleControl(particle,0,tree:GetAbsOrigin())
   GridNav:DestroyTreesAroundPoint( tree:GetAbsOrigin(), 1, true )
   -- Stump
-  local unit =SpawnEntityFromTableSynchronous("prop_dynamic", {model = "maps/journey_assets/props/trees/journey_armandpine/journey_armandpine_0"..RandomInt(1,3).."_stump.vmdl", DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
-  unit:SetAbsOrigin(location)
+  --local unit =SpawnEntityFromTableSynchronous("prop_dynamic", {model = "maps/journey_assets/props/trees/journey_armandpine/journey_armandpine_0"..RandomInt(1,3).."_stump.vmdl", DefaultAnim=animation, targetname=DoUniqueString("prop_dynamic")})
+  --unit:SetAbsOrigin(location)
 
-  Timers:CreateTimer(TREE_REGROW_TIME,function()
-    UTIL_Remove(unit)
-    CreateTempTree(location,99999)
-    local trees = GridNav:GetAllTreesAroundPoint(location,1,true)
-    trees[1]:SetModel(model)
-    trees[1]:SetModelScale(2)
+  Timers:CreateTimer(regrowTime or TREE_REGROW_TIME,function()
+    CreateTempTreeWithFuncs(location)
   end)
 end
 
 function IsTreeStanding(tree)
-  if not tree then print(debug.traceback()) end
+  if not tree then print(debug.traceback()) return end
   if tree.IsStanding then
-    if tree:IsStanding() then
-      return true
-    else
-      return false
-    end
+    return tree:IsStanding()
+  
+    -- if tree:IsStanding() then
+    --   return true
+    -- else
+    --   return false
+    -- end
   --[[else
     if tree.IsChopped then
       return true
@@ -75,4 +73,50 @@ function IsTreeStanding(tree)
     end]]
   end
   return true
+end
+
+function ReplaceTreeWithTempTree(tree)
+  local loc = tree:GetAbsOrigin()
+  UTIL_Remove(tree)
+  CreateTempTree(GetGroundPosition(loc,nil),99999)
+  local trees =GridNav:GetAllTreesAroundPoint(loc, 1, false)
+  
+  if #trees > 0 then
+    local tr = trees[1]
+    
+    function tr:IsStanding()
+      return true
+    end
+    function tr:CutDown(nTreeNumberKnownTo)
+      CutDownTree(self,nTeamNumberKnownTo )
+    end
+    function tr:CutDownRegrowAfter(flRegrowAfter, nTeamNumberKnownTo)
+      CutDownTree(self,flRegrowAfter,nTeamNumberKnownTo)
+    end
+    
+    --tr:SetModel("models/props_tree/dire_tree00"..tostring(RandomInt(2,8)) ..".vmdl")
+    return tr
+  end
+end
+
+function CreateTempTreeWithFuncs(vector)
+  CreateTempTree(GetGroundPosition(vector,nil),99999)
+  local trees =GridNav:GetAllTreesAroundPoint(vector, 1, false)
+  
+
+  if #trees > 0 then
+    local tr = trees[1]
+    function tr:IsStanding()
+      return true
+    end
+    function tr:CutDown(nTreeNumberKnownTo)
+      CutDownTree(self,nTeamNumberKnownTo )
+    end
+    function tr:CutDownRegrowAfter(flRegrowAfter, nTeamNumberKnownTo)
+      CutDownTree(self,flRegrowAfter,nTeamNumberKnownTo)
+    end
+    
+    --tr:SetModel("models/props_tree/dire_tree00"..tostring(RandomInt(2,8)) ..".vmdl")
+    return tr
+  end
 end

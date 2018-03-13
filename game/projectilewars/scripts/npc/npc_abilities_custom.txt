@@ -19,6 +19,7 @@
 #base "abilities/spell_steal.kv"
 #base "abilities/shards.kv"
 #base "abilities/impetus.kv"
+#base "abilities/tree_toss.kv"
 
 "DOTAAbilities"
 {

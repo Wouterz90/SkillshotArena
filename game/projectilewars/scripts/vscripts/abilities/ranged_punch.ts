@@ -15,6 +15,7 @@ class ranged_punch extends base_ability {
   GetProjectileUnitBehavior() {return ProjectileInteractionType.PROJECTILES_NOTHING}
   GetProjectileItemBehavior() {return ProjectileInteractionType.PROJECTILES_NOTHING}
   GetProjectileWallBehavior() {return ProjectileInteractionType.PROJECTILES_DESTROY}
+  GetProjectileTreeBehavior() {return ProjectileInteractionType.PROJECTILES_DESTROY}
 
   OnSpellStarted() {
     let caster = this.GetCaster() as CDOTA_BaseNPC_Hero

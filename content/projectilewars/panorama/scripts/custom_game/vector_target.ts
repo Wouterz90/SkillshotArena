@@ -17,7 +17,7 @@ function VectorTargetLoop(ability:abilityID,particle:particleID,goNext:boolean,s
     
     Particles.DestroyParticleEffect(particle, true)
     Particles.ReleaseParticleIndex(particle)
-    GameEvents.SendCustomGameEventToServer("VectorTargettedAbilityCastFinished", {abilityIndex:ability, startPos:startingPoint, endPos:GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition()),allPoints:points})
+    GameEvents.SendCustomGameEventToServer("vector_targetted_ability_cast_finished", {abilityIndex:ability, startPos:startingPoint, endPos:GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition()),allPoints:points})
     points = []
   } else {
     $.Schedule(0.01,()=>VectorTargetLoop(ability,particle,goNext,startingPoint,wasMouseDown))

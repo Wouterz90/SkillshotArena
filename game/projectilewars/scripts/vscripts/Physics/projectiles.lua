@@ -360,19 +360,19 @@ function Physics2D:DestroyProjectile(hProjectile)
   hProjectile.destroyed = true
   
   -- Keep the unit for a while to have the destruction particle
-  if hProjectile.destroyImmediatly then
-    ParticleManager:DestroyParticle(hProjectile.particle, false)
-    ParticleManager:ReleaseParticleIndex(hProjectile.particle)
-    Timers:CreateTimer(0.1,function()
-      hProjectile.RemoveProjectile = true
-    end)
-  else
+  -- if hProjectile.destroyImmediatly then
+  --   ParticleManager:DestroyParticle(hProjectile.particle, false)
+  --   ParticleManager:ReleaseParticleIndex(hProjectile.particle)
+  --   Timers:CreateTimer(0.1,function()
+  --     hProjectile.RemoveProjectile = true
+  --   end)
+  -- else
     ParticleManager:DestroyParticle(hProjectile.particle, true)
     ParticleManager:ReleaseParticleIndex(hProjectile.particle)
     Timers:CreateTimer(0.5,function()
       hProjectile.RemoveProjectile = true
     end)
-  end
+  --end
 end
 
 function Physics2D:ProjectileHitItem(a,b)

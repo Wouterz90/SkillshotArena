@@ -36,6 +36,7 @@ class homing_missile extends base_ability {
       hUnit:unit,
       UnitBehavior:ProjectileInteractionType.PROJECTILES_DESTROY,
       ProjectileBehavior:ProjectileInteractionType.PROJECTILES_NOTHING,
+      TreeBehavior:ProjectileInteractionType.PROJECTILES_BOUNCE,
       WallBehavior:ProjectileInteractionType.PROJECTILES_BOUNCE,
       ItemBehavior:ProjectileInteractionType.PROJECTILES_IGNORE,
       OnProjectileHit:(myProjectile:PhysicsProjectile,otherProjectile:PhysicsProjectile) => {

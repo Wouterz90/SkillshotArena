@@ -11,9 +11,9 @@ function VectorTargetStart(ability) {
 function VectorTargetLoop(ability, particle, goNext, startingPoint, wasMouseDown) {
     if (!goNext) {
         // Fire ability
-        $.Msg("Firing ability");
         Particles.DestroyParticleEffect(particle, true);
         Particles.ReleaseParticleIndex(particle);
+        $.Msg("VectorTargettedAbilityCastFinished");
         GameEvents.SendCustomGameEventToServer("VectorTargettedAbilityCastFinished", { abilityIndex: ability, startPos: startingPoint, endPos: GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition()), allPoints: points });
         points = [];
     }
@@ -22,7 +22,6 @@ function VectorTargetLoop(ability, particle, goNext, startingPoint, wasMouseDown
         Particles.SetParticleControl(particle, 2, GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition()));
         var abilityRange = Abilities.GetSpecialValueFor(ability, "max_vector_range") == 0 ? 500 : Abilities.GetSpecialValueFor(ability, "max_vector_range");
         points.push(GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition()));
-        $.Msg(points.length);
         var endPoint = ArrayToVector(GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition()));
         if (abilityRange < ArrayToVector(startingPoint).DistanceTo(endPoint)) {
             //$.Msg("range"," ",ArrayToVector(startingPoint).DistanceTo(endPoint)," ",abilityRange)

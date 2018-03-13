@@ -729,7 +729,7 @@ declare abstract class CDOTABaseAbility extends CBaseEntity {
     GetCooldownTime(): number;
     GetCooldownTimeRemaining(): number;
     GetCursorPosition(): Vec;
-    GetCursorTarget(): CDOTA_BaseNPC;
+    GetCursorTarget(): CBaseEntity;
     GetCursorTargetingNothing(): boolean;
     GetDuration(): number;
     GetGoldCost(iLevel: number): number;

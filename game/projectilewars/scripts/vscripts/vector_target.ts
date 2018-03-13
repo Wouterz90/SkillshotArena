@@ -1,4 +1,4 @@
-CustomGameEventManager.RegisterListener("VectorTargettedAbilityCastFinished",ExecuteVectorTargetAbility)
+_G["VectorTargetListener"] = _G["VectorTargetListener"] || CustomGameEventManager.RegisterListener("vector_targetted_ability_cast_finished",ExecuteVectorTargetAbility)
 
 function ExecuteVectorTargetAbility(pID:PlayerID,data:{abilityIndex:number,startPos:{"0":number,"1":number,"2":number},endPos:{"0":number,"1":number,"2":number},allPoints:Vec[]}) {
   let startPos = Vector(data.startPos["0"],data.startPos["1"],data.startPos["2"])
@@ -8,7 +8,7 @@ function ExecuteVectorTargetAbility(pID:PlayerID,data:{abilityIndex:number,start
   data.allPoints.forEach((point) => {
     points.push(Vector(point["0"],point["1"],point["2"]))
   })
-  print(points.length)
+  
   let ability = EntIndexToHScript(data.abilityIndex) as base_ability
   let hero = ability.GetCaster()
   ability.startPos = startPos

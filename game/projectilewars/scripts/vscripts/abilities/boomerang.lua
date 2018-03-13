@@ -11,7 +11,7 @@ function boomerang:GetProjectileUnitBehavior() return PROJECTILES_NOTHING end
 ---@override
 function boomerang:GetProjectileProjectileBehavior() return PROJECTILES_NOTHING end
 ---@override
-function boomerang:GetProjectileTreeBehavior() return PROJECTILES_NOTHING end
+function boomerang:GetProjectileTreeBehavior() return PROJECTILES_DESTROY end
 ---@override
 function boomerang:GetSound() return "Hero_BountyHunter.Shuriken" end
 

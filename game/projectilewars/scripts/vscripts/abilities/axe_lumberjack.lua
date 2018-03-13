@@ -30,7 +30,7 @@ function axe_lumberjack:OnSpellStart()
   caster:EmitSound("Hero_Tiny_Tree.Impact")
 
   -- Cut down a tree and hurt every unit on the other side in a small radius
-  CutDownTree(tree)
+  tree:CutDown(-1)
 
   --[[tree:CutDown(caster:GetTeamNumber())
   local target_origin = tree:GetAbsOrigin() + range * direction
