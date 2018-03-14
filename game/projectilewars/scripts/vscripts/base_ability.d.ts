@@ -3,6 +3,7 @@ declare interface _G {
 }
 declare const _G:_G
 
+declare function GetRandomItemName():string
 
 /** !NoClassOr */
 declare abstract class base_ability extends CDOTA_Ability_Lua {
@@ -80,3 +81,4 @@ declare enum ItemDropRarity {
   ITEM_DROP_CHANCE_LEGENDARY = 1,
   ITEM_DROP_CHANCE_TOTAL = 19,
 }
+

@@ -1,4 +1,4 @@
-// Units File
+// Units File 
 "DOTAUnits"
 {
 	"Version"	"1"
@@ -52,6 +52,7 @@
     "AttributeIntelligenceGain" "0"     // Intelligence bonus per level.
     "AttributeBaseAgility"    "0"     // Base agility
     "AttributeAgilityGain"    "0"     // Agility bonus per level.
+    "HealthBarOffset"       "0"
 
     // Bounty
     //----------------------------------------------------------------
@@ -72,7 +73,7 @@
 
     // Status
     //----------------------------------------------------------------
-    "StatusHealth"        "1"     // Base health.
+    "StatusHealth"        "75"     // Base health.
     "StatusHealthRegen"     "0"     // Health regeneration rate.
     "StatusMana"        "0"     // Base mana.
     "StatusManaRegen"     "0"     // Mana regeneration rate.

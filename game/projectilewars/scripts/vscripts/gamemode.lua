@@ -38,6 +38,7 @@ require('funcs')
 require('vision')
 require('modifiers')
 require('trees')
+require('zones')
 -- These internal libraries set up barebones's events and processes.  Feel free to inspect them/change them if you need to.
 require('internal/gamemode')
 require('internal/events')
@@ -238,7 +239,7 @@ end
 ]]
 function GameMode:OnGameInProgress()
   DebugPrint("[BAREBONES] The game has officially begun")
-
+  ITEM_ZONE = CreateItemZone(Vec())
   Timers:CreateTimer(0, -- Start this timer 30 game-time seconds later
     function()
       GameMode:CreateItems()
@@ -326,13 +327,10 @@ function PlayerDodgedProjectile(caster,unit,projectile)
   caster:HeroLevelUp(true)
 end
 
-
-
-function GameMode:CreateItems()
-  local items = {}
+function GetRandomItemName()
   local allHeroes = HeroList:GetAllHeroes()
   local itemHeroPairs = LoadKeyValues("scripts/kv/item_hero_pairs.kv")
-
+  local items = {}
   for k,v in pairs(ALLITEMS) do
     for _,hero in pairs(allHeroes) do
       if itemHeroPairs[k] == hero:GetUnitName() then
@@ -342,6 +340,12 @@ function GameMode:CreateItems()
     table.insert(items,k)
     ::endCreateItemsLoop::
   end
+  local sItemName = items[RandomInt(1,#items)]
+  return sItemName
+end
+
+function GameMode:CreateItems()
+  
   --[[local points = {
     [1] = GetGroundPosition(Vector(0,1,0),nil),
     [2] = GetGroundPosition(Vector(1664,1664,0),nil),
@@ -367,16 +371,16 @@ function GameMode:CreateItems()
     end
   end]]
   DROP_ITEMS = DROP_ITEMS or {}
-  for i = 1,3 do
+  for i = 1,4 do
     if IsValidEntity(DROP_ITEMS[i]) then
       UTIL_Remove(DROP_ITEMS[i])
     end
-    if i ~= 1 then
-      DROP_ITEMS[i] = CreatePhysicsItem(items[RandomInt(1,#items)],RandomVector(RandomInt(750,MAP_SIZE)))
-    end
+    --if i ~= 1 then
+      DROP_ITEMS[i] = CreatePhysicsItem(GetRandomItemName(),RandomVector(RandomInt(750,MAP_SIZE)))
+    --end
   end
-
-  DROP_ITEMS[1] = CreatePhysicsItem(items[RandomInt(1,#items)],Vec())
+  
+  --DROP_ITEMS[1] = CreatePhysicsItem(GetRandomItemName(),Vec())
 
 
 
